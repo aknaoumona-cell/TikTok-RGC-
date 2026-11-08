@@ -2,7 +2,7 @@
  * TikTok #4 — « les jeux du serveur »   LOOK : AFFICHE POP PASTEL
  * Un fond pastel plein par jeu, typo géante foncée, rafale sur le beat.
  * 0–60    : accroche « ton jeu est sûrement ici »
- * 60–240  : 12 jeux × 15 images (capture du jeu, sinon son logo)
+ * 60–240  : 12 jeux × 15 images (clip du serveur, sinon image de gameplay)
  * 240–330 : « + autres jeux » : t'as aussi ta place
  * 330–420 : « et des mates pour chacune. »
  * 420–510 : carte de fin
@@ -20,25 +20,25 @@ const INK = "#1A1424";
 const PASTELS = ["#F9C9D6", "#DCCBFF", "#C8F0DF", "#FBE7A9", "#FFD3BA", "#C9E4FF"];
 
 /** Les rôles de jeux du serveur (dans l'ordre du salon rôles). */
-export const GAMES: { name: string; clip?: { src: string; start: number }; logo?: string }[] = [
+export const GAMES: { name: string; clip?: { src: string; start: number }; image?: string }[] = [
   { name: "Call of Duty", clip: { src: "clips/cod-sniper-rose.mp4", start: 1.0 } },
-  { name: "Dead by Daylight", logo: "logos/dead-by-daylight.jpg" },
-  { name: "Fortnite", logo: "logos/fortnite.jpg" },
+  { name: "Dead by Daylight", image: "gameplay/dead-by-daylight.jpg" },
+  { name: "Fortnite", image: "gameplay/fortnite.jpg" },
   { name: "Marvel Rivals", clip: { src: "clips/marvel-rivals-highlight.mp4", start: 2.2 } },
   { name: "Overwatch", clip: { src: "clips/overwatch-hd.mp4", start: 0.2 } },
-  { name: "Roblox", logo: "logos/roblox.jpg" },
-  { name: "Valorant", logo: "logos/valorant.jpg" },
+  { name: "Roblox", image: "gameplay/roblox.jpg" },
+  { name: "Valorant", image: "gameplay/valorant.jpg" },
   { name: "Among Us", clip: { src: "clips/among-us-votes.mp4", start: 0.3 } },
-  { name: "Minecraft", logo: "logos/minecraft.jpg" },
-  { name: "League of Legends", logo: "logos/league-of-legends.jpg" },
-  { name: "Aniimo", logo: "logos/aniimo.jpg" },
-  { name: "Disney Dreamlight Valley", logo: "logos/disney-dreamlight-valley.jpg" },
+  { name: "Minecraft", image: "gameplay/minecraft.jpg" },
+  { name: "League of Legends", image: "gameplay/league-of-legends.jpg" },
+  { name: "Aniimo", image: "gameplay/aniimo.jpg" },
+  { name: "Disney Dreamlight Valley", image: "gameplay/disney-dreamlight-valley.jpg" },
 ];
 
 /** Font size so that the longest word fits on one line. */
 const fit = (name: string) => {
   const longest = Math.max(...name.split(" ").map((w) => w.length));
-  return Math.min(150, Math.floor(900 / (longest * 0.82)));
+  return Math.min(name.length > 14 ? 112 : 150, Math.floor(900 / (longest * 0.82)));
 };
 
 const Dots: React.FC<{ color: string }> = ({ color }) => (
@@ -109,7 +109,7 @@ const Rafale: React.FC = () => {
           <OffthreadVideo key={i} src={staticFile(g.clip.src)} startFrom={Math.round(g.clip.start * 30)} muted style={{ width: "100%", height: "100%", objectFit: "cover" }} />
         </div>
       )}
-      {g.logo && (
+      {g.image && (
         <div
           style={{
             position: "absolute",
@@ -119,16 +119,12 @@ const Rafale: React.FC = () => {
             height: 450,
             borderRadius: 36,
             overflow: "hidden",
-            background: "#fff",
             border: `8px solid ${INK}`,
             boxShadow: `14px 14px 0 ${INK}`,
             transform: `rotate(${i % 2 ? 3 : -3}deg) scale(${pop})`,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
           }}
         >
-          <Img src={staticFile(g.logo)} style={{ maxWidth: "86%", maxHeight: "86%", objectFit: "contain" }} />
+          <Img src={staticFile(g.image)} style={{ width: "100%", height: "100%", objectFit: "cover", transform: `scale(${1.12 - 0.008 * lf})` }} />
         </div>
       )}
     </AbsoluteFill>
