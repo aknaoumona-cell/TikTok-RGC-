@@ -8,13 +8,13 @@ Vidéo verticale 1080×1920, 30 i/s, 21,5 s, faite avec [Remotion](https://www.r
 | `out/rgc-promo.mp4` | « un serveur entre filles » | nuit nacrée, chrome lilas |
 | `out/rgc-seule-vs-plusieurs.mp4` | jouer seule vs à plusieurs → viens en voc demander des mates | cinéma (image large, chapitres, sous-titres) |
 | `out/rgc-types-de-joueuses.mp4` | les types de joueuses sur RGC (memes) | template meme (bandeau blanc) |
-| `out/rgc-les-jeux.mp4` | les 12 jeux du serveur en rafale | affiche pop pastel |
+| `out/rgc-les-jeux.mp4` | les 12 jeux du serveur en rafale (capture ou logo du jeu) + « autres jeux » | affiche pop pastel |
 | `out/rgc-red-green-flags.mp4` | red flags vs green flags d'un serveur Discord | bicolore rouge / vert |
 
 Les sources : `src/Video.tsx` (promo) et `src/videos/*.tsx` (les 4 autres, textes en haut de chaque fichier).
 Rendu : `npx remotion render <RGCPromo|RGCSolo|RGCTypes|RGCJeux|RGCFlags> out/<nom>.mp4`.
 Bruitages : `python3 tools/make_sfx.py` (promo) et `python3 tools/make_sfx_series.py` (les 4 autres).
-Memes : `public/memes/` (trouvés sur Pinterest).
+Memes : `public/memes/` et logos des jeux : `public/logos/` (trouvés sur Pinterest).
 
 ## Promo principale
 - `out/rgc-promo.mp4` — avec **uniquement les bruitages** (impacts, whooshs, pops, ticks des lettres, shutter, scintillements), calés à l'image près. Pas de musique : ajoute ton son par-dessus dans TikTok / CapCut.

@@ -2,36 +2,37 @@
  * TikTok #4 — « les jeux du serveur »   LOOK : AFFICHE POP PASTEL
  * Un fond pastel plein par jeu, typo géante foncée, rafale sur le beat.
  * 0–60    : accroche « ton jeu est sûrement ici »
- * 60–240  : 12 jeux × 15 images
- * 240–300 : « et des mates pour chacun. »
- * 300–390 : carte de fin
+ * 60–240  : 12 jeux × 15 images (capture du jeu, sinon son logo)
+ * 240–300 : « + autres jeux » : t'as aussi ta place
+ * 300–360 : « et des mates pour chacune. »
+ * 360–450 : carte de fin
  */
 import React from "react";
-import { AbsoluteFill, Audio, OffthreadVideo, Sequence, interpolate, staticFile, useCurrentFrame } from "remotion";
+import { AbsoluteFill, Audio, Img, OffthreadVideo, Sequence, interpolate, staticFile, useCurrentFrame } from "remotion";
 import { COLORS } from "../config";
 import { FONT, Flash, RiseWords, clamp, easeOut } from "../components";
 import { EndCard, Meme, Shell } from "../memes";
 
-export const JEUX_TOTAL = 390;
+export const JEUX_TOTAL = 450;
 export const STEP = 15;
 const INK = "#1A1424";
 
 const PASTELS = ["#F9C9D6", "#DCCBFF", "#C8F0DF", "#FBE7A9", "#FFD3BA", "#C9E4FF"];
 
 /** Les rôles de jeux du serveur (dans l'ordre du salon rôles). */
-export const GAMES: { name: string; clip?: { src: string; start: number } }[] = [
+export const GAMES: { name: string; clip?: { src: string; start: number }; logo?: string }[] = [
   { name: "Call of Duty", clip: { src: "clips/cod-sniper-rose.mp4", start: 1.0 } },
-  { name: "Dead by Daylight" },
-  { name: "Fortnite" },
+  { name: "Dead by Daylight", logo: "logos/dead-by-daylight.jpg" },
+  { name: "Fortnite", logo: "logos/fortnite.jpg" },
   { name: "Marvel Rivals", clip: { src: "clips/marvel-rivals-highlight.mp4", start: 2.2 } },
   { name: "Overwatch", clip: { src: "clips/overwatch-hd.mp4", start: 0.2 } },
-  { name: "Roblox" },
-  { name: "Valorant" },
+  { name: "Roblox", logo: "logos/roblox.jpg" },
+  { name: "Valorant", logo: "logos/valorant.jpg" },
   { name: "Among Us", clip: { src: "clips/among-us-votes.mp4", start: 0.3 } },
-  { name: "Minecraft" },
-  { name: "League of Legends" },
-  { name: "Aniimo" },
-  { name: "Disney Dreamlight Valley" },
+  { name: "Minecraft", logo: "logos/minecraft.jpg" },
+  { name: "League of Legends", logo: "logos/league-of-legends.jpg" },
+  { name: "Aniimo", logo: "logos/aniimo.jpg" },
+  { name: "Disney Dreamlight Valley", logo: "logos/disney-dreamlight-valley.jpg" },
 ];
 
 /** Font size so that the longest word fits on one line. */
@@ -73,7 +74,7 @@ const Rafale: React.FC = () => {
       <div
         style={{
           position: "absolute",
-          top: g.clip ? 560 : 760,
+          top: 560,
           width: "100%",
           padding: "0 70px",
           textAlign: "center",
@@ -108,6 +109,62 @@ const Rafale: React.FC = () => {
           <OffthreadVideo key={i} src={staticFile(g.clip.src)} startFrom={Math.round(g.clip.start * 30)} muted style={{ width: "100%", height: "100%", objectFit: "cover" }} />
         </div>
       )}
+      {g.logo && (
+        <div
+          style={{
+            position: "absolute",
+            left: 140,
+            top: 1010,
+            width: 800,
+            height: 450,
+            borderRadius: 36,
+            overflow: "hidden",
+            background: "#fff",
+            border: `8px solid ${INK}`,
+            boxShadow: `14px 14px 0 ${INK}`,
+            transform: `rotate(${i % 2 ? 3 : -3}deg) scale(${pop})`,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Img src={staticFile(g.logo)} style={{ maxWidth: "86%", maxHeight: "86%", objectFit: "contain" }} />
+        </div>
+      )}
+    </AbsoluteFill>
+  );
+};
+
+const Autres: React.FC = () => {
+  const f = useCurrentFrame();
+  const pop = interpolate(f, [0, 8], [0.6, 1], { ...clamp, easing: easeOut });
+  return (
+    <AbsoluteFill style={{ background: PASTELS[5] }}>
+      <Dots color="#fff" />
+      <div style={{ position: "absolute", top: 450, width: "100%", textAlign: "center", fontFamily: FONT.mono, fontWeight: 700, fontSize: 44, letterSpacing: 8, color: INK }}>+ BONUS</div>
+      <div
+        style={{
+          position: "absolute",
+          top: 560,
+          width: "100%",
+          textAlign: "center",
+          fontFamily: FONT.display,
+          fontWeight: 800,
+          fontSize: 140,
+          lineHeight: 1.0,
+          letterSpacing: -4,
+          color: INK,
+          transform: `scale(${pop})`,
+          textShadow: "6px 6px 0 rgba(255,255,255,0.75)",
+        }}
+      >
+        AUTRES JEUX
+      </div>
+      <div style={{ position: "absolute", top: 860, width: "100%", textAlign: "center", padding: "0 70px" }}>
+        <RiseWords text="tu joues à autre chose ?" start={8} stagger={2} style={{ fontFamily: FONT.body, fontWeight: 700, fontSize: 58, color: INK }} />
+        <RiseWords text="t'as aussi ta place ✦" start={16} stagger={2} style={{ fontFamily: FONT.serif, fontStyle: "italic", fontSize: 104, color: COLORS.lilacDeep, lineHeight: 1.1, marginTop: 10 }} />
+      </div>
+      <Meme src="memes/chat-lunettes-soleil.jpg" at={20} x={540} y={1380} w={420} rotate={-5} />
     </AbsoluteFill>
   );
 };
@@ -117,14 +174,14 @@ const Mates: React.FC = () => (
     <Dots color="#fff" />
     <div style={{ position: "absolute", top: 520, width: "100%", textAlign: "center", padding: "0 60px" }}>
       <RiseWords text="et des mates" start={2} style={{ fontFamily: FONT.display, fontWeight: 800, fontSize: 100, color: INK, letterSpacing: -3 }} />
-      <RiseWords text="pour chacun." start={8} style={{ fontFamily: FONT.serif, fontStyle: "italic", fontSize: 160, color: COLORS.lilacDeep, lineHeight: 1.05 }} />
+      <RiseWords text="pour chacune." start={8} style={{ fontFamily: FONT.serif, fontStyle: "italic", fontSize: 160, color: COLORS.lilacDeep, lineHeight: 1.05 }} />
     </div>
     <Meme src="memes/chat-gaming-chaise.jpg" at={14} x={540} y={1300} w={540} rotate={5} />
   </AbsoluteFill>
 );
 
 export const JeuxVideo: React.FC = () => (
-  <Shell hideBugFrom={300} ink="dark">
+  <Shell hideBugFrom={360} ink="dark">
     <Sequence durationInFrames={60}>
       <Hook />
     </Sequence>
@@ -132,13 +189,17 @@ export const JeuxVideo: React.FC = () => (
       <Rafale />
     </Sequence>
     <Sequence from={240} durationInFrames={60}>
+      <Autres />
+    </Sequence>
+    <Sequence from={300} durationInFrames={60}>
       <Mates />
     </Sequence>
-    <Sequence from={300} durationInFrames={90}>
+    <Sequence from={360} durationInFrames={90}>
       <EndCard big="trouve tes mates" small="viens en voc sur le serveur" />
     </Sequence>
     <Flash at={240} strength={0.5} />
-    <Flash at={300} strength={0.6} />
+    <Flash at={300} strength={0.4} />
+    <Flash at={360} strength={0.6} />
     <Audio src={staticFile("audio/sfx-jeux.wav")} />
   </Shell>
 );
