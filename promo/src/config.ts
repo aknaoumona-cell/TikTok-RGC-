@@ -3,7 +3,7 @@
  *  RGC PROMO — FICHIER DE CONFIG (tout ce qui se modifie est ici)
  * ============================================================
  *  - Les textes, clips, couleurs et timings du montage.
- *  - 30 images par seconde. Musique guide à 120 BPM => 1 temps = 15 images.
+ *  - 30 images par seconde. Montage calé sur une grille de 120 BPM => 1 temps = 15 images.
  *  - Pour changer un clip : dépose le fichier dans public/clips/ et
  *    remplace son nom ci-dessous.
  */
@@ -14,10 +14,6 @@ export const WIDTH = 1080;
 export const HEIGHT = 1920;
 
 export const HANDLE = "@rivalsgirlsclub";
-
-/** Afficher le pseudo complet des membres dans les bulles de chat ?
- *  false = initiale seulement (par défaut, en attendant leur accord). */
-export const SHOW_MEMBER_NAMES = false;
 
 export const COLORS = {
   night: "#120F18", // fond nuit (doux, pas noir gothique)
@@ -38,41 +34,37 @@ export const COLORS = {
 /** Découpage du montage, en images (30 i/s). */
 export const T = {
   hook: { from: 0, dur: 90 }, // 0.0 – 3.0 s
-  bavardes: { from: 90, dur: 60 }, // 3.0 – 5.0 s  (DROP)
+  drop: { from: 90, dur: 60 }, // 3.0 – 5.0 s  (DROP)
   game: { from: 150, dur: 60 }, // 5.0 – 7.0 s
   votes: { from: 210, dur: 60 }, // 7.0 – 9.0 s
   cine: { from: 270, dur: 60 }, // 9.0 – 11.0 s
   talk: { from: 330, dur: 60 }, // 11.0 – 13.0 s
-  chat: { from: 390, dur: 120 }, // 13.0 – 17.0 s (breakdown)
-  values: { from: 510, dur: 75 }, // 17.0 – 19.5 s (re-drop)
-  cta: { from: 585, dur: 105 }, // 19.5 – 23.0 s (logo)
-  outro: { from: 690, dur: 75 }, // 23.0 – 25.5 s
+  values: { from: 390, dur: 75 }, // 13.0 – 15.5 s (re-drop)
+  cta: { from: 465, dur: 105 }, // 15.5 – 19.0 s (logo)
+  outro: { from: 570, dur: 75 }, // 19.0 – 21.5 s
 };
-export const TOTAL = 765;
+export const TOTAL = 645;
 
 export const TEXT = {
-  hookTop: "on cherche pas",
-  hookBottom: "des membres.",
-  bavardesTop: "on cherche",
-  bavardes: "des bavardes.",
-  cellesQui: "celles qui…",
+  hookTop: "t'as pas encore",
+  hookBottom: "trouvé ta squad ?",
+  dropTop: "un serveur",
+  dropSmall: "entre",
+  dropBig: "filles.",
+  header: "ici, on…",
   lines: {
-    game: ["lancent une game", "à 23h"],
-    votes: ["crient pendant", "les votes"],
-    cine: ["commentent", "le film du dimanche"],
-    talk: ["parlent livres,", "séries, mangas…"],
+    game: ["lance une game", "à 23h"],
+    votes: ["crie pendant", "les votes"],
+    cine: ["se fait des", "soirées ciné"],
+    talk: ["parle livres,", "séries, mangas…"],
   },
-  chatTitle: "un dimanche soir sur RGC",
-  chatCaption: "vrais messages · soirée ciné du serveur",
-  members: 711,
-  membersLabel: "membres",
-  pills: ["100% filles", "vérif vocale", "12 jeux", "SFW · LGBTQ+ friendly"],
+  valuesTop: "et surtout",
+  valuesBig: "une safe place.",
+  pills: ["vérif vocale", "multi-jeux", "events chaque semaine", "SFW · LGBTQ+ friendly"],
   ctaName: "Rivals Girls Club",
   ctaEvents: ["soirées ciné", "soirées jeux", "mini-jeux"],
-  ctaHello: "et tu dis bonjour en arrivant 😌",
-  outroLink: "lien en bio",
-  outroQuestion: "ton jeu de ce soir ?",
-  outroQuestion2: "dis-le en com 👇",
+  outroBig: "rejoins-nous",
+  outroLink: "lien en commentaire",
 };
 
 /** Vrais salons du serveur (repris de la liste des salons). */
@@ -87,24 +79,6 @@ export const CHANNELS = [
   "animaux",
   "kiss-marry-kill",
   "birthday",
-];
-
-/** Vrais messages (capture de la soirée ciné « Cinéverse – MCU+ »). */
-export const CHAT = [
-  {
-    name: "Mels",
-    color: "#B78BF0",
-    text: "On va passer plus de temps à parler de James Buchanan Barnes que de regarder le film 🤣",
-    reaction: "🤣 1",
-  },
-  { name: "noirya", color: "#BFEBD9", text: "mais il est si charismatique...", reaction: "" },
-  { name: "Heloise", color: "#F6C1D1", text: "Han l'agent carter est trop belle", reaction: "" },
-  {
-    name: "Tiph",
-    color: "#F7E3A3",
-    text: "Salut moi aussiii !! Je suis arrivée il y a trois jours tu sais, enchanté et bienvenue !!",
-    reaction: "",
-  },
 ];
 
 /** Clips (dans public/clips). start = seconde de départ dans le clip. */
@@ -131,4 +105,5 @@ export const CLIPS = {
   ],
 };
 
-export const MUSIC = "audio/rgc-beat-120.wav";
+/** Bruitages seuls (pas de musique) : impacts, whooshs, pops… — généré par tools/make_sfx.py */
+export const SFX = "audio/rgc-sfx.wav";

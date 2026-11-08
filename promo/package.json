@@ -5,7 +5,7 @@
   "scripts": {
     "studio": "remotion studio",
     "render": "remotion render RGCPromo out/rgc-promo.mp4",
-    "render:nomusic": "remotion render RGCPromoNoMusic out/rgc-promo-sans-musique.mp4"
+    "sfx": "python3 tools/make_sfx.py public/audio/rgc-sfx.wav"
   },
   "dependencies": {
     "@fontsource/dm-serif-display": "^5.1.0",

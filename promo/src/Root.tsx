@@ -4,8 +4,5 @@ import { FPS, HEIGHT, TOTAL, WIDTH } from "./config";
 import { RGCPromo } from "./Video";
 
 export const Root: React.FC = () => (
-  <>
-    <Composition id="RGCPromo" component={RGCPromo} durationInFrames={TOTAL} fps={FPS} width={WIDTH} height={HEIGHT} defaultProps={{ withMusic: true }} />
-    <Composition id="RGCPromoNoMusic" component={RGCPromo} durationInFrames={TOTAL} fps={FPS} width={WIDTH} height={HEIGHT} defaultProps={{ withMusic: false }} />
-  </>
+  <Composition id="RGCPromo" component={RGCPromo} durationInFrames={TOTAL} fps={FPS} width={WIDTH} height={HEIGHT} />
 );

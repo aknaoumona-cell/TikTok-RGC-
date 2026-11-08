@@ -1,6 +1,6 @@
 import React from "react";
 import { AbsoluteFill, Img, OffthreadVideo, interpolate, random, staticFile, useCurrentFrame } from "remotion";
-import { CHANNELS, CHAT, CLIPS, COLORS, FPS, SHOW_MEMBER_NAMES, TEXT } from "./config";
+import { CHANNELS, CLIPS, COLORS, FPS, TEXT } from "./config";
 import {
   BoxLetters,
   Bow,
@@ -19,7 +19,7 @@ import {
 } from "./components";
 
 /* =========================================================
-   1. HOOK — carte vocal + « on cherche pas des membres. »
+   1. HOOK — carte vocal + « t'as pas encore trouvé ta squad ? »
    ========================================================= */
 const VoiceCard: React.FC = () => {
   const f = useCurrentFrame();
@@ -43,7 +43,7 @@ const VoiceCard: React.FC = () => {
       }}
     >
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <div style={{ fontFamily: FONT.body, fontWeight: 700, fontSize: 40, color: "#fff" }}>🔊 Asgard FM</div>
+        <div style={{ fontFamily: FONT.body, fontWeight: 700, fontSize: 40, color: "#fff" }}>🔊 Vocal</div>
         <div
           style={{
             display: "flex",
@@ -68,7 +68,7 @@ const VoiceCard: React.FC = () => {
               boxShadow: `0 0 ${10 + 14 * beatPulse(f)}px ${COLORS.live}`,
             }}
           />
-          EN VOC
+          REC
         </div>
       </div>
       <div style={{ display: "flex", justifyContent: "space-between", marginTop: 36 }}>
@@ -114,7 +114,6 @@ const VoiceCard: React.FC = () => {
 
 export const HookScene: React.FC = () => {
   const f = useCurrentFrame();
-  const strike = interpolate(f, [58, 70], [0, 1], { ...clamp, easing: easeOut });
   const big: React.CSSProperties = { fontFamily: FONT.display, fontWeight: 800, fontSize: 86, color: "#fff", lineHeight: 1.1, letterSpacing: -2 };
   return (
     <AbsoluteFill>
@@ -123,31 +122,16 @@ export const HookScene: React.FC = () => {
       <VoiceCard />
       <div style={{ position: "absolute", top: 1190, width: "100%", textAlign: "center" }}>
         <RiseWords text={TEXT.hookTop} start={10} style={big} />
-        <div style={{ position: "relative", display: "inline-block", marginTop: 6 }}>
-          <RiseWords text={TEXT.hookBottom} start={24} style={big} />
-          <div
-            style={{
-              position: "absolute",
-              left: "-3%",
-              top: "52%",
-              height: 12,
-              width: `${106 * strike}%`,
-              borderRadius: 12,
-              background: `linear-gradient(90deg, ${COLORS.blush}, ${COLORS.lilac})`,
-              boxShadow: `0 0 20px ${COLORS.lilac}`,
-              transform: "rotate(-3deg)",
-            }}
-          />
-        </div>
+        <RiseWords text={TEXT.hookBottom} start={24} style={{ ...big, marginTop: 6 }} />
       </div>
     </AbsoluteFill>
   );
 };
 
 /* =========================================================
-   2. DROP — « on cherche des bavardes. »
+   2. DROP — « un serveur entre filles. »
    ========================================================= */
-export const BavardesScene: React.FC = () => {
+export const DropScene: React.FC = () => {
   const f = useCurrentFrame();
   const s = useSpring(0, 9);
   const shake = useShake(0, 30);
@@ -156,9 +140,9 @@ export const BavardesScene: React.FC = () => {
     <AbsoluteFill style={{ transform: shake }}>
       <NightBackground intensity={1.5} />
       <Sparkles count={26} seed="burst" area={[440, 860, 640, 1060]} burstAt={0} />
-      <Sparkles count={12} seed="bav" />
+      <Sparkles count={12} seed="drop" />
       <div style={{ position: "absolute", top: 720, width: "100%" }}>
-        <BoxLetters text={TEXT.bavardesTop} start={2} size={44} />
+        <BoxLetters text={TEXT.dropTop} start={2} size={44} />
       </div>
       <div
         style={{
@@ -170,9 +154,9 @@ export const BavardesScene: React.FC = () => {
           opacity: Math.min(1, s * 2),
         }}
       >
-        <div style={{ fontFamily: FONT.display, fontWeight: 800, fontSize: 88, color: "#fff", letterSpacing: -2 }}>des</div>
+        <div style={{ fontFamily: FONT.display, fontWeight: 800, fontSize: 88, color: "#fff", letterSpacing: -2 }}>{TEXT.dropSmall}</div>
         <div style={{ fontFamily: FONT.serif, fontStyle: "italic", fontSize: 228, lineHeight: 1.05, marginTop: -10, ...chromeStyle(f) }}>
-          bavardes.
+          {TEXT.dropBig}
         </div>
       </div>
       <div style={{ position: "absolute", top: 1290, left: 160 }}>
@@ -183,7 +167,7 @@ export const BavardesScene: React.FC = () => {
 };
 
 /* =========================================================
-   3. « celles qui… » — lignes + clips calés sur le beat
+   3. « ici, on… » — lignes + clips calés sur le beat
    ========================================================= */
 const LineText: React.FC<{ lines: string[]; start: number; top?: number }> = ({ lines, start, top = 1330 }) => {
   const f = useCurrentFrame();
@@ -203,7 +187,7 @@ const LineText: React.FC<{ lines: string[]; start: number; top?: number }> = ({ 
 
 const Header: React.FC = () => (
   <div style={{ position: "absolute", top: 470, width: "100%" }}>
-    <BoxLetters text={TEXT.cellesQui} start={-100} size={40} />
+    <BoxLetters text={TEXT.header} start={-100} size={40} />
   </div>
 );
 
@@ -292,140 +276,11 @@ export const TalkScene: React.FC = () => {
 };
 
 /* =========================================================
-   4. PREUVE — vrais messages de la soirée ciné
-   ========================================================= */
-const Bubble: React.FC<{ m: (typeof CHAT)[number]; at: number }> = ({ m, at }) => {
-  const s = useSpring(at, 11);
-  const f = useCurrentFrame();
-  if (f < at) return null;
-  const name = SHOW_MEMBER_NAMES ? m.name : `${m.name[0].toUpperCase()}.`;
-  return (
-    <div
-      style={{
-        display: "flex",
-        gap: 22,
-        padding: "24px 28px",
-        borderRadius: 34,
-        background: "rgba(30,31,34,0.92)",
-        border: "1.5px solid rgba(231,214,255,0.2)",
-        boxShadow: "0 20px 50px rgba(0,0,0,0.4), 0 0 40px rgba(183,139,240,0.15)",
-        marginBottom: 22,
-        opacity: s,
-        transform: `translateY(${(1 - s) * 50}px) scale(${0.85 + 0.15 * s})`,
-        transformOrigin: "left center",
-      }}
-    >
-      <div
-        style={{
-          flex: "0 0 auto",
-          width: 76,
-          height: 76,
-          borderRadius: 99,
-          background: `radial-gradient(circle at 35% 30%, #fff, ${m.color} 60%, ${COLORS.lilacDeep})`,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          fontFamily: FONT.display,
-          fontWeight: 800,
-          fontSize: 32,
-          color: COLORS.night,
-        }}
-      >
-        {m.name[0].toUpperCase()}
-      </div>
-      <div>
-        <div style={{ fontFamily: FONT.body, fontWeight: 700, fontSize: 32, color: m.color }}>{name}</div>
-        <div style={{ fontFamily: FONT.body, fontWeight: 500, fontSize: 38, color: "#fff", lineHeight: 1.3, marginTop: 4 }}>{m.text}</div>
-        {m.reaction && (
-          <div
-            style={{
-              display: "inline-block",
-              marginTop: 12,
-              fontFamily: FONT.body,
-              fontWeight: 700,
-              fontSize: 28,
-              color: "#fff",
-              padding: "6px 16px",
-              borderRadius: 14,
-              background: "rgba(88,101,242,0.25)",
-              border: "1.5px solid rgba(140,150,255,0.6)",
-            }}
-          >
-            {m.reaction}
-          </div>
-        )}
-      </div>
-    </div>
-  );
-};
-
-export const ChatScene: React.FC = () => {
-  const f = useCurrentFrame();
-  const bgZoom = interpolate(f, [0, 120], [1.1, 1.22]);
-  return (
-    <AbsoluteFill>
-      <AbsoluteFill style={{ transform: `scale(${bgZoom})`, filter: "blur(22px) brightness(0.5) saturate(1.2)" }}>
-        <Img src={staticFile("server/screen-IMG_9083.jpg")} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-      </AbsoluteFill>
-      <AbsoluteFill style={{ background: "linear-gradient(180deg, rgba(18,15,24,0.75), rgba(18,15,24,0.35) 40%, rgba(18,15,24,0.85))" }} />
-      <Sparkles count={10} seed="chat" />
-      <div style={{ position: "absolute", top: 400, width: "100%", textAlign: "center" }}>
-        <RiseWords
-          text={TEXT.chatTitle}
-          start={2}
-          stagger={2}
-          style={{ fontFamily: FONT.display, fontWeight: 800, fontSize: 58, letterSpacing: -1.5, padding: "0 60px" }}
-          wordStyle={(i) => (i === 4 ? chromeStyle(f) : { color: "#fff" })}
-        />
-        <div
-          style={{
-            display: "inline-block",
-            marginTop: 22,
-            fontFamily: FONT.body,
-            fontWeight: 700,
-            fontSize: 30,
-            color: "#fff",
-            padding: "10px 22px",
-            borderRadius: 999,
-            background: "rgba(183,139,240,0.2)",
-            border: "1.5px solid rgba(231,214,255,0.4)",
-            opacity: interpolate(f, [8, 16], [0, 1], clamp),
-          }}
-        >
-          🎬 Cinéverse – MCU+
-        </div>
-      </div>
-      <div style={{ position: "absolute", top: 690, left: 70, width: 940 }}>
-        {CHAT.map((m, i) => (
-          <Bubble key={i} m={m} at={10 + i * 24} />
-        ))}
-      </div>
-      <div
-        style={{
-          position: "absolute",
-          top: 1580,
-          width: "100%",
-          textAlign: "center",
-          fontFamily: FONT.mono,
-          fontSize: 22,
-          color: "rgba(255,255,255,0.55)",
-          letterSpacing: 1,
-          opacity: interpolate(f, [20, 30], [0, 1], clamp),
-        }}
-      >
-        {TEXT.chatCaption}
-      </div>
-    </AbsoluteFill>
-  );
-};
-
-/* =========================================================
-   5. VALEURS — 711 membres + pills sur le beat
+   5. VALEURS — « une safe place. » + pills sur le beat
    ========================================================= */
 export const ValuesScene: React.FC = () => {
   const f = useCurrentFrame();
   const shake = useShake(0, 22);
-  const n = Math.round(interpolate(f, [0, 22], [0, TEXT.members], { ...clamp, easing: easeOut }));
   const bgIdx = Math.floor(f / 8) % CLIPS.valuesBg.length;
   return (
     <AbsoluteFill style={{ transform: shake }}>
@@ -435,9 +290,9 @@ export const ValuesScene: React.FC = () => {
       <AbsoluteFill style={{ background: "radial-gradient(70% 50% at 50% 45%, rgba(110,75,184,0.45), rgba(18,15,24,0.85))" }} />
       <Sparkles count={24} seed="vburst" area={[440, 640, 640, 840]} burstAt={0} />
       <div style={{ position: "absolute", top: 520, width: "100%", textAlign: "center" }}>
-        <div style={{ fontFamily: FONT.display, fontWeight: 800, fontSize: 290, letterSpacing: -12, lineHeight: 1, ...chromeStyle(f) }}>{n}</div>
-        <div style={{ marginTop: 16 }}>
-          <BoxLetters text={TEXT.membersLabel} start={4} size={46} />
+        <BoxLetters text={TEXT.valuesTop} start={2} size={44} />
+        <div style={{ fontFamily: FONT.serif, fontStyle: "italic", fontSize: 150, lineHeight: 1.05, marginTop: 30, padding: "0 40px", transform: `scale(${1.3 - 0.3 * useSpring(0, 9)})`, ...chromeStyle(f) }}>
+          {TEXT.valuesBig}
         </div>
       </div>
       <div style={{ position: "absolute", top: 1060, width: "100%", display: "flex", flexDirection: "column", alignItems: "center", gap: 22 }}>
@@ -536,15 +391,12 @@ export const CtaScene: React.FC = () => {
           );
         })}
       </div>
-      <div style={{ position: "absolute", top: 1380, width: "100%", padding: "0 80px" }}>
-        <RiseWords text={TEXT.ctaHello} start={62} stagger={2} style={{ fontFamily: FONT.body, fontWeight: 700, fontSize: 50, color: "#fff" }} />
-      </div>
     </AbsoluteFill>
   );
 };
 
 /* =========================================================
-   7. OUTRO — question en com + lien en bio
+   7. OUTRO — « rejoins-nous » + lien en commentaire
    ========================================================= */
 export const OutroScene: React.FC = () => {
   const f = useCurrentFrame();
@@ -558,8 +410,7 @@ export const OutroScene: React.FC = () => {
         <Img src={staticFile("brand/logo-rgc.png")} style={{ width: 300, filter: `drop-shadow(0 0 ${30 + 20 * pulse}px rgba(183,139,240,0.9))` }} />
       </div>
       <div style={{ position: "absolute", top: 780, width: "100%", textAlign: "center", padding: "0 60px" }}>
-        <RiseWords text={TEXT.outroQuestion} start={4} stagger={3} style={{ fontFamily: FONT.display, fontWeight: 800, fontSize: 84, letterSpacing: -2, lineHeight: 1.1 }} wordStyle={() => chromeStyle(f)} />
-        <RiseWords text={TEXT.outroQuestion2} start={16} stagger={3} style={{ fontFamily: FONT.serif, fontStyle: "italic", fontSize: 92, marginTop: 10 }} wordStyle={(i) => (/\p{Extended_Pictographic}/u.test(TEXT.outroQuestion2.split(" ")[i]) ? {} : chromeStyle(f, "pearl"))} />
+        <RiseWords text={TEXT.outroBig} start={4} stagger={4} style={{ fontFamily: FONT.serif, fontStyle: "italic", fontSize: 150, lineHeight: 1.1 }} wordStyle={() => chromeStyle(f)} />
       </div>
       <div style={{ position: "absolute", top: 1170, left: 160 }}>
         <Bow width={760} progress={bow} />
@@ -582,7 +433,7 @@ export const OutroScene: React.FC = () => {
             opacity: interpolate(f, [28, 36], [0, 1], clamp),
           }}
         >
-          <Star size={34} color={COLORS.lilacDeep} /> {TEXT.outroLink} <Star size={34} color={COLORS.lilacDeep} />
+          <Star size={34} color={COLORS.lilacDeep} /> {TEXT.outroLink} 👇 <Star size={34} color={COLORS.lilacDeep} />
         </div>
       </div>
     </AbsoluteFill>
