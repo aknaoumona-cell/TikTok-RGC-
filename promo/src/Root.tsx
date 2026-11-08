@@ -9,6 +9,13 @@ import { FLAGS_TOTAL, FlagsVideo } from "./videos/Flags";
 import { MAINS_TOTAL, MainsVideo } from "./videos/Mains";
 import { JAMAIS_TOTAL, JamaisVideo } from "./videos/Jamais";
 import { TIER_TOTAL, TierVideo } from "./videos/Tier";
+import { POVTEAM_TOTAL, PovTeamVideo } from "./videos/PovTeam";
+import { PHRASES_TOTAL, PhrasesVideo } from "./videos/Phrases";
+import { REALITE_TOTAL, RealiteVideo } from "./videos/Realite";
+import { SONS_TOTAL, SonsVideo } from "./videos/Sons";
+import { MATEFLAGS_TOTAL, MateFlagsVideo } from "./videos/MateFlags";
+import { DIMANCHE_TOTAL, DimancheVideo } from "./videos/Dimanche";
+import { VERIF_TOTAL, VerifVideo } from "./videos/Verif";
 
 const common = { fps: FPS, width: WIDTH, height: HEIGHT };
 
@@ -22,5 +29,12 @@ export const Root: React.FC = () => (
     <Composition id="RGCMains" component={MainsVideo} durationInFrames={MAINS_TOTAL} {...common} />
     <Composition id="RGCJamais" component={JamaisVideo} durationInFrames={JAMAIS_TOTAL} {...common} />
     <Composition id="RGCTier" component={TierVideo} durationInFrames={TIER_TOTAL} {...common} />
+    <Composition id="RGCPovTeam" component={PovTeamVideo} durationInFrames={POVTEAM_TOTAL} {...common} />
+    <Composition id="RGCPhrases" component={PhrasesVideo} durationInFrames={PHRASES_TOTAL} {...common} />
+    <Composition id="RGCRealite" component={RealiteVideo} durationInFrames={REALITE_TOTAL} {...common} />
+    <Composition id="RGCSons" component={SonsVideo} durationInFrames={SONS_TOTAL} {...common} />
+    <Composition id="RGCMateFlags" component={MateFlagsVideo} durationInFrames={MATEFLAGS_TOTAL} {...common} />
+    <Composition id="RGCDimanche" component={DimancheVideo} durationInFrames={DIMANCHE_TOTAL} {...common} />
+    <Composition id="RGCVerif" component={VerifVideo} durationInFrames={VERIF_TOTAL} {...common} />
   </>
 );

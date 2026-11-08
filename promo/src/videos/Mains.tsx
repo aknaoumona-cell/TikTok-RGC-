@@ -43,7 +43,7 @@ export const MAINS = [
     title: "tu joues que des skins roses",
     text: "tout le monde te sous-estime. grave erreur.",
     stats: [["aura", 5], ["skill", 5]] as [string, number][],
-    img: "heroes/skin-rose-valorant.jpg",
+    img: "heroes/skin-rose-mercy.jpg",
     hue: "#F9C9D6",
   },
 ];

@@ -161,3 +161,105 @@ T.place(impact(), 330, 0.4)
 T.place(pop(1.1), 354, 0.7)
 end_card(T, 420)
 T.save(os.path.join(A, "sfx-tier.wav"))
+
+# ---------- pov : t'as enfin trouvé des mates (450) ----------
+T = Track(15.0)
+T.place(whoosh(0.4), 4, 0.4)
+T.place(shutter(), 20, 0.8)
+for i in range(4):
+    s = 60 + i * 75
+    T.place(whoosh(0.3), s - 3, 0.4)
+    T.place(shutter(), s + 2, 0.9)
+    T.place(tick(), s + 6, 0.4)
+    T.place(pop(1.1), s + 10, 0.4)
+T.place(join_tone(), 60, 0.5)
+T.place(correct(), 60 + 3 * 75 + 40, 0.5)
+end_card(T, 360)
+T.save(os.path.join(A, "sfx-povteam.wav"))
+
+# ---------- les phrases en voc à 2h (450) ----------
+T = Track(15.0)
+T.place(rec_beep(), 2, 1.0)
+T.place(whoosh(0.4), 4, 0.4)
+for i in range(6):
+    s = 60 + i * 50
+    T.place(whoosh(0.2), s - 2, 0.35)
+    for k in range(5):
+        T.place(tick(), s + 4 + k * 5, 0.25)
+    if i > 0:
+        T.place(pop(1.0 + i * 0.08), s + 22, 0.55)
+T.place(vine_boom(), 60 + 50 + 18, 0.6)
+end_card(T, 360)
+T.save(os.path.join(A, "sfx-phrases.wav"))
+
+# ---------- ce que je pensais vs la réalité (420) ----------
+T = Track(14.0)
+T.place(whoosh(0.4), 2, 0.4)
+T.place(pop(0.9), 8, 0.5)
+T.place(pop(1.2), 12, 0.5)
+for i in range(3):
+    s = 60 + i * 90
+    T.place(whoosh(0.3, up=False), s - 3, 0.4)
+    T.place(sad_wah()[: int(0.7 * SR)], s + 4, 0.4)
+    T.place(riser(0.35), s + 34 - 10, 0.6)
+    T.place(impact(), s + 34, 0.45)
+    T.place(shimmer(0.8, 2400), s + 34, 0.5)
+end_card(T, 330)
+T.save(os.path.join(A, "sfx-realite.wav"))
+
+# ---------- les sons de discord (450) ----------
+T = Track(15.0)
+T.place(whoosh(0.4), 2, 0.4)
+for i, snd in enumerate([join_tone(), ping(), mute_click(), leave_tone()]):
+    s = 60 + i * 75
+    T.place(whoosh(0.25), s - 3, 0.3)
+    T.place(snd, s + 14, 1.0)
+    if i == 2:
+        T.place(vine_boom(), s + 20, 0.5)
+    if i == 3:
+        T.place(sad_wah()[: int(0.9 * SR)], s + 24, 0.4)
+    T.place(pop(1.1), s + 20, 0.4)
+end_card(T, 360)
+T.save(os.path.join(A, "sfx-sons.wav"))
+
+# ---------- green flags d'une mate (420) ----------
+T = Track(14.0)
+T.place(whoosh(0.4), 2, 0.4)
+T.place(pop(1.0), 10, 0.5)
+for i in range(5):
+    s = 60 + i * 54
+    T.place(bonk(), s + 2, 0.4)
+    T.place(pop(1.0 + i * 0.1), s + 4, 0.5)
+    T.place(correct(), s + 16, 0.55)
+end_card(T, 330)
+T.save(os.path.join(A, "sfx-mateflags.wav"))
+
+# ---------- un dimanche sur RGC (450) ----------
+T = Track(15.0)
+T.place(shimmer(1.5, 1500), 2, 0.5)
+T.place(whoosh(0.6), 6, 0.3)
+for i in range(4):
+    s = 60 + i * 75
+    T.place(whoosh(0.6), s - 6, 0.3)
+    T.place(ding(), s + 4, 0.25)
+T.place(pop(1.1), 60 + 75 + 18, 0.5)
+T.place(rec_beep(), 60 + 150 + 4, 0.8)
+end_card(T, 360)
+T.save(os.path.join(A, "sfx-dimanche.wav"))
+
+# ---------- pov : la vérif vocale (465) ----------
+T = Track(15.5)
+T.place(ring(), 6, 1.0)
+T.place(ring(), 6 + 40, 1.0)
+T.place(ring(), 75 + 4, 0.8)
+T.place(pop(1.0), 75 + 14, 0.5)
+for k in range(5):
+    T.place(heartbeat(), 150 + k * 13, 0.9)
+T.place(join_tone(), 225, 0.8)
+T.place(pop(1.3), 229, 0.5)
+T.place(confetti(), 300, 1.0)
+T.place(correct(), 300, 0.6)
+T.place(shimmer(1.2), 300, 0.6)
+T.place(pop(1.1), 312, 0.5)
+end_card(T, 375)
+T.save(os.path.join(A, "sfx-verif.wav"))

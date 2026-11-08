@@ -19,6 +19,7 @@ Attirer des **filles gameuses actives sur Discord** pour qu'elles rejoignent le 
 - **Pas d'emojis** dans les vidéos : utiliser des **memes** (chats, Among Us, réactions girly) à la place.
 - **Logo RGC obligatoire** + filigrane @rivalsgirlsclub qui bouge (anti-repost).
 - **Chaque TikTok doit avoir son propre look** (ne pas refaire la même DA à chaque fois).
+- Persos/jeux : utiliser des **captures in-game / rendus officiels du jeu**, jamais des fan arts (pas l'autorisation des artistes).
 - **Varier les clips/images** d'une vidéo à l'autre (ne pas réutiliser toujours les mêmes, ex. la photo de la soirée film).
 - Le lien du serveur est **en commentaire** (pas « lien en bio », pas « dis-le en com »).
 - Ne jamais inventer : pas de faux chiffres, faux témoignages ou fausses captures du serveur.
@@ -31,5 +32,5 @@ Logo papillon chrome lilas (`promo/public/brand/logo-rgc.png`). Serveur au style
 ## Technique
 - Projet Remotion dans `promo/` (voir `promo/README.md`). Rendu : `npx remotion render <Composition> out/<nom>.mp4`.
 - Bruitages synthétisés : `promo/tools/sfxlib.py`, `make_sfx.py`, `make_sfx_series.py`.
-- Drive du serveur (connecteur Google Drive) : dossiers par jeu + SERVEUR. Le connecteur ne télécharge pas les fichiers > 10 Mo → utiliser les plus petits, sinon trouver une alternative (images de gameplay sur Pinterest, etc.).
+- Drive du serveur (connecteur Google Drive) : dossiers par jeu + SERVEUR. Le connecteur ne télécharge pas les fichiers > ~7 Mo (limite réelle, base64) → utiliser les plus petits, sinon trouver une alternative (images de gameplay sur Pinterest, etc.).
 - Pinterest est autorisé dans l'environnement : recherche via Playwright (`pin.js`-style, user-agent navigateur), images sur `i.pinimg.com`.

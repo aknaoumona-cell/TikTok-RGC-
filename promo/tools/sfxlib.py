@@ -193,3 +193,66 @@ def sad_wah():
 def bonk():
     t = t_(0.25)
     return (np.sin(2 * np.pi * 420 * t) * np.exp(-t * 30) + highpass(rng.standard_normal(len(t)), 3000) * np.exp(-t * 200) * 0.3) * 0.5
+
+
+# ---------------- UI / call sounds (recreated, not the official ones) ----------------
+def _tone(f, d, decay=8.0, g=0.25):
+    t = t_(d)
+    return (np.sin(2 * np.pi * f * t) + 0.25 * np.sin(4 * np.pi * f * t)) * np.exp(-t * decay) * g
+
+
+def join_tone():
+    """Two rising notes: someone joins the voice channel."""
+    a, b = _tone(660, 0.18, 10), _tone(990, 0.35, 7)
+    out = np.zeros(int(SR * 0.5))
+    out[: len(a)] += a
+    st = int(0.11 * SR)
+    out[st : st + len(b)] += b
+    return out
+
+
+def leave_tone():
+    """Two falling notes: disconnect."""
+    a, b = _tone(880, 0.18, 10), _tone(523, 0.4, 6)
+    out = np.zeros(int(SR * 0.55))
+    out[: len(a)] += a
+    st = int(0.12 * SR)
+    out[st : st + len(b)] += b
+    return out
+
+
+def ping():
+    """Short bright message notification."""
+    return _tone(1568, 0.3, 14, 0.3) + np.pad(_tone(2093, 0.25, 14, 0.18), (int(0.05 * SR), 0))[: int(SR * 0.3)]
+
+
+def mute_click():
+    t = t_(0.08)
+    return (highpass(rng.standard_normal(len(t)), 2000) * np.exp(-t * 120) * 0.4 + np.sin(2 * np.pi * 300 * t) * np.exp(-t * 60) * 0.2)
+
+
+def ring():
+    """Phone ringtone burst (~1.2 s)."""
+    t = t_(1.2)
+    gate = (np.sin(2 * np.pi * 12 * t) > 0).astype(float) * (t < 0.9)
+    return (np.sin(2 * np.pi * 1200 * t) + np.sin(2 * np.pi * 1500 * t)) * gate * 0.09
+
+
+def heartbeat():
+    t = t_(0.5)
+    beat = lambda: np.sin(2 * np.pi * 55 * t_(0.12)) * np.exp(-t_(0.12) * 30)
+    out = np.zeros(len(t))
+    b = beat()
+    out[: len(b)] += b * 0.8
+    st = int(0.18 * SR)
+    out[st : st + len(b)] += b * 0.55
+    return out
+
+
+def confetti():
+    out = np.zeros(int(SR * 0.9))
+    for k in range(14):
+        st = int(rng.uniform(0, 0.5) * SR)
+        p = pop(rng.uniform(1.0, 2.2)) * rng.uniform(0.2, 0.5)
+        out[st : st + len(p)] += p[: len(out) - st]
+    return out + np.pad(highpass(rng.standard_normal(int(0.25 * SR)), 3000) * np.exp(-t_(0.25) * 12) * 0.3, (0, len(out) - int(0.25 * SR)))
