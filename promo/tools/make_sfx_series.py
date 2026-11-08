@@ -133,33 +133,33 @@ for k in range(3):
 end_card(T, 420)
 T.save(os.path.join(A, "sfx-jamais.wav"))
 
-# ---------- tier list des excuses (510) ----------
-T = Track(17.0)
+# ---------- tier list des excuses (690) ----------
+T = Track(23.0)
 T.place(impact(), 0, 0.4)
 T.place(whoosh(0.4), 8, 0.4)
 for k in range(5):
     T.place(pop(0.9 + k * 0.1), 18 + k * 3, 0.5)
 VERDICT = {"S": "s", "A": "ok", "B": "ok", "C": "meh", "F": "no"}
 for i, tier in enumerate(["A", "F", "C", "S", "B", "S"]):
-    s = 60 + i * 45
+    s = 60 + i * 75
     T.place(whoosh(0.22), s - 3, 0.45)
     T.place(pop(1.0), s + 2, 0.5)
     v = VERDICT[tier]
     if v == "s":
-        T.place(correct(), s + 14, 0.7)
-        T.place(shimmer(0.8, 2600), s + 14, 0.5)
+        T.place(correct(), s + 20, 0.7)
+        T.place(shimmer(0.8, 2600), s + 20, 0.5)
     elif v == "ok":
-        T.place(correct(), s + 14, 0.5)
+        T.place(correct(), s + 20, 0.5)
     elif v == "meh":
-        T.place(bonk(), s + 14, 0.6)
+        T.place(bonk(), s + 20, 0.6)
     else:
-        T.place(buzzer(), s + 14, 0.7)
-    T.place(whoosh(0.2, up=False), s + 26, 0.4)
-    T.place(tick(), s + 36, 0.6)
-    T.place(pop(1.3), s + 36, 0.4)
-T.place(impact(), 330, 0.4)
-T.place(pop(1.1), 354, 0.7)
-end_card(T, 420)
+        T.place(buzzer(), s + 20, 0.7)
+    T.place(whoosh(0.2, up=False), s + 52, 0.4)
+    T.place(tick(), s + 62, 0.6)
+    T.place(pop(1.3), s + 62, 0.4)
+T.place(impact(), 510, 0.4)
+T.place(pop(1.1), 534, 0.7)
+end_card(T, 600)
 T.save(os.path.join(A, "sfx-tier.wav"))
 
 # ---------- pov : t'as enfin trouvé des mates (450) ----------

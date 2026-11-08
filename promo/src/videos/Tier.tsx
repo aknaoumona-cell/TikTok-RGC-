@@ -2,18 +2,18 @@
  * TikTok #8 — « tier list : les excuses pour pas lancer la game »   LOOK : TIER LIST
  * Tableau S/A/B/C/F classique sur fond sombre, chaque excuse arrive en grand puis vole dans sa ligne.
  * 0–60    : accroche
- * 60–330  : 6 excuses × 45 images
- * 330–420 : chute
- * 420–510 : carte de fin
+ * 60–510  : 6 excuses × 75 images
+ * 510–600 : chute
+ * 600–690 : carte de fin
  */
 import React from "react";
 import { AbsoluteFill, Audio, Img, Sequence, interpolate, staticFile, useCurrentFrame } from "remotion";
 import { FONT, Flash, RiseWords, clamp, easeOut, useSpring } from "../components";
 import { EndCard, Meme, Shell } from "../memes";
 
-export const TIER_TOTAL = 510;
-const STEP = 45;
-const FLY = 26; // frame (in step) when the card flies into its row
+export const TIER_TOTAL = 690;
+const STEP = 75;
+const FLY = 52; // frame (in step) when the card flies into its row
 
 const TIERS = [
   { t: "S", c: "#FF7F9E" },
@@ -127,8 +127,8 @@ const Ranking: React.FC = () => {
           )}
         </div>
       )}
-      {lf >= 14 && (
-        <div style={{ position: "absolute", top: 1430, width: "100%", textAlign: "center", opacity: interpolate(lf, [14, 20], [0, 1], clamp) }}>
+      {lf >= 20 && (
+        <div style={{ position: "absolute", top: 1430, width: "100%", textAlign: "center", opacity: interpolate(lf, [20, 26], [0, 1], clamp) }}>
           <span style={{ fontFamily: FONT.display, fontWeight: 800, fontSize: 46, color: "#111", background: tierColor, padding: "14px 30px", borderRadius: 999 }}>
             {e.tier} · {e.verdict}
           </span>
@@ -151,22 +151,22 @@ const Chute: React.FC = () => (
 );
 
 export const TierVideo: React.FC = () => (
-  <Shell hideBugFrom={420}>
+  <Shell hideBugFrom={600}>
     <Sequence durationInFrames={60}>
       <Hook />
     </Sequence>
-    <Sequence from={60} durationInFrames={270}>
+    <Sequence from={60} durationInFrames={450}>
       <Ranking />
     </Sequence>
-    <Sequence from={330} durationInFrames={90}>
+    <Sequence from={510} durationInFrames={90}>
       <Chute />
     </Sequence>
-    <Sequence from={420} durationInFrames={90}>
+    <Sequence from={600} durationInFrames={90}>
       <EndCard big="viens lancer" small="la communauté t'attend en voc" />
     </Sequence>
     <Flash at={60} strength={0.4} />
-    <Flash at={330} strength={0.4} color="#FFBF7F" />
-    <Flash at={420} strength={0.6} />
+    <Flash at={510} strength={0.4} color="#FFBF7F" />
+    <Flash at={600} strength={0.6} />
     <Audio src={staticFile("audio/sfx-tier.wav")} />
   </Shell>
 );

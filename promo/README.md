@@ -12,7 +12,7 @@ Vidéo verticale 1080×1920, 30 i/s, 21,5 s, faite avec [Remotion](https://www.r
 | `out/rgc-red-green-flags.mp4` | red flags vs green flags d'un serveur Discord | bicolore rouge / vert |
 | `out/rgc-ton-main.mp4` | ce que ton main dit de toi (et de ta team) | cartes holographiques |
 | `out/rgc-trucs-jamais.mp4` | 3 trucs que t'entendras jamais dans notre communauté | messagerie mode clair + tampon |
-| `out/rgc-tier-list-excuses.mp4` | tier list des excuses pour pas lancer la game | tier list S/A/B/C/F |
+| `out/rgc-tier-list-excuses.mp4` | tier list des excuses pour pas lancer la game (23 s) | tier list S/A/B/C/F |
 | `out/rgc-pov-team.mp4` | pov : t'as enfin trouvé des mates qui jouent à la même heure que toi | scrapbook polaroids |
 | `out/rgc-phrases-voc.mp4` | les phrases qu'on entend en voc à 2h du mat' | karaoké |
 | `out/rgc-pensais-vs-realite.mp4` | ce que je pensais vs la réalité | split-screen gris / vif |
