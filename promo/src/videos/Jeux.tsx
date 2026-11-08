@@ -3,9 +3,9 @@
  * Un fond pastel plein par jeu, typo géante foncée, rafale sur le beat.
  * 0–60    : accroche « ton jeu est sûrement ici »
  * 60–240  : 12 jeux × 15 images (capture du jeu, sinon son logo)
- * 240–300 : « + autres jeux » : t'as aussi ta place
- * 300–360 : « et des mates pour chacune. »
- * 360–450 : carte de fin
+ * 240–330 : « + autres jeux » : t'as aussi ta place
+ * 330–420 : « et des mates pour chacune. »
+ * 420–510 : carte de fin
  */
 import React from "react";
 import { AbsoluteFill, Audio, Img, OffthreadVideo, Sequence, interpolate, staticFile, useCurrentFrame } from "remotion";
@@ -13,7 +13,7 @@ import { COLORS } from "../config";
 import { FONT, Flash, RiseWords, clamp, easeOut } from "../components";
 import { EndCard, Meme, Shell } from "../memes";
 
-export const JEUX_TOTAL = 450;
+export const JEUX_TOTAL = 510;
 export const STEP = 15;
 const INK = "#1A1424";
 
@@ -53,7 +53,7 @@ const Hook: React.FC = () => (
       <RiseWords text="ton jeu est" start={4} style={{ fontFamily: FONT.display, fontWeight: 800, fontSize: 100, color: INK, letterSpacing: -3 }} />
       <RiseWords text="sûrement ici" start={10} style={{ fontFamily: FONT.serif, fontStyle: "italic", fontSize: 160, color: COLORS.lilacDeep, lineHeight: 1.05 }} />
     </div>
-    <Meme src="memes/chaton-manette.jpg" at={18} x={540} y={1330} w={520} rotate={-5} />
+    <Meme src="memes/girly-telephone.jpg" at={18} x={540} y={1330} w={500} rotate={-5} />
   </AbsoluteFill>
 );
 
@@ -164,7 +164,7 @@ const Autres: React.FC = () => {
         <RiseWords text="tu joues à autre chose ?" start={8} stagger={2} style={{ fontFamily: FONT.body, fontWeight: 700, fontSize: 58, color: INK }} />
         <RiseWords text="t'as aussi ta place ✦" start={16} stagger={2} style={{ fontFamily: FONT.serif, fontStyle: "italic", fontSize: 104, color: COLORS.lilacDeep, lineHeight: 1.1, marginTop: 10 }} />
       </div>
-      <Meme src="memes/chat-lunettes-soleil.jpg" at={20} x={540} y={1380} w={420} rotate={-5} />
+      <Meme src="memes/girly-noeud-rose.jpg" at={24} x={540} y={1390} w={440} rotate={-5} />
     </AbsoluteFill>
   );
 };
@@ -176,30 +176,31 @@ const Mates: React.FC = () => (
       <RiseWords text="et des mates" start={2} style={{ fontFamily: FONT.display, fontWeight: 800, fontSize: 100, color: INK, letterSpacing: -3 }} />
       <RiseWords text="pour chacune." start={8} style={{ fontFamily: FONT.serif, fontStyle: "italic", fontSize: 160, color: COLORS.lilacDeep, lineHeight: 1.05 }} />
     </div>
-    <Meme src="memes/chat-gaming-chaise.jpg" at={14} x={540} y={1300} w={540} rotate={5} />
+    <Meme src="memes/girly-prient.jpg" at={14} x={350} y={1270} w={430} rotate={-6} />
+    <Meme src="memes/girly-cri-joie.jpg" at={40} x={730} y={1400} w={400} rotate={7} />
   </AbsoluteFill>
 );
 
 export const JeuxVideo: React.FC = () => (
-  <Shell hideBugFrom={360} ink="dark">
+  <Shell hideBugFrom={420} ink="dark">
     <Sequence durationInFrames={60}>
       <Hook />
     </Sequence>
     <Sequence from={60} durationInFrames={180}>
       <Rafale />
     </Sequence>
-    <Sequence from={240} durationInFrames={60}>
+    <Sequence from={240} durationInFrames={90}>
       <Autres />
     </Sequence>
-    <Sequence from={300} durationInFrames={60}>
+    <Sequence from={330} durationInFrames={90}>
       <Mates />
     </Sequence>
-    <Sequence from={360} durationInFrames={90}>
+    <Sequence from={420} durationInFrames={90}>
       <EndCard big="trouve tes mates" small="viens en voc sur le serveur" />
     </Sequence>
     <Flash at={240} strength={0.5} />
-    <Flash at={300} strength={0.4} />
-    <Flash at={360} strength={0.6} />
+    <Flash at={330} strength={0.4} />
+    <Flash at={420} strength={0.6} />
     <Audio src={staticFile("audio/sfx-jeux.wav")} />
   </Shell>
 );

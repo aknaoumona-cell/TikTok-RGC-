@@ -53,8 +53,8 @@ T.place(bonk(), 60 + 75 * 3 + 44, 0.7)
 end_card(T, 435)
 T.save(os.path.join(A, "sfx-types.wav"))
 
-# ---------- jeux (450) ----------
-T = Track(15.0)
+# ---------- jeux (510) ----------
+T = Track(17.0)
 T.place(whoosh(0.4), 4, 0.4)
 T.place(pop(1.0), 18, 0.7)
 T.place(riser(0.45), 60 - 13, 0.8)
@@ -65,10 +65,11 @@ for i in range(12):
     T.place(whoosh(0.18, up=False), fr - 3, 0.35)
 T.place(impact(), 240, 0.5)
 T.place(shimmer(1.2), 240, 0.8)
-T.place(pop(1.2), 260, 0.7)
-T.place(whoosh(0.35), 300 - 5, 0.5)
-T.place(pop(1.1), 314, 0.7)
-end_card(T, 360)
+T.place(pop(1.2), 264, 0.7)
+T.place(whoosh(0.35), 330 - 5, 0.5)
+T.place(pop(1.1), 344, 0.7)
+T.place(pop(1.3), 370, 0.7)
+end_card(T, 420)
 T.save(os.path.join(A, "sfx-jeux.wav"))
 
 # ---------- red / green flags (480) ----------
