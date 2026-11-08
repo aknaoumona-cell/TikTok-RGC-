@@ -267,17 +267,17 @@ T.place(pop(1.1), 312, 0.5)
 end_card(T, 375)
 T.save(os.path.join(A, "sfx-verif.wav"))
 
-# ---------- ton jeu selon ton signe astro (990) ----------
-T = Track(33.0)
+# ---------- ton jeu selon ton signe astro (1350) ----------
+T = Track(45.0)
 T.place(shimmer(1.6, 1800), 2, 0.6)
 T.place(whoosh(0.5), 6, 0.3)
 for i in range(12):
-    s = 60 + i * 70
+    s = 60 + i * 100
     T.place(whoosh(0.3), s - 3, 0.35)
     T.place(ding(), s + 2, 0.35)
     for k in range(5):
         T.place(tick(), s + 4 + k * 4, 0.2)
     T.place(pop(1.0 + (i % 4) * 0.1), s + 8, 0.45)
-    T.place(shimmer(0.7, 2600 + (i % 3) * 300), s + 22, 0.35)
-end_card(T, 900)
+    T.place(shimmer(0.7, 2600 + (i % 3) * 300), s + 18, 0.35)
+end_card(T, 1260)
 T.save(os.path.join(A, "sfx-astro.wav"))

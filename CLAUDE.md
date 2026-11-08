@@ -20,7 +20,8 @@ Attirer des **filles gameuses actives sur Discord** pour qu'elles rejoignent le 
 - **Logo RGC obligatoire** + filigrane @rivalsgirlsclub qui bouge (anti-repost).
 - **Chaque TikTok doit avoir son propre look** (ne pas refaire la même DA à chaque fois).
 - Persos/jeux : utiliser des **captures in-game / rendus officiels du jeu**, jamais des fan arts (pas l'autorisation des artistes).
-- **Varier les clips/images** d'une vidéo à l'autre (ne pas réutiliser toujours les mêmes, ex. la photo de la soirée film).
+- **Ne JAMAIS réutiliser un visuel déjà utilisé dans une autre vidéo** (clips, images, memes). Chercher des visuels neufs (Pinterest…) plutôt que reprendre l'existant, même si ça prend plus de temps. Vérifier avant le rendu : `python3 tools/check_reuse.py src/videos/<Nouvelle>.tsx` (dans `promo/`).
+- **Laisser le temps de lire** : ~3 s minimum par écran de texte.
 - Le lien du serveur est **en commentaire** (pas « lien en bio », pas « dis-le en com »).
 - Ne jamais inventer : pas de faux chiffres, faux témoignages ou fausses captures du serveur.
 - Infos à ne PAS dire : nombre de membres, « events chaque semaine » (dire « chaque mois »), « embrouilles », « on cherche des bavardes », « tu dis bonjour en arrivant ».

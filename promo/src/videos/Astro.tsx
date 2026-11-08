@@ -2,32 +2,32 @@
  * TikTok #16 — « ton jeu préféré selon ton signe astro »
  * LOOK : ASTRO MYSTIQUE — nuit bleu minuit étoilée, constellations qui se dessinent,
  * cadre en arche façon carte de tarot, accents or champagne.
- * 0–60 accroche · 60–900 12 signes × 70 · 900–990 carte de fin
+ * 0–60 accroche · 60–1260 12 signes × 100 · 1260–1350 carte de fin
  */
 import React from "react";
 import { AbsoluteFill, Audio, Img, OffthreadVideo, Sequence, interpolate, random, staticFile, useCurrentFrame } from "remotion";
 import { FONT, Flash, RiseWords, clamp, easeOut, useSpring } from "../components";
 import { EndCard, Shell } from "../memes";
 
-export const ASTRO_TOTAL = 990;
-const STEP = 70;
+export const ASTRO_TOTAL = 1350;
+const STEP = 100;
 const GOLD = "#F3D9A4";
 
 type Sign = { sign: string; dates: string; game: string; line: string; img?: string; clip?: { src: string; start: number } };
 
 export const SIGNS: Sign[] = [
-  { sign: "Bélier", dates: "21 mars – 19 avril", game: "Valorant", line: "elle rage, mais elle clutch", img: "ingame/valorant-1.jpg" },
-  { sign: "Taureau", dates: "20 avril – 20 mai", game: "Disney Dreamlight Valley", line: "sa maison, son jardin, et la paix", img: "gameplay/disney-dreamlight-valley.jpg" },
-  { sign: "Gémeaux", dates: "21 mai – 20 juin", game: "Among Us", line: "elle ment trop bien. méfiance.", clip: { src: "clips/among-us-votes.mp4", start: 12.6 } },
-  { sign: "Cancer", dates: "21 juin – 22 juillet", game: "Minecraft", line: "elle construit une maison pour toute la team", img: "gameplay/minecraft.jpg" },
-  { sign: "Lion", dates: "23 juillet – 22 août", game: "Marvel Rivals", line: "elle veut le MVP. et elle l'a.", img: "ingame/marvel-rivals-1.jpg" },
-  { sign: "Vierge", dates: "23 août – 22 sept.", game: "League of Legends", line: "elle connaît toutes les stats et corrige ton build", img: "gameplay/league-of-legends.jpg" },
-  { sign: "Balance", dates: "23 sept. – 22 oct.", game: "Overwatch", line: "elle met la paix dans la team (et elle heal)", img: "ingame/overwatch-team.jpg" },
-  { sign: "Scorpion", dates: "23 oct. – 21 nov.", game: "Dead by Daylight", line: "elle te traque. et elle adore ça.", img: "gameplay/dead-by-daylight.jpg" },
-  { sign: "Sagittaire", dates: "22 nov. – 21 déc.", game: "Fortnite", line: "elle drop n'importe où, juste pour le fun", img: "gameplay/fortnite.jpg" },
-  { sign: "Capricorne", dates: "22 déc. – 19 janv.", game: "Call of Duty", line: "elle grind les ranked comme un taf", clip: { src: "clips/cod-sniper-rose.mp4", start: 1.0 } },
-  { sign: "Verseau", dates: "20 janv. – 18 fév.", game: "Aniimo", line: "elle joue à un jeu que personne connaît encore", img: "gameplay/aniimo.jpg" },
-  { sign: "Poissons", dates: "19 fév. – 20 mars", game: "Roblox", line: "40 mondes ouverts et une imagination sans fin", img: "gameplay/roblox.jpg" },
+  { sign: "Bélier", dates: "21 mars – 19 avril", game: "Valorant", line: "elle rage, mais elle clutch", img: "astro/valorant.jpg" },
+  { sign: "Taureau", dates: "20 avril – 20 mai", game: "Disney Dreamlight Valley", line: "sa maison, son jardin, et la paix", img: "astro/disney-dreamlight-valley.jpg" },
+  { sign: "Gémeaux", dates: "21 mai – 20 juin", game: "Among Us", line: "elle ment trop bien. méfiance.", img: "astro/among-us.jpg" },
+  { sign: "Cancer", dates: "21 juin – 22 juillet", game: "Minecraft", line: "elle construit une maison pour toute la team", img: "astro/minecraft.jpg" },
+  { sign: "Lion", dates: "23 juillet – 22 août", game: "Marvel Rivals", line: "elle veut le MVP. et elle l'a.", img: "astro/marvel-rivals.jpg" },
+  { sign: "Vierge", dates: "23 août – 22 sept.", game: "League of Legends", line: "elle connaît toutes les stats et corrige ton build", img: "astro/league-of-legends.jpg" },
+  { sign: "Balance", dates: "23 sept. – 22 oct.", game: "Overwatch", line: "elle met la paix dans la team (et elle heal)", img: "astro/overwatch.jpg" },
+  { sign: "Scorpion", dates: "23 oct. – 21 nov.", game: "Dead by Daylight", line: "elle te traque. et elle adore ça.", img: "astro/dead-by-daylight.jpg" },
+  { sign: "Sagittaire", dates: "22 nov. – 21 déc.", game: "Fortnite", line: "elle drop n'importe où, juste pour le fun", img: "astro/fortnite.jpg" },
+  { sign: "Capricorne", dates: "22 déc. – 19 janv.", game: "Call of Duty", line: "elle grind les ranked comme un taf", img: "astro/call-of-duty.jpg" },
+  { sign: "Verseau", dates: "20 janv. – 18 fév.", game: "Aniimo", line: "elle joue à un jeu que personne connaît encore", img: "astro/aniimo.jpg" },
+  { sign: "Poissons", dates: "19 fév. – 20 mars", game: "Roblox", line: "40 mondes ouverts et une imagination sans fin", img: "astro/roblox.jpg" },
 ];
 
 const Sky: React.FC = () => {
@@ -90,7 +90,7 @@ const SignScene: React.FC = () => {
   const lf = f - i * STEP;
   const s = SIGNS[i];
   const card = useSpring(i * STEP + 6, 12);
-  const lineIn = interpolate(lf, [22, 32], [0, 1], { ...clamp, easing: easeOut });
+  const lineIn = interpolate(lf, [18, 28], [0, 1], { ...clamp, easing: easeOut });
   return (
     <AbsoluteFill>
       <Sky />
@@ -124,20 +124,20 @@ const SignScene: React.FC = () => {
 };
 
 export const AstroVideo: React.FC = () => (
-  <Shell hideBugFrom={900}>
+  <Shell hideBugFrom={1260}>
     <Sequence durationInFrames={60}>
       <Hook />
     </Sequence>
-    <Sequence from={60} durationInFrames={840}>
+    <Sequence from={60} durationInFrames={1200}>
       <SignScene />
     </Sequence>
-    <Sequence from={900} durationInFrames={90}>
+    <Sequence from={1260} durationInFrames={90}>
       <EndCard big="t'es quel signe ?" small="tes mates t'attendent sur le serveur" />
     </Sequence>
     {SIGNS.map((_, i) => (
       <Flash key={i} at={60 + i * STEP} strength={0.18} color="#F3D9A4" />
     ))}
-    <Flash at={900} strength={0.6} />
+    <Flash at={1260} strength={0.6} />
     <Audio src={staticFile("audio/sfx-astro.wav")} />
   </Shell>
 );
