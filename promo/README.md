@@ -10,11 +10,14 @@ Vidéo verticale 1080×1920, 30 i/s, 21,5 s, faite avec [Remotion](https://www.r
 | `out/rgc-types-de-joueuses.mp4` | les types de joueuses sur RGC (memes) | template meme (bandeau blanc) |
 | `out/rgc-les-jeux.mp4` | les 12 jeux du serveur en rafale (clip du serveur ou image de gameplay) + « autres jeux » | affiche pop pastel |
 | `out/rgc-red-green-flags.mp4` | red flags vs green flags d'un serveur Discord | bicolore rouge / vert |
+| `out/rgc-ton-main.mp4` | ce que ton main dit de toi (et de ta team) | cartes holographiques |
+| `out/rgc-trucs-jamais.mp4` | 3 trucs que t'entendras jamais dans notre communauté | messagerie mode clair + tampon |
+| `out/rgc-tier-list-excuses.mp4` | tier list des excuses pour pas lancer la game | tier list S/A/B/C/F |
 
 Les sources : `src/Video.tsx` (promo) et `src/videos/*.tsx` (les 4 autres, textes en haut de chaque fichier).
-Rendu : `npx remotion render <RGCPromo|RGCSolo|RGCTypes|RGCJeux|RGCFlags> out/<nom>.mp4`.
+Rendu : `npx remotion render <RGCPromo|RGCSolo|RGCTypes|RGCJeux|RGCFlags|RGCMains|RGCJamais|RGCTier> out/<nom>.mp4`.
 Bruitages : `python3 tools/make_sfx.py` (promo) et `python3 tools/make_sfx_series.py` (les 4 autres).
-Memes : `public/memes/` et images de gameplay : `public/gameplay/` (trouvés sur Pinterest).
+Memes : `public/memes/`, persos : `public/heroes/` et images de gameplay : `public/gameplay/` (trouvés sur Pinterest).
 
 ## Promo principale
 - `out/rgc-promo.mp4` — avec **uniquement les bruitages** (impacts, whooshs, pops, ticks des lettres, shutter, scintillements), calés à l'image près. Pas de musique : ajoute ton son par-dessus dans TikTok / CapCut.

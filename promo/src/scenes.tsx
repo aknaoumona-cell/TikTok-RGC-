@@ -19,7 +19,7 @@ import {
 } from "./components";
 
 /* =========================================================
-   1. HOOK — carte vocal + « t'as pas encore trouvé ta squad ? »
+   1. HOOK — carte vocal + « t'as pas encore trouvé ta team ? »
    ========================================================= */
 export const VoiceCard: React.FC<{ top?: number }> = ({ top = 540 }) => {
   const f = useCurrentFrame();

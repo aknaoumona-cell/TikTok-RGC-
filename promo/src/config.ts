@@ -47,7 +47,7 @@ export const TOTAL = 645;
 
 export const TEXT = {
   hookTop: "t'as pas encore",
-  hookBottom: "trouvé ta squad ?",
+  hookBottom: "trouvé ta team ?",
   dropTop: "un serveur",
   dropSmall: "entre",
   dropBig: "filles.",

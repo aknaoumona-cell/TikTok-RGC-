@@ -11,6 +11,7 @@ Attirer des **filles gameuses actives sur Discord** pour qu'elles rejoignent le 
 ## Ton & langage
 - Cible : jeunes femmes **18+** (le serveur est réservé aux majeures) — **ne jamais écrire « 18+ » ni parler d'âge dans les vidéos/descriptions** (sinon certaines mentent sur leur âge aux candidatures).
 - Parler comme elles : **langage Gen Z français naturel**, mature, drôle, complice (ex. « la vibe », « c'est carré », « en vrai », « jsp », « pov », « t'es laquelle », « on est d'accord que… », « le mood »). Pas de vocabulaire d'ado, pas de ton « pub » ni corporate.
+- Vocabulaire : **« team »** pour les équipes en jeu, **« communauté »** pour parler du serveur. Ne plus dire « squad ».
 - **Éviter le générique** : des situations précises et vécues par les gameuses (le « dernière game » à 3h, le skin rose qui one-shot, mute en voc…) plutôt que des slogans vagues.
 
 ## Règles de contenu
@@ -18,6 +19,7 @@ Attirer des **filles gameuses actives sur Discord** pour qu'elles rejoignent le 
 - **Pas d'emojis** dans les vidéos : utiliser des **memes** (chats, Among Us, réactions girly) à la place.
 - **Logo RGC obligatoire** + filigrane @rivalsgirlsclub qui bouge (anti-repost).
 - **Chaque TikTok doit avoir son propre look** (ne pas refaire la même DA à chaque fois).
+- **Varier les clips/images** d'une vidéo à l'autre (ne pas réutiliser toujours les mêmes, ex. la photo de la soirée film).
 - Le lien du serveur est **en commentaire** (pas « lien en bio », pas « dis-le en com »).
 - Ne jamais inventer : pas de faux chiffres, faux témoignages ou fausses captures du serveur.
 - Infos à ne PAS dire : nombre de membres, « events chaque semaine » (dire « chaque mois »), « embrouilles », « on cherche des bavardes », « tu dis bonjour en arrivant ».

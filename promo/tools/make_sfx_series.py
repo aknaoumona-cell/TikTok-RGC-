@@ -95,3 +95,69 @@ for i in range(4):
 T.place(pop(1.2), 270 + 96, 0.6)
 end_card(T, 390)
 T.save(os.path.join(A, "sfx-flags.wav"))
+
+# ---------- ce que ton main dit de toi (510) ----------
+T = Track(17.0)
+T.place(whoosh(0.4), 4, 0.4)
+T.place(shimmer(0.8, 2400), 10, 0.4)
+T.place(pop(1.0), 22, 0.7)
+for i in range(4):
+    s = 60 + i * 90
+    T.place(whoosh(0.3), s - 2, 0.6)
+    T.place(scratch(), s + 2, 0.15)
+    T.place(pop(0.9), s + 14, 0.5)
+    T.place(shimmer(0.9, 2600), s + 18, 0.6)
+    for k in range(5):
+        T.place(tick(), s + 30 + k * 3, 0.35)
+    T.place(tick(), s + 36, 0.3)
+end_card(T, 420)
+T.save(os.path.join(A, "sfx-mains.wav"))
+
+# ---------- 3 trucs que t'entendras jamais (510) ----------
+T = Track(17.0)
+T.place(whoosh(0.4), 2, 0.4)
+for k in range(3):
+    T.place(tick(), 18 + k * 1.5, 0.3)
+T.place(pop(1.0), 24, 0.7)
+for i in range(3):
+    s = 60 + i * 90
+    for k in range(3):
+        T.place(tick(), s + 2 + k * 4, 0.25)
+    T.place(pop(1.7), s + 14, 0.6)
+    T.place(vine_boom(), s + 36, 0.8)
+    T.place(bonk(), s + 37, 0.5)
+    T.place(pop(1.1), s + 44, 0.6)
+T.place(whoosh(0.35), 330 - 4, 0.5)
+for k in range(3):
+    T.place(pop(1.0 + k * 0.15), 342 + k * 12, 0.6)
+end_card(T, 420)
+T.save(os.path.join(A, "sfx-jamais.wav"))
+
+# ---------- tier list des excuses (510) ----------
+T = Track(17.0)
+T.place(impact(), 0, 0.4)
+T.place(whoosh(0.4), 8, 0.4)
+for k in range(5):
+    T.place(pop(0.9 + k * 0.1), 18 + k * 3, 0.5)
+VERDICT = {"S": "s", "A": "ok", "B": "ok", "C": "meh", "F": "no"}
+for i, tier in enumerate(["A", "F", "C", "S", "B", "S"]):
+    s = 60 + i * 45
+    T.place(whoosh(0.22), s - 3, 0.45)
+    T.place(pop(1.0), s + 2, 0.5)
+    v = VERDICT[tier]
+    if v == "s":
+        T.place(correct(), s + 14, 0.7)
+        T.place(shimmer(0.8, 2600), s + 14, 0.5)
+    elif v == "ok":
+        T.place(correct(), s + 14, 0.5)
+    elif v == "meh":
+        T.place(bonk(), s + 14, 0.6)
+    else:
+        T.place(buzzer(), s + 14, 0.7)
+    T.place(whoosh(0.2, up=False), s + 26, 0.4)
+    T.place(tick(), s + 36, 0.6)
+    T.place(pop(1.3), s + 36, 0.4)
+T.place(impact(), 330, 0.4)
+T.place(pop(1.1), 354, 0.7)
+end_card(T, 420)
+T.save(os.path.join(A, "sfx-tier.wav"))
