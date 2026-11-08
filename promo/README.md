@@ -20,9 +20,10 @@ Vidéo verticale 1080×1920, 30 i/s, 21,5 s, faite avec [Remotion](https://www.r
 | `out/rgc-green-flags-mate.mp4` | les green flags d'une mate de jeu | post-its sur quadrillage menthe |
 | `out/rgc-dimanche.mp4` | un dimanche sur RGC | lo-fi cosy chaud |
 | `out/rgc-verif-vocale.mp4` | pov : tu passes la vérif vocale (message vocal guidé) | appli de messages vocaux |
+| `out/rgc-astro.mp4` | ton jeu préféré selon ton signe astro (33 s) | astro mystique, nuit étoilée + or |
 
 Les sources : `src/Video.tsx` (promo) et `src/videos/*.tsx` (les 4 autres, textes en haut de chaque fichier).
-Rendu : `npx remotion render <RGCPromo|RGCSolo|RGCTypes|RGCJeux|RGCFlags|RGCMains|RGCJamais|RGCTier|RGCPovTeam|RGCPhrases|RGCRealite|RGCSons|RGCMateFlags|RGCDimanche|RGCVerif> out/<nom>.mp4`.
+Rendu : `npx remotion render <RGCPromo|RGCSolo|RGCTypes|RGCJeux|RGCFlags|RGCMains|RGCJamais|RGCTier|RGCPovTeam|RGCPhrases|RGCRealite|RGCSons|RGCMateFlags|RGCDimanche|RGCVerif|RGCAstro> out/<nom>.mp4`.
 Bruitages : `python3 tools/make_sfx.py` (promo) et `python3 tools/make_sfx_series.py` (les 4 autres).
 Memes : `public/memes/`, persos (captures in-game officielles) : `public/heroes/`, captures de jeu : `public/ingame/`, ambiances : `public/cozy/` et images de gameplay : `public/gameplay/` (trouvés sur Pinterest).
 

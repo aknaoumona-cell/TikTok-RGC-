@@ -16,6 +16,7 @@ import { SONS_TOTAL, SonsVideo } from "./videos/Sons";
 import { MATEFLAGS_TOTAL, MateFlagsVideo } from "./videos/MateFlags";
 import { DIMANCHE_TOTAL, DimancheVideo } from "./videos/Dimanche";
 import { VERIF_TOTAL, VerifVideo } from "./videos/Verif";
+import { ASTRO_TOTAL, AstroVideo } from "./videos/Astro";
 
 const common = { fps: FPS, width: WIDTH, height: HEIGHT };
 
@@ -36,5 +37,6 @@ export const Root: React.FC = () => (
     <Composition id="RGCMateFlags" component={MateFlagsVideo} durationInFrames={MATEFLAGS_TOTAL} {...common} />
     <Composition id="RGCDimanche" component={DimancheVideo} durationInFrames={DIMANCHE_TOTAL} {...common} />
     <Composition id="RGCVerif" component={VerifVideo} durationInFrames={VERIF_TOTAL} {...common} />
+    <Composition id="RGCAstro" component={AstroVideo} durationInFrames={ASTRO_TOTAL} {...common} />
   </>
 );
