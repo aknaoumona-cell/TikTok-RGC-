@@ -8,6 +8,11 @@ Attirer des **filles gameuses actives sur Discord** pour qu'elles rejoignent le 
 - Montrer le résultat (vidéo rendue), pas seulement des conseils ou du code.
 - Demander de valider le **thème/concept** avant de monter une nouvelle série de vidéos.
 
+## Ton & langage
+- Cible : jeunes femmes **18+** (le serveur est réservé aux majeures) — **ne jamais écrire « 18+ » ni parler d'âge dans les vidéos/descriptions** (sinon certaines mentent sur leur âge aux candidatures).
+- Parler comme elles : **langage Gen Z français naturel**, mature, drôle, complice (ex. « la vibe », « c'est carré », « en vrai », « jsp », « pov », « t'es laquelle », « on est d'accord que… », « le mood »). Pas de vocabulaire d'ado, pas de ton « pub » ni corporate.
+- **Éviter le générique** : des situations précises et vécues par les gameuses (le « dernière game » à 3h, le skin rose qui one-shot, mute en voc…) plutôt que des slogans vagues.
+
 ## Règles de contenu
 - **Pas de musique de fond** : seulement des bruitages (transitions, impacts, pops…). Elle ajoute le son tendance elle-même dans TikTok.
 - **Pas d'emojis** dans les vidéos : utiliser des **memes** (chats, Among Us, réactions girly) à la place.
