@@ -177,11 +177,11 @@ T.place(correct(), 60 + 3 * 75 + 40, 0.5)
 end_card(T, 360)
 T.save(os.path.join(A, "sfx-povteam.wav"))
 
-# ---------- les phrases en voc à 2h (450) ----------
-T = Track(15.0)
+# ---------- les phrases en voc (500) ----------
+T = Track(17.0)
 T.place(rec_beep(), 2, 1.0)
 T.place(whoosh(0.4), 4, 0.4)
-for i in range(6):
+for i in range(7):
     s = 60 + i * 50
     T.place(whoosh(0.2), s - 2, 0.35)
     for k in range(5):
@@ -189,7 +189,8 @@ for i in range(6):
     if i > 0:
         T.place(pop(1.0 + i * 0.08), s + 22, 0.55)
 T.place(vine_boom(), 60 + 50 + 18, 0.6)
-end_card(T, 360)
+T.place(bonk(), 60 + 100 + 20, 0.6)
+end_card(T, 410)
 T.save(os.path.join(A, "sfx-phrases.wav"))
 
 # ---------- ce que je pensais vs la réalité (420) ----------
@@ -249,14 +250,16 @@ T.save(os.path.join(A, "sfx-dimanche.wav"))
 
 # ---------- pov : la vérif vocale (465) ----------
 T = Track(15.5)
-T.place(ring(), 6, 1.0)
-T.place(ring(), 6 + 40, 1.0)
-T.place(ring(), 75 + 4, 0.8)
+T.place(ping(), 4, 0.8)
+for k in range(3):
+    T.place(pop(1.0 + k * 0.15), 14 + k * 8, 0.5)
 T.place(pop(1.0), 75 + 14, 0.5)
 for k in range(5):
     T.place(heartbeat(), 150 + k * 13, 0.9)
-T.place(join_tone(), 225, 0.8)
-T.place(pop(1.3), 229, 0.5)
+T.place(mute_click(), 225, 0.8)
+T.place(pop(1.3), 231, 0.4)
+T.place(whoosh(0.3), 225 + 42, 0.6)
+T.place(ping(), 225 + 46, 0.7)
 T.place(confetti(), 300, 1.0)
 T.place(correct(), 300, 0.6)
 T.place(shimmer(1.2), 300, 0.6)

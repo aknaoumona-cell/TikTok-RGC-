@@ -25,6 +25,8 @@ Attirer des **filles gameuses actives sur Discord** pour qu'elles rejoignent le 
 - Ne jamais inventer : pas de faux chiffres, faux témoignages ou fausses captures du serveur.
 - Infos à ne PAS dire : nombre de membres, « events chaque semaine » (dire « chaque mois »), « embrouilles », « on cherche des bavardes », « tu dis bonjour en arrivant ».
 - Le vocal s'appelle juste « Vocal » avec un badge REC (pas de nom de salon).
+- La vérif vocale = **un message vocal** à envoyer (pas un appel) ; tout est expliqué, on guide, c'est rapide.
+- Images d'ambiance : **vraies photos**, pas d'images générées par IA.
 
 ## DA
 Logo papillon chrome lilas (`promo/public/brand/logo-rgc.png`). Serveur au style girly doux : nacré, perles, nœuds, papillons, sparkles, lettres en cases `R i v a l s`. Féminin mais pas enfantin, pas de rose kitsch avec des cœurs partout.

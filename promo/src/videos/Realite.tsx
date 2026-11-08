@@ -15,7 +15,7 @@ const STEP = 90;
 const REVEAL = 34;
 
 const PAIRS = [
-  { think: "un serveur entre filles = calme et un peu mort", thinkImg: "cozy/setup-2.jpg", real: "des cris sur Among Us à 1h du mat'", realImg: "memes/barbie-rire.jpg" },
+  { think: "un serveur entre filles = calme et un peu mort", thinkImg: "cozy/pluie-vitre.jpg", real: "des cris sur Among Us à 1h du mat'", realImg: "memes/barbie-rire.jpg" },
   { think: "personne va jouer à mes jeux", thinkImg: "memes/chat-stresse.jpg", real: "y'a même une catégorie « autres jeux »", realImg: "ingame/marvel-rivals-select.jpg" },
   { think: "ça va être gênant en voc", thinkImg: "memes/chat-what.jpg", real: "on parle de tout pendant 3h, même plus de la game", realImg: "memes/girly-excitee.jpg" },
 ];

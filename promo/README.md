@@ -14,12 +14,12 @@ Vidéo verticale 1080×1920, 30 i/s, 21,5 s, faite avec [Remotion](https://www.r
 | `out/rgc-trucs-jamais.mp4` | 3 trucs que t'entendras jamais dans notre communauté | messagerie mode clair + tampon |
 | `out/rgc-tier-list-excuses.mp4` | tier list des excuses pour pas lancer la game (23 s) | tier list S/A/B/C/F |
 | `out/rgc-pov-team.mp4` | pov : t'as enfin trouvé des mates qui jouent à la même heure que toi | scrapbook polaroids |
-| `out/rgc-phrases-voc.mp4` | les phrases qu'on entend en voc à 2h du mat' | karaoké |
+| `out/rgc-phrases-voc.mp4` | les phrases qu'on entend en voc | karaoké |
 | `out/rgc-pensais-vs-realite.mp4` | ce que je pensais vs la réalité | split-screen gris / vif |
 | `out/rgc-sons-discord.mp4` | les sons de discord qui nous font quelque chose | néon blurple + visualiseur |
 | `out/rgc-green-flags-mate.mp4` | les green flags d'une mate de jeu | post-its sur quadrillage menthe |
 | `out/rgc-dimanche.mp4` | un dimanche sur RGC | lo-fi cosy chaud |
-| `out/rgc-verif-vocale.mp4` | pov : tu passes la vérif vocale | écran d'appel téléphone |
+| `out/rgc-verif-vocale.mp4` | pov : tu passes la vérif vocale (message vocal guidé) | appli de messages vocaux |
 
 Les sources : `src/Video.tsx` (promo) et `src/videos/*.tsx` (les 4 autres, textes en haut de chaque fichier).
 Rendu : `npx remotion render <RGCPromo|RGCSolo|RGCTypes|RGCJeux|RGCFlags|RGCMains|RGCJamais|RGCTier|RGCPovTeam|RGCPhrases|RGCRealite|RGCSons|RGCMateFlags|RGCDimanche|RGCVerif> out/<nom>.mp4`.

@@ -16,9 +16,9 @@ const WARM = "#FFC48A";
 
 const MOMENTS = [
   { tag: "l'aprem", text: "un film en voc, toutes ensemble", video: "server/cine-ecran.mp4" },
-  { tag: "pendant le film", text: "on commente tout (vraiment tout)", img: "cozy/fenetre-pluie.jpg", meme: "memes/girly-prient.jpg" },
-  { tag: "le soir", text: "chill en voc, sans pression", img: "cozy/setup-1.jpg", rec: true },
-  { tag: "et parfois", text: "une petite game cosy entre filles", img: "cozy/chambre.jpg", card: "gameplay/disney-dreamlight-valley.jpg" },
+  { tag: "pendant le film", text: "on commente tout (vraiment tout)", img: "cozy/popcorn-tv.jpg", meme: "memes/girly-prient.jpg" },
+  { tag: "le soir", text: "chill en voc, sans pression", img: "cozy/tasse-plaid.jpg", rec: true },
+  { tag: "et parfois", text: "une petite game cosy entre filles", img: "cozy/bureau-pc.jpg", card: "gameplay/disney-dreamlight-valley.jpg" },
 ];
 
 const Dust: React.FC = () => {
@@ -45,7 +45,7 @@ const Grade: React.FC = () => (
 const Hook: React.FC = () => (
   <AbsoluteFill style={{ background: "#1C120C" }}>
     <AbsoluteFill style={{ filter: "brightness(0.7) saturate(1.1)" }}>
-      <Img src={staticFile("cozy/setup-2.jpg")} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+      <Img src={staticFile("cozy/chambre-chat.jpg")} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
     </AbsoluteFill>
     <Grade />
     <Dust />
