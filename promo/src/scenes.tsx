@@ -21,7 +21,7 @@ import {
 /* =========================================================
    1. HOOK — carte vocal + « t'as pas encore trouvé ta squad ? »
    ========================================================= */
-const VoiceCard: React.FC = () => {
+export const VoiceCard: React.FC<{ top?: number }> = ({ top = 540 }) => {
   const f = useCurrentFrame();
   const enter = useSpring(0, 14);
   const avatars = [COLORS.lilac, COLORS.blush, COLORS.mint, COLORS.butter, "#CDB4FF", "#FBD9E4"];
@@ -30,7 +30,7 @@ const VoiceCard: React.FC = () => {
       style={{
         position: "absolute",
         left: 110,
-        top: 540,
+        top,
         width: 860,
         borderRadius: 44,
         padding: "36px 40px 40px",
