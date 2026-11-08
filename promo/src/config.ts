@@ -60,7 +60,7 @@ export const TEXT = {
   },
   valuesTop: "et surtout",
   valuesBig: "une safe place.",
-  pills: ["vérif vocale", "multi-jeux", "events chaque semaine", "SFW · LGBTQ+ friendly"],
+  pills: ["vérif vocale", "multi-jeux", "events chaque mois", "SFW · LGBTQ+ friendly"],
   ctaName: "Rivals Girls Club",
   ctaEvents: ["soirées ciné", "soirées jeux", "mini-jeux"],
   outroBig: "rejoins-nous",

@@ -366,7 +366,7 @@ export const ClipFrame: React.FC<{
 };
 
 /* ---------- permanent branding: logo bug + drifting watermark ---------- */
-export const Branding: React.FC = () => {
+export const Branding: React.FC<{ ink?: "light" | "dark" }> = ({ ink = "light" }) => {
   const f = useCurrentFrame();
   const { durationInFrames } = useVideoConfig();
   // drifting watermark: slow lissajous path across the frame (hard to crop out)
@@ -385,7 +385,7 @@ export const Branding: React.FC = () => {
           fontWeight: 700,
           fontSize: 30,
           letterSpacing: 3,
-          color: "rgba(255,255,255,0.13)",
+          color: ink === "light" ? "rgba(255,255,255,0.13)" : "rgba(130,120,145,0.22)",
           whiteSpace: "nowrap",
         }}
       >
@@ -393,7 +393,7 @@ export const Branding: React.FC = () => {
       </div>
       <div style={{ position: "absolute", left: 44, top: 190, display: "flex", alignItems: "center", gap: 14 }}>
         <Img src={staticFile("brand/logo-rgc.png")} style={{ width: 92, height: 92, filter: "drop-shadow(0 0 12px rgba(183,139,240,0.8))" }} />
-        <div style={{ fontFamily: FONT.mono, fontWeight: 700, fontSize: 24, color: "rgba(255,255,255,0.85)", letterSpacing: 1.5, textShadow: "0 2px 10px rgba(0,0,0,0.6)" }}>
+        <div style={{ fontFamily: FONT.mono, fontWeight: 700, fontSize: 24, color: ink === "light" ? "rgba(255,255,255,0.85)" : "rgba(18,15,24,0.85)", letterSpacing: 1.5, textShadow: ink === "light" ? "0 2px 10px rgba(0,0,0,0.6)" : "none" }}>
           {HANDLE}
         </div>
       </div>

@@ -43,7 +43,10 @@ export const VoiceCard: React.FC<{ top?: number }> = ({ top = 540 }) => {
       }}
     >
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <div style={{ fontFamily: FONT.body, fontWeight: 700, fontSize: 40, color: "#fff" }}>🔊 Vocal</div>
+        <div style={{ display: "flex", alignItems: "center", gap: 16, fontFamily: FONT.body, fontWeight: 700, fontSize: 40, color: "#fff" }}>
+          <svg width="40" height="40" viewBox="0 0 24 24"><path d="M3 9v6h4l5 4V5L7 9H3z" fill="#fff" /><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" stroke="#fff" strokeWidth="2" fill="none" strokeLinecap="round" /></svg>
+          Vocal
+        </div>
         <div
           style={{
             display: "flex",
@@ -433,7 +436,7 @@ export const OutroScene: React.FC = () => {
             opacity: interpolate(f, [28, 36], [0, 1], clamp),
           }}
         >
-          <Star size={34} color={COLORS.lilacDeep} /> {TEXT.outroLink} 👇 <Star size={34} color={COLORS.lilacDeep} />
+          <Star size={34} color={COLORS.lilacDeep} /> {TEXT.outroLink} <Star size={34} color={COLORS.lilacDeep} />
         </div>
       </div>
     </AbsoluteFill>

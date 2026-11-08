@@ -136,3 +136,60 @@ def riser(d=0.5):
     return n + tone
 
 
+
+
+# ---------------- meme sounds ----------------
+def vine_boom():
+    """Heavy distorted 'dramatic boom' used on meme freeze-frames."""
+    t = t_(1.2)
+    f = 55 + 120 * np.exp(-t * 14)
+    body = np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-t * 3.5)
+    hit = highpass(rng.standard_normal(len(t)), 800) * np.exp(-t * 40) * 0.4
+    return np.tanh((body * 3 + hit) * 1.5) * 0.7
+
+
+def buzzer():
+    """'Wrong answer' buzzer."""
+    t = t_(0.45)
+    s = np.sign(np.sin(2 * np.pi * 140 * t)) + np.sign(np.sin(2 * np.pi * 147 * t))
+    return lowpass(s, 2500) * np.clip((0.45 - t) / 0.05, 0, 1) * 0.18
+
+
+def correct():
+    """Two-tone 'right answer' chime."""
+    out = np.zeros(int(SR * 0.7))
+    for k, f in enumerate((1318.5, 1975.5)):
+        st = int(k * 0.09 * SR)
+        t = np.arange(len(out) - st) / SR
+        out[st:] += (np.sin(2 * np.pi * f * t) + 0.3 * np.sin(4 * np.pi * f * t)) * np.exp(-t * 6) * 0.22
+    return out
+
+
+def scratch():
+    """Record scratch."""
+    t = t_(0.35)
+    f = 900 + 700 * np.sin(2 * np.pi * 6 * t)
+    n = rng.standard_normal(len(t))
+    tone = np.sin(2 * np.pi * np.cumsum(f) / SR)
+    return lowpass(n * 0.6 + tone * 0.4, 3500) * np.exp(-t * 5) * 0.45
+
+
+def sad_wah():
+    """Descending 'wah wah wah wahhh' (sad trombone style)."""
+    notes = [(311.1, 0.32), (293.7, 0.32), (277.2, 0.32), (261.6, 0.9)]
+    out = []
+    for f0, d in notes:
+        t = t_(d)
+        vib = 1 + (0.012 * np.sin(2 * np.pi * 5.5 * t) if d > 0.5 else 0)
+        f = f0 * vib * (1 - 0.03 * (t / d))
+        ph = 2 * np.pi * np.cumsum(f) / SR
+        tone = sum(np.sin(ph * h) / h for h in range(1, 7))
+        wah = 0.5 - 0.5 * np.cos(2 * np.pi * np.clip(t / 0.18, 0, 1))
+        env = np.minimum(1, t / 0.03) * np.clip((d - t) / 0.06, 0, 1)
+        out.append(lowpass(tone, 600 + 1800 * wah) * env * 0.22)
+    return np.concatenate(out)
+
+
+def bonk():
+    t = t_(0.25)
+    return (np.sin(2 * np.pi * 420 * t) * np.exp(-t * 30) + highpass(rng.standard_normal(len(t)), 3000) * np.exp(-t * 200) * 0.3) * 0.5
