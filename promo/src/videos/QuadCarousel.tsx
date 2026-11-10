@@ -1,12 +1,12 @@
 /**
- * Carrousel TikTok (mode photo) / Snap — Vide-grenier Quad Rider 31. 7 slides 1080×1920.
+ * Carrousel TikTok (mode photo) / Snap — Vide-grenier Quad Rider 31. 5 slides 1080×1920.
  * Chaque image de la composition = une slide : npx remotion still QuadCarousel out/carrousel/slide-N.png --frame=N-1
  */
 import React from "react";
 import { AbsoluteFill, useCurrentFrame } from "remotion";
 import { BigBrand, Grain, InfoRow, Line, Photo, Pill, Q, Sub, YellowTread } from "../quad/kit";
 
-export const CAROUSEL_SLIDES = 7;
+export const CAROUSEL_SLIDES = 5;
 const S = { still: true };
 /** Texte réduit (×0,66) et marges larges : TikTok zoome un peu les photos à la publication. */
 const K = 0.66;
@@ -67,54 +67,34 @@ const Slide4 = () => (
   </AbsoluteFill>
 );
 
+/** Slide finale : infos + exposants + rendez-vous, tout sur un écran jaune très lisible. */
 const Slide5 = () => (
   <AbsoluteFill>
     <YellowTread />
-    <Box top={380}>
-      <div style={{ fontFamily: Q.title, fontSize: 120, color: Q.ink, lineHeight: 1 }}>DIMANCHE</div>
-      <div style={{ fontFamily: Q.title, fontSize: 250, color: Q.ink, lineHeight: 0.95 }}>15 NOV.</div>
+    <Box top={370}>
+      <div style={{ fontFamily: Q.title, fontSize: 170, color: Q.ink, lineHeight: 1 }}>DIMANCHE 15 NOV.</div>
       <InfoRow {...S} label="HORAIRES"><div style={{ fontFamily: Q.title, fontSize: 110, lineHeight: 1 }}>9H – 17H30</div></InfoRow>
       <InfoRow {...S} label="OÙ">
-        <div style={{ fontFamily: Q.title, fontSize: 96, lineHeight: 1 }}>FOYER DU RABÉ</div>
-        <div style={{ fontFamily: Q.body, fontWeight: 800, fontSize: 52, marginTop: 10 }}>chemin des Communaux</div>
-        <div style={{ fontFamily: Q.body, fontWeight: 800, fontSize: 52 }}>LONGAGES (31)</div>
+        <div style={{ fontFamily: Q.title, fontSize: 100, lineHeight: 1 }}>FOYER DU RABÉ</div>
+        <div style={{ fontFamily: Q.body, fontWeight: 800, fontSize: 56, marginTop: 10 }}>chemin des Communaux, LONGAGES (31)</div>
       </InfoRow>
+      <InfoRow {...S} label="SUR PLACE">
+        <div style={{ fontFamily: Q.body, fontWeight: 800, fontSize: 64, lineHeight: 1.15 }}>baptêmes de quad · buvette · food truck</div>
+      </InfoRow>
+      <div style={{ height: 10, background: Q.ink, margin: "70px 0 56px" }} />
+      <div style={{ display: "inline-block", background: Q.ink, color: Q.yellow, fontFamily: Q.title, fontSize: 96, padding: "4px 28px", lineHeight: 1.1 }}>EXPOSANTS</div>
+      <div style={{ fontFamily: Q.body, fontWeight: 800, fontSize: 64, color: Q.ink, marginTop: 24 }}>inscription avant le vendredi 13/11 :</div>
+      <div style={{ fontFamily: Q.title, fontSize: 120, color: Q.ink, lineHeight: 1.08, marginTop: 10 }}>06 58 34 33 78</div>
+      <div style={{ fontFamily: Q.title, fontSize: 120, color: Q.ink, lineHeight: 1.08 }}>06 80 94 24 70</div>
+      <div style={{ fontFamily: Q.body, fontWeight: 600, fontSize: 52, color: Q.ink, marginTop: 14 }}>associationquadrider31@gmail.com</div>
     </Box>
-    <Box top={1300}><div style={{ fontFamily: Q.body, fontWeight: 800, fontSize: 46, color: Q.ink, letterSpacing: 2 }}>ENREGISTRE CE POST POUR NE PAS L'OUBLIER</div></Box>
-  </AbsoluteFill>
-);
-
-const Slide6 = () => (
-  <AbsoluteFill>
-    <Photo src="quad/broc-buste.jpg" {...S} dark={0.55} />
-    <Box top={380}>
-      <Line {...S} size={150}>ton grenier</Line>
-      <Line {...S} size={150}>déborde ?</Line>
-      <div style={{ height: 30 }} />
-      <Line {...S} size={92} hl rot={-1.5}>prends un stand</Line>
-      <Sub {...S} size={56} style={{ marginTop: 18 }}>inscriptions jusqu'au <b style={{ color: Q.yellow }}>vendredi 13/11</b></Sub>
-    </Box>
-    <Box top={1000}>
-      <Line {...S} size={112}>06 58 34 33 78</Line>
-      <Line {...S} size={112}>06 80 94 24 70</Line>
-      <Sub {...S} size={40} style={{ marginTop: 14 }}>associationquadrider31@gmail.com</Sub>
+    <Box top={1430}>
+      <div style={{ display: "inline-block", background: Q.ink, color: Q.white, fontFamily: Q.title, fontSize: 130, padding: "0 30px", transform: "rotate(-2deg)" }}>ON T'ATTEND !</div>
     </Box>
   </AbsoluteFill>
 );
 
-const Slide7 = () => (
-  <AbsoluteFill>
-    <Photo src="quad/quad-boue.jpg" {...S} dark={0.4} pos="45% 50%" />
-    <Box top={380}><Line {...S} size={190}>on t'attend</Line><Line {...S} size={190} hl rot={-2}>dimanche</Line></Box>
-    <Box top={1100}>
-      <Line {...S} size={110} color={Q.yellow}>15 nov · Longages</Line>
-      <div style={{ height: 18 }} />
-      <Pill {...S} size={36}>partage à ton pote qui chine</Pill>
-    </Box>
-  </AbsoluteFill>
-);
-
-const SLIDES = [Slide1, Slide2, Slide3, Slide4, Slide5, Slide6, Slide7];
+const SLIDES = [Slide1, Slide2, Slide3, Slide4, Slide5];
 
 export const QuadCarousel: React.FC = () => {
   const f = useCurrentFrame();
