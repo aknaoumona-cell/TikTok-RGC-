@@ -18,6 +18,7 @@ import { DIMANCHE_TOTAL, DimancheVideo } from "./videos/Dimanche";
 import { VERIF_TOTAL, VerifVideo } from "./videos/Verif";
 import { ASTRO_TOTAL, AstroVideo } from "./videos/Astro";
 import { QUAD_TOTAL, QuadVideGrenierVideo } from "./videos/QuadVideGrenier";
+import { CAROUSEL_SLIDES, QuadCarousel } from "./videos/QuadCarousel";
 
 const common = { fps: FPS, width: WIDTH, height: HEIGHT };
 
@@ -40,5 +41,6 @@ export const Root: React.FC = () => (
     <Composition id="RGCVerif" component={VerifVideo} durationInFrames={VERIF_TOTAL} {...common} />
     <Composition id="RGCAstro" component={AstroVideo} durationInFrames={ASTRO_TOTAL} {...common} />
     <Composition id="QuadVideGrenier" component={QuadVideGrenierVideo} durationInFrames={QUAD_TOTAL} {...common} />
+    <Composition id="QuadCarousel" component={QuadCarousel} durationInFrames={CAROUSEL_SLIDES} {...common} />
   </>
 );
