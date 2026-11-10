@@ -123,3 +123,11 @@ export const InfoRow: React.FC<{ label: string; children: React.ReactNode; at?: 
     </div>
   );
 };
+
+/** Nom de l'asso EN GROS en haut (demandé). */
+export const BigBrand: React.FC<{ dark?: boolean; left?: number; top?: number; size?: number }> = ({ dark, left = 70, top = 100, size = 100 }) => (
+  <div style={{ position: "absolute", left, top, lineHeight: 1 }}>
+    <div style={{ fontFamily: Q.body, fontWeight: 800, fontSize: size * 0.32, letterSpacing: size * 0.08, color: dark ? Q.ink : Q.white, textShadow: dark ? "none" : "0 2px 12px rgba(0,0,0,0.85)" }}>ASSOCIATION</div>
+    <div style={{ fontFamily: Q.title, fontSize: size, color: dark ? Q.ink : Q.yellow, textShadow: dark ? "none" : "0 4px 24px rgba(0,0,0,0.75), 0 3px 0 rgba(0,0,0,0.5)", marginTop: 4 }}>QUAD RIDER 31</div>
+  </div>
+);

@@ -8,7 +8,7 @@
  */
 import React from "react";
 import { AbsoluteFill, Audio, Sequence, interpolate, random, staticFile, useCurrentFrame } from "remotion";
-import { Brand, Grain, InfoRow, Line, Photo, Pill, Q, Sub, YellowTread, useSpr } from "../quad/kit";
+import { BigBrand, Grain, InfoRow, Line, Photo, Pill, Q, Sub, YellowTread, useSpr } from "../quad/kit";
 
 export const QUAD_TOTAL = 720;
 const cl = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
@@ -50,7 +50,7 @@ const S1: React.FC = () => {
   return (
     <AbsoluteFill style={{ transform: shake }}>
       <Photo src="quad/quad-gerbe.jpg" at={40} punch={0.45} dark={0.3} pos="40% 50%" />
-      <Box top={330}>
+      <Box top={380}>
         <Line at={40} size={110} from="left">un vide-grenier…</Line>
         <Line at={42} size={250} color={Q.yellow} from="slam">avec</Line>
         <Line at={46} size={250} color={Q.yellow} from="slam">des quads.</Line>
@@ -76,9 +76,9 @@ const S2: React.FC = () => {
         <Photo src="quad/broc-stand.jpg" at={4} dur={105} dark={0.25} pos="50% 40%" />
       </div>
       <div style={{ position: "absolute", left: 0, right: 0, top: 948, height: 24, background: Q.yellow, transform: `scaleX(${split})` }} />
-      <Box top={300}><Line at={10} size={170} hl rot={-1.5}>dedans</Line></Box>
+      <Box top={330}><Line at={10} size={170} hl rot={-1.5}>dedans</Line></Box>
       <Box top={1040}><Line at={22} size={170} hl rot={1.5}>et dehors</Line></Box>
-      <Box top={540}><Sub at={30} size={58}>des stands dans le foyer</Sub></Box>
+      <Box top={560}><Sub at={30} size={58}>des stands dans le foyer</Sub></Box>
       <Box top={1270}><Sub at={40} size={58}>et en extérieur, toute la journée</Sub></Box>
     </AbsoluteFill>
   );
@@ -90,15 +90,16 @@ const S3: React.FC = () => {
   return (
     <AbsoluteFill style={{ transform: shake }}>
       <Photo src="quad/quad-face.jpg" at={0} dur={120} punch={0.4} dark={0.3} pos="50% 35%" />
-      <Box top={300}>
-        <Pill at={2} bg={Q.red} color={Q.white} size={42}>le truc en plus</Pill>
+      <Box top={340}>
+        <Pill at={2} bg={Q.red} color={Q.white} size={42}>il y aura aussi</Pill>
         <div style={{ height: 24 }} />
         <Line at={6} size={210} from="slam">baptême</Line>
         <Line at={12} size={210} hl from="slam" rot={-2}>de quad</Line>
       </Box>
-      <Box top={1180}>
-        <Sub at={28} size={66} style={{ fontWeight: 800 }}>toute la journée.</Sub>
-        <Sub at={36} size={58}>tu viens chiner, tu repars avec des sensations.</Sub>
+      <Box top={1130}>
+        <Sub at={28} size={66} style={{ fontWeight: 800 }}>en plus du vide-grenier,</Sub>
+        <Sub at={34} size={66} style={{ fontWeight: 800 }}>des baptêmes de quad</Sub>
+        <Sub at={40} size={66} style={{ fontWeight: 800, color: Q.yellow }}>toute la journée !</Sub>
       </Box>
       <Flash at={0} />
     </AbsoluteFill>
@@ -111,7 +112,7 @@ const S4: React.FC = () => {
   return (
     <AbsoluteFill>
       {f < 45 ? <Photo src="quad/food-tables.jpg" at={0} dur={45} dark={0.35} pos="50% 60%" /> : <Photo src="quad/food-truck.jpg" at={45} dur={50} dark={0.35} punch={0.18} />}
-      <Box top={320}>
+      <Box top={360}>
         <Line at={4} size={200}>buvette</Line>
         <Line at={10} size={170} hl rot={-1.5}>+ food truck</Line>
       </Box>
@@ -128,8 +129,7 @@ const S5: React.FC = () => {
   return (
     <AbsoluteFill>
       <YellowTread offset={f * 2} />
-      <Brand dark />
-      <Box top={290}>
+      <Box top={340}>
         <div style={{ fontFamily: Q.title, fontSize: 120, color: Q.ink, lineHeight: 1, transform: `scale(${0.7 + big * 0.3})`, opacity: big, transformOrigin: "left center" }}>DIMANCHE</div>
         <div style={{ fontFamily: Q.title, fontSize: 250, color: Q.ink, lineHeight: 0.95, transform: `scale(${0.7 + big * 0.3})`, opacity: big, transformOrigin: "left center" }}>15 NOV.</div>
         <InfoRow at={18} label="HORAIRES"><div style={{ fontFamily: Q.title, fontSize: 110, lineHeight: 1 }}>9H – 17H30</div></InfoRow>
@@ -150,7 +150,7 @@ const S6: React.FC = () => {
   return (
     <AbsoluteFill>
       <Photo src="quad/broc-buste.jpg" at={0} dur={100} dark={0.55} />
-      <Box top={300}>
+      <Box top={350}>
         <Line at={2} size={150}>ton grenier</Line>
         <Line at={6} size={150}>déborde ?</Line>
         <div style={{ height: 30 }} />
@@ -171,15 +171,14 @@ const S6: React.FC = () => {
 const S7: React.FC = () => (
   <AbsoluteFill>
     <Photo src="quad/quad-boue.jpg" at={0} dur={80} dark={0.4} pos="45% 50%" punch={0.3} />
-    <Box top={330}>
+    <Box top={380}>
       <Line at={2} size={190}>on t'attend</Line>
       <Line at={8} size={190} hl rot={-2}>dimanche</Line>
     </Box>
     <Box top={1150}>
-      <Sub at={18} size={48} style={{ letterSpacing: 4, fontWeight: 800 }}>ASSOCIATION</Sub>
-      <Line at={20} size={120} color={Q.yellow}>quad rider 31</Line>
+      <Line at={18} size={110} color={Q.yellow}>15 nov · Longages</Line>
       <div style={{ height: 18 }} />
-      <Pill at={32} size={38}>toutes les infos en description</Pill>
+      <Pill at={30} size={38}>toutes les infos en description</Pill>
     </Box>
     <Flash at={0} />
   </AbsoluteFill>
@@ -194,8 +193,9 @@ export const QuadVideGrenierVideo: React.FC = () => (
     {SCENES.map(([from, d, S]) => (
       <Sequence key={from} from={from} durationInFrames={d}><S /></Sequence>
     ))}
-    <Sequence from={0} durationInFrames={420}><Brand /></Sequence>
-    <Sequence from={540}><Brand /></Sequence>
+    <Sequence from={0} durationInFrames={420}><BigBrand /></Sequence>
+    <Sequence from={420} durationInFrames={120}><BigBrand dark /></Sequence>
+    <Sequence from={540}><BigBrand /></Sequence>
     <Grain />
     <Audio src={staticFile("audio/sfx-quad.wav")} />
   </AbsoluteFill>

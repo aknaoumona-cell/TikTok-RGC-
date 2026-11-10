@@ -27,37 +27,30 @@ def engine(d=1.2, f0=38.0, f1=95.0, curve=0.35):
 
 T = Track(24.0)
 # 1 accroche : flashs brocante puis SLAM quads
-for fr in [0, 13, 26]:
-    T.place(shutter(), fr, 0.6)
-T.place(pop(1.0), 2, 0.5)
-T.place(riser(0.4), 40 - 12, 0.8)
-T.place(impact(), 40, 0.8)
-T.place(engine(1.6, 30, 140, 0.3), 38, 1.0)
+for i, fr in enumerate([0, 13, 26]):
+    T.place(pop(1.1 + 0.15 * i), fr, 0.5)
+T.place(pop(1.5), 40, 0.6)
+T.place(ding(), 40, 0.35)
 T.place(pop(0.9), 46, 0.5)
 T.place(pop(1.2), 62, 0.6)
 # 2 dedans / dehors
-T.place(whoosh(0.35), 100, 0.6)
-T.place(impact(), 110, 0.35)
+T.place(tick(), 105, 0.8)
 T.place(pop(1.1), 115, 0.6)
 T.place(pop(1.3), 127, 0.6)
 # 3 baptême
-T.place(whoosh(0.35), 205, 0.6)
-T.place(engine(1.4, 40, 130, 0.4), 210, 0.9)
-T.place(impact(), 216, 0.7)
-T.place(impact(), 222, 0.5)
+T.place(pop(1.4), 212, 0.6)
+T.place(pop(1.1), 216, 0.6)
+T.place(pop(1.3), 222, 0.6)
+for fr in [238, 244, 250]:
+    T.place(tick(), fr, 0.8)
 # 4 buvette
-T.place(whoosh(0.35), 325, 0.6)
 T.place(pop(1.0), 334, 0.6)
 T.place(pop(1.2), 340, 0.6)
-T.place(shutter(), 375, 0.6)
 # 5 infos
-T.place(whoosh(0.35), 415, 0.6)
-T.place(impact(), 422, 0.5)
+T.place(pop(1.2), 422, 0.6)
 for fr in [438, 452]:
     T.place(tick(), fr, 0.9)
-    T.place(whoosh(0.2), fr - 2, 0.3)
 # 6 exposants
-T.place(whoosh(0.35), 535, 0.6)
 T.place(pop(1.0), 542, 0.6)
 T.place(pop(1.1), 546, 0.6)
 T.place(ding(), 556, 0.5)
@@ -65,9 +58,8 @@ T.place(rec_beep(), 564, 0.6)
 T.place(tick(), 574, 0.9)
 T.place(tick(), 580, 0.9)
 # 7 fin
-T.place(whoosh(0.35), 635, 0.6)
-T.place(impact(), 640, 0.6)
-T.place(engine(1.8, 50, 120, 0.4), 642, 0.7)
+T.place(pop(1.3), 642, 0.6)
+T.place(pop(1.1), 648, 0.6)
 T.place(pop(1.0), 660, 0.6)
 T.place(ding(), 672, 0.5)
 T.save(os.path.join(A, "sfx-quad.wav"))
