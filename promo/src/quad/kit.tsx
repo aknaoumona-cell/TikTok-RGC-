@@ -125,9 +125,20 @@ export const InfoRow: React.FC<{ label: string; children: React.ReactNode; at?: 
 };
 
 /** Nom de l'asso EN GROS en haut (demandé). */
-export const BigBrand: React.FC<{ dark?: boolean; left?: number; top?: number; size?: number }> = ({ dark, left = 70, top = 100, size = 100 }) => (
+export const BigBrand: React.FC<{ dark?: boolean; left?: number; top?: number; size?: number; place?: string }> = ({ dark, left = 70, top = 100, size = 100, place }) => (
   <div style={{ position: "absolute", left, top, lineHeight: 1 }}>
     <div style={{ fontFamily: Q.body, fontWeight: 800, fontSize: size * 0.32, letterSpacing: size * 0.08, color: dark ? Q.ink : Q.white, textShadow: dark ? "none" : "0 2px 12px rgba(0,0,0,0.85)" }}>ASSOCIATION</div>
-    <div style={{ fontFamily: Q.title, fontSize: size, color: dark ? Q.ink : Q.yellow, textShadow: dark ? "none" : "0 4px 24px rgba(0,0,0,0.75), 0 3px 0 rgba(0,0,0,0.5)", marginTop: 4 }}>QUAD RIDER 31</div>
+    <div style={{ display: "flex", alignItems: "center", gap: size * 0.3, marginTop: 4 }}>
+      <div style={{ fontFamily: Q.title, fontSize: size, color: dark ? Q.ink : Q.yellow, textShadow: dark ? "none" : "0 4px 24px rgba(0,0,0,0.75), 0 3px 0 rgba(0,0,0,0.5)" }}>QUAD RIDER 31</div>
+      {place ? (
+        <div style={{ display: "flex", alignItems: "center", gap: size * 0.1, background: dark ? Q.ink : "rgba(0,0,0,0.55)", padding: `${size * 0.08}px ${size * 0.2}px ${size * 0.08}px ${size * 0.14}px`, borderRadius: 999, border: dark ? "none" : "2px solid rgba(255,255,255,0.25)" }}>
+          <svg width={size * 0.42} height={size * 0.56} viewBox="0 0 24 32">
+            <path d="M12 0C5.4 0 0 5.3 0 11.9 0 20.8 12 32 12 32s12-11.2 12-20.1C24 5.3 18.6 0 12 0z" fill={dark ? Q.yellow : Q.red} />
+            <circle cx="12" cy="11.5" r="4.6" fill={dark ? Q.ink : Q.white} />
+          </svg>
+          <span style={{ fontFamily: Q.title, fontSize: size * 0.5, color: dark ? Q.yellow : Q.white, letterSpacing: 1 }}>{place}</span>
+        </div>
+      ) : null}
+    </div>
   </div>
 );

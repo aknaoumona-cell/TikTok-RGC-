@@ -193,9 +193,9 @@ export const QuadVideGrenierVideo: React.FC = () => (
     {SCENES.map(([from, d, S]) => (
       <Sequence key={from} from={from} durationInFrames={d}><S /></Sequence>
     ))}
-    <Sequence from={0} durationInFrames={420}><BigBrand /></Sequence>
-    <Sequence from={420} durationInFrames={120}><BigBrand dark /></Sequence>
-    <Sequence from={540}><BigBrand /></Sequence>
+    <Sequence from={0} durationInFrames={420}><BigBrand place="LONGAGES" /></Sequence>
+    <Sequence from={420} durationInFrames={120}><BigBrand dark place="LONGAGES" /></Sequence>
+    <Sequence from={540}><BigBrand place="LONGAGES" /></Sequence>
     <Grain />
     <Audio src={staticFile("audio/sfx-quad.wav")} />
   </AbsoluteFill>
