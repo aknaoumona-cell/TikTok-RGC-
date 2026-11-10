@@ -1,6 +1,6 @@
 /**
  * TikTok #2 — « jouer seule vs jouer à plusieurs »   LOOK : CINÉMA
- * Image large 16:9 sur fond noir, chapitres, sous-titres façon film.
+ * Image large plein écran (fond flouté, pas de bandes noires → TikTok ne zoome pas), sous-titres façon film.
  * 0–105   : chapitre 1 · solo (gris, ralenti, « wah wah »)
  * 105–300 : chapitre 2 · à plusieurs (couleurs chaudes, REC, clips sur le beat)
  * 300–420 : viens en voc sur le serveur et demande des mates
@@ -14,8 +14,6 @@ import { EndCard, Meme, Shell } from "../memes";
 export const SOLO_TOTAL = 420;
 
 const TXT = {
-  ch1: "CHAPITRE 1 · SOLO",
-  ch2: "CHAPITRE 2 · À PLUSIEURS",
   solo: ["jouer seule…", "personne pour fêter ton clutch"],
   squad: ["jouer à plusieurs,", "c'est quand même mieux."],
   endBig: "viens en voc",
@@ -32,31 +30,27 @@ const SQUAD_CLIPS = [
   { src: "clips/overwatch-hd.mp4", start: 0.2 },
 ];
 
-const PIC_TOP = 600;
-const PIC_H = 608;
+const PIC_TOP = 520;
+const PIC_H = 760;
 
 /** Wide picture (no frame, sharp edges) like a film shot. */
 const Picture: React.FC<{ src: string; start: number; rate?: number; filter?: string; cutFrame?: number }> = ({ src, start, rate = 1, filter = "none", cutFrame = 0 }) => {
   const f = useCurrentFrame();
   const zoom = interpolate(f - cutFrame, [0, 30], [1.08, 1.0], { ...clamp, easing: easeOut });
+  const media = (
+    <OffthreadVideo src={staticFile(src)} startFrom={Math.round(start * 30)} playbackRate={rate} muted style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+  );
   return (
-    <div style={{ position: "absolute", left: 0, top: PIC_TOP, width: 1080, height: PIC_H, overflow: "hidden", background: "#000" }}>
+    <>
+    <AbsoluteFill style={{ transform: "scale(1.4)", filter: `blur(40px) brightness(0.45) saturate(1.2) ${filter === "none" ? "" : filter}` }}>{media}</AbsoluteFill>
+    <AbsoluteFill style={{ background: "linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.05) 40%, rgba(0,0,0,0.35))" }} />
+    <div style={{ position: "absolute", left: 0, top: PIC_TOP, width: 1080, height: PIC_H, overflow: "hidden", background: "#000", boxShadow: "0 30px 80px rgba(0,0,0,0.6)" }}>
       <div style={{ position: "absolute", inset: 0, transform: `scale(${zoom})`, filter }}>
-        <OffthreadVideo src={staticFile(src)} startFrom={Math.round(start * 30)} playbackRate={rate} muted style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+        {media}
       </div>
       <div style={{ position: "absolute", inset: 0, boxShadow: "inset 0 0 120px rgba(0,0,0,0.6)" }} />
     </div>
-  );
-};
-
-const Chapter: React.FC<{ text: string; color?: string }> = ({ text, color = "rgba(255,255,255,0.7)" }) => {
-  const f = useCurrentFrame();
-  const o = interpolate(f, [2, 10], [0, 1], clamp);
-  const ls = interpolate(f, [2, 30], [14, 8], clamp);
-  return (
-    <div style={{ position: "absolute", top: PIC_TOP - 90, width: "100%", textAlign: "center", fontFamily: FONT.mono, fontWeight: 700, fontSize: 30, letterSpacing: ls, color, opacity: o }}>
-      {text}
-    </div>
+    </>
   );
 };
 
@@ -103,7 +97,6 @@ const RecBadge: React.FC = () => {
 const SoloPart: React.FC = () => (
   <AbsoluteFill style={{ background: "#000" }}>
     <Picture src="clips/cod-action.mp4" start={3.5} rate={0.5} filter="grayscale(1) brightness(0.8) contrast(0.9)" />
-    <Chapter text={TXT.ch1} color="rgba(200,200,200,0.6)" />
     <Subtitles lines={TXT.solo} at={8} />
     <Meme src="memes/chat-pleure-telephone.jpg" at={50} x={830} y={PIC_TOP - 40} w={300} rotate={7} />
   </AbsoluteFill>
@@ -120,7 +113,6 @@ const SquadPart: React.FC = () => {
       <AbsoluteFill style={{ background: `radial-gradient(70% 30% at 50% 47%, rgba(246,193,209,${0.22 * warm}), transparent 70%)` }} />
       <Picture key={idx} src={c.src} start={c.start} filter="saturate(1.25) contrast(1.05) sepia(0.12) hue-rotate(-8deg)" cutFrame={idx * every} />
       <RecBadge />
-      <Chapter text={TXT.ch2} color={COLORS.blush} />
       <Subtitles lines={TXT.squad} at={6} accent />
       <Meme src="memes/chat-gaming-chaise.jpg" at={40} x={250} y={PIC_TOP - 40} w={300} rotate={-8} until={100} />
       <Meme src="memes/chaton-manette.jpg" at={100} x={830} y={PIC_TOP - 40} w={300} rotate={8} until={160} />
