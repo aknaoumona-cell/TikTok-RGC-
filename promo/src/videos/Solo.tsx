@@ -6,7 +6,8 @@
  * 300–420 : viens en voc sur le serveur et demande des mates
  */
 import React from "react";
-import { AbsoluteFill, Audio, OffthreadVideo, Sequence, interpolate, staticFile, useCurrentFrame } from "remotion";
+import {AbsoluteFill, OffthreadVideo, Sequence, interpolate, staticFile, useCurrentFrame } from "remotion";
+import { SfxAudio } from "../safe";
 import { COLORS } from "../config";
 import { ButterflyZoom, FONT, Flash, beatPulse, clamp, easeOut } from "../components";
 import { EndCard, Meme, Shell } from "../memes";
@@ -32,7 +33,7 @@ const SQUAD_CLIPS = [
 
 const PIC_TOP = 560;
 const PIC_H = 620;
-const PIC_X = 130; // marge latérale : TikTok rogne ~100 px de chaque côté sur les téléphones récents
+const PIC_X = 50; // la zone sûre TikTok est gérée globalement (src/safe.tsx)
 const PIC_W = 1080 - PIC_X * 2;
 
 /** Wide picture (no frame, sharp edges) like a film shot. */
@@ -60,7 +61,7 @@ const Picture: React.FC<{ src: string; start: number; rate?: number; filter?: st
 const Subtitles: React.FC<{ lines: string[]; at: number; accent?: boolean }> = ({ lines, at, accent }) => {
   const f = useCurrentFrame();
   return (
-    <div style={{ position: "absolute", top: PIC_TOP + PIC_H + 70, width: "100%", textAlign: "center", padding: "0 150px" }}>
+    <div style={{ position: "absolute", top: PIC_TOP + PIC_H + 70, width: "100%", textAlign: "center", padding: "0 90px" }}>
       {lines.map((l, i) => {
         const o = interpolate(f - at - i * 14, [0, 5], [0, 1], clamp);
         return (
@@ -137,6 +138,6 @@ export const SoloVideo: React.FC = () => (
     <ButterflyZoom at={105} />
     <Flash at={105} strength={0.75} />
     <Flash at={300} strength={0.6} />
-    <Audio src={staticFile("audio/sfx-solo.wav")} />
+    <SfxAudio src={staticFile("audio/sfx-solo.wav")} />
   </Shell>
 );

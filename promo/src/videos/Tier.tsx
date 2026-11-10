@@ -7,7 +7,8 @@
  * 600–690 : carte de fin
  */
 import React from "react";
-import { AbsoluteFill, Audio, Img, Sequence, interpolate, staticFile, useCurrentFrame } from "remotion";
+import {AbsoluteFill, Img, Sequence, interpolate, staticFile, useCurrentFrame } from "remotion";
+import { SfxAudio } from "../safe";
 import { FONT, Flash, RiseWords, clamp, easeOut, useSpring } from "../components";
 import { EndCard, Meme, Shell } from "../memes";
 
@@ -167,6 +168,6 @@ export const TierVideo: React.FC = () => (
     <Flash at={60} strength={0.4} />
     <Flash at={510} strength={0.4} color="#FFBF7F" />
     <Flash at={600} strength={0.6} />
-    <Audio src={staticFile("audio/sfx-tier.wav")} />
+    <SfxAudio src={staticFile("audio/sfx-tier.wav")} />
   </Shell>
 );

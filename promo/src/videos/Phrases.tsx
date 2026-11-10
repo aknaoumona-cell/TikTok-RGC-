@@ -5,7 +5,8 @@
  * 0–60 accroche · 60–410 7 phrases × 50 · 410–500 carte de fin
  */
 import React from "react";
-import { AbsoluteFill, Audio, Img, Sequence, interpolate, random, staticFile, useCurrentFrame } from "remotion";
+import {AbsoluteFill, Img, Sequence, interpolate, random, staticFile, useCurrentFrame } from "remotion";
+import { SfxAudio } from "../safe";
 import { COLORS } from "../config";
 import { FONT, Flash, RiseWords, clamp } from "../components";
 import { EndCard, Meme, Shell } from "../memes";
@@ -113,6 +114,6 @@ export const PhrasesVideo: React.FC = () => (
       <Flash key={i} at={60 + i * STEP} strength={0.2} color="#B78BF0" />
     ))}
     <Flash at={410} strength={0.6} />
-    <Audio src={staticFile("audio/sfx-phrases.wav")} />
+    <SfxAudio src={staticFile("audio/sfx-phrases.wav")} />
   </Shell>
 );

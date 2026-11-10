@@ -6,7 +6,8 @@
  * 420–510 : carte de fin
  */
 import React from "react";
-import { AbsoluteFill, Audio, Img, Sequence, interpolate, staticFile, useCurrentFrame } from "remotion";
+import {AbsoluteFill, Img, Sequence, interpolate, staticFile, useCurrentFrame } from "remotion";
+import { SfxAudio } from "../safe";
 import { FONT, Flash, RiseWords, Sparkles, clamp, easeOut, useSpring } from "../components";
 import { EndCard, Meme, Shell } from "../memes";
 
@@ -162,6 +163,6 @@ export const MainsVideo: React.FC = () => (
       <Flash key={i} at={60 + i * CARD_DUR} strength={0.35} color="#E7D6FF" />
     ))}
     <Flash at={420} strength={0.6} />
-    <Audio src={staticFile("audio/sfx-mains.wav")} />
+    <SfxAudio src={staticFile("audio/sfx-mains.wav")} />
   </Shell>
 );

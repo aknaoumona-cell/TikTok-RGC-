@@ -8,7 +8,8 @@
  * 390–480 : carte de fin
  */
 import React from "react";
-import { AbsoluteFill, Audio, Sequence, interpolate, staticFile, useCurrentFrame } from "remotion";
+import {AbsoluteFill, Sequence, interpolate, staticFile, useCurrentFrame } from "remotion";
+import { SfxAudio } from "../safe";
 import { COLORS } from "../config";
 import { BoxLetters, ButterflyZoom, FONT, Flash, RiseWords, Sparkles, chromeStyle, clamp, easeOut, useShake, useSpring } from "../components";
 import { EndCard, Meme, Shell } from "../memes";
@@ -176,6 +177,6 @@ export const FlagsVideo: React.FC = () => (
     <ButterflyZoom at={270} />
     <Flash at={270} strength={0.6} color="#7CF5B5" />
     <Flash at={390} strength={0.6} />
-    <Audio src={staticFile("audio/sfx-flags.wav")} />
+    <SfxAudio src={staticFile("audio/sfx-flags.wav")} />
   </Shell>
 );

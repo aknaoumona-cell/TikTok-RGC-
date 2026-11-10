@@ -8,7 +8,8 @@
  * 420–510 : carte de fin
  */
 import React from "react";
-import { AbsoluteFill, Audio, Img, OffthreadVideo, Sequence, interpolate, staticFile, useCurrentFrame } from "remotion";
+import {AbsoluteFill, Img, OffthreadVideo, Sequence, interpolate, staticFile, useCurrentFrame } from "remotion";
+import { SfxAudio } from "../safe";
 import { COLORS } from "../config";
 import { FONT, Flash, RiseWords, clamp, easeOut } from "../components";
 import { EndCard, Meme, Shell } from "../memes";
@@ -197,6 +198,6 @@ export const JeuxVideo: React.FC = () => (
     <Flash at={240} strength={0.5} />
     <Flash at={330} strength={0.4} />
     <Flash at={420} strength={0.6} />
-    <Audio src={staticFile("audio/sfx-jeux.wav")} />
+    <SfxAudio src={staticFile("audio/sfx-jeux.wav")} />
   </Shell>
 );

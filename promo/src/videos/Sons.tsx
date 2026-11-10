@@ -5,7 +5,8 @@
  * 0–60 accroche · 60–360 4 sons × 75 · 360–450 carte de fin
  */
 import React from "react";
-import { AbsoluteFill, Audio, Img, Sequence, interpolate, random, staticFile, useCurrentFrame } from "remotion";
+import {AbsoluteFill, Img, Sequence, interpolate, random, staticFile, useCurrentFrame } from "remotion";
+import { SfxAudio } from "../safe";
 import { FONT, Flash, RiseWords, clamp, easeOut } from "../components";
 import { EndCard, Shell } from "../memes";
 
@@ -107,6 +108,6 @@ export const SonsVideo: React.FC = () => (
       <Flash key={i} at={60 + i * STEP + HIT} strength={0.3} color="#5865F2" />
     ))}
     <Flash at={360} strength={0.6} />
-    <Audio src={staticFile("audio/sfx-sons.wav")} />
+    <SfxAudio src={staticFile("audio/sfx-sons.wav")} />
   </Shell>
 );

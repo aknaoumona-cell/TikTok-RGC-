@@ -5,7 +5,8 @@
  * 0–60 accroche · 60–360 4 moments × 75 · 360–450 carte de fin
  */
 import React from "react";
-import { AbsoluteFill, Audio, Img, OffthreadVideo, Sequence, interpolate, random, staticFile, useCurrentFrame } from "remotion";
+import {AbsoluteFill, Img, OffthreadVideo, Sequence, interpolate, random, staticFile, useCurrentFrame } from "remotion";
+import { SfxAudio } from "../safe";
 import { COLORS } from "../config";
 import { FONT, Flash, RiseWords, clamp, easeOut } from "../components";
 import { EndCard, Meme, Shell } from "../memes";
@@ -105,6 +106,6 @@ export const DimancheVideo: React.FC = () => (
       <EndCard big="viens chiller" small="avec la communauté" />
     </Sequence>
     <Flash at={360} strength={0.5} color="#FFC48A" />
-    <Audio src={staticFile("audio/sfx-dimanche.wav")} />
+    <SfxAudio src={staticFile("audio/sfx-dimanche.wav")} />
   </Shell>
 );

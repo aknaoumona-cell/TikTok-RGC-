@@ -1,5 +1,6 @@
 import React from "react";
-import { AbsoluteFill, Audio, Sequence, interpolate, staticFile, useCurrentFrame } from "remotion";
+import {AbsoluteFill, Sequence, interpolate, staticFile, useCurrentFrame } from "remotion";
+import { SfxAudio } from "./safe";
 import "@fontsource/unbounded/700.css";
 import "@fontsource/unbounded/800.css";
 import "@fontsource/space-grotesk/500.css";
@@ -47,7 +48,7 @@ export const RGCPromo: React.FC = () => {
         <Branding />
       </AbsoluteFill>
       <Grain />
-      <Audio src={staticFile(SFX)} />
+      <SfxAudio src={staticFile(SFX)} />
     </AbsoluteFill>
   );
 };

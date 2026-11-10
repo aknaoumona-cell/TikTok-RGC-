@@ -5,7 +5,8 @@
  * 0–60 accroche · 60–1260 12 signes × 100 · 1260–1350 carte de fin
  */
 import React from "react";
-import { AbsoluteFill, Audio, Img, OffthreadVideo, Sequence, interpolate, random, staticFile, useCurrentFrame } from "remotion";
+import {AbsoluteFill, Img, OffthreadVideo, Sequence, interpolate, random, staticFile, useCurrentFrame } from "remotion";
+import { SfxAudio } from "../safe";
 import { FONT, Flash, RiseWords, clamp, easeOut, useSpring } from "../components";
 import { EndCard, Shell } from "../memes";
 
@@ -138,6 +139,6 @@ export const AstroVideo: React.FC = () => (
       <Flash key={i} at={60 + i * STEP} strength={0.18} color="#F3D9A4" />
     ))}
     <Flash at={1260} strength={0.6} />
-    <Audio src={staticFile("audio/sfx-astro.wav")} />
+    <SfxAudio src={staticFile("audio/sfx-astro.wav")} />
   </Shell>
 );

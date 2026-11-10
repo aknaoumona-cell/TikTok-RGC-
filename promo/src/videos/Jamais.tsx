@@ -7,7 +7,8 @@
  * 420–510 : carte de fin
  */
 import React from "react";
-import { AbsoluteFill, Audio, Sequence, interpolate, staticFile, useCurrentFrame } from "remotion";
+import {AbsoluteFill, Sequence, interpolate, staticFile, useCurrentFrame } from "remotion";
+import { SfxAudio } from "../safe";
 import { COLORS } from "../config";
 import { FONT, Flash, RiseWords, clamp, easeOut, useSpring } from "../components";
 import { EndCard, Meme, Shell } from "../memes";
@@ -175,6 +176,6 @@ export const JamaisVideo: React.FC = () => (
       <Flash key={i} at={60 + i * ITEM + STAMP} strength={0.35} color="#CDB4FF" />
     ))}
     <Flash at={420} strength={0.6} />
-    <Audio src={staticFile("audio/sfx-jamais.wav")} />
+    <SfxAudio src={staticFile("audio/sfx-jamais.wav")} />
   </Shell>
 );

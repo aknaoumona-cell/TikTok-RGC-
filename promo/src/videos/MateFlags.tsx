@@ -5,7 +5,8 @@
  * 0–60 accroche · 60–330 5 post-its × 54 · 330–420 carte de fin
  */
 import React from "react";
-import { AbsoluteFill, Audio, Img, Sequence, interpolate, staticFile, useCurrentFrame } from "remotion";
+import {AbsoluteFill, Img, Sequence, interpolate, staticFile, useCurrentFrame } from "remotion";
+import { SfxAudio } from "../safe";
 import { COLORS } from "../config";
 import { FONT, Flash, RiseWords, clamp, easeOut, useSpring } from "../components";
 import { EndCard, Shell } from "../memes";
@@ -93,6 +94,6 @@ export const MateFlagsVideo: React.FC = () => (
       <EndCard big="trouve ta mate" small="communauté gaming 100% filles" />
     </Sequence>
     <Flash at={330} strength={0.6} />
-    <Audio src={staticFile("audio/sfx-mateflags.wav")} />
+    <SfxAudio src={staticFile("audio/sfx-mateflags.wav")} />
   </Shell>
 );

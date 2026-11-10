@@ -5,7 +5,8 @@
  * 0–60 accroche · 60–330 3 duos × 90 · 330–420 carte de fin
  */
 import React from "react";
-import { AbsoluteFill, Audio, Img, Sequence, interpolate, staticFile, useCurrentFrame } from "remotion";
+import {AbsoluteFill, Img, Sequence, interpolate, staticFile, useCurrentFrame } from "remotion";
+import { SfxAudio } from "../safe";
 import { COLORS } from "../config";
 import { FONT, Flash, RiseWords, clamp, easeOut } from "../components";
 import { EndCard, Shell } from "../memes";
@@ -78,6 +79,6 @@ export const RealiteVideo: React.FC = () => (
       <Flash key={i} at={60 + i * STEP + REVEAL} strength={0.4} color="#F6C1D1" />
     ))}
     <Flash at={330} strength={0.6} />
-    <Audio src={staticFile("audio/sfx-realite.wav")} />
+    <SfxAudio src={staticFile("audio/sfx-realite.wav")} />
   </Shell>
 );

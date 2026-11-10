@@ -391,7 +391,7 @@ export const Branding: React.FC<{ ink?: "light" | "dark" }> = ({ ink = "light" }
       >
         ✦ {HANDLE} ✦
       </div>
-      <div style={{ position: "absolute", left: 130, top: 200, display: "flex", alignItems: "center", gap: 14 }}>
+      <div style={{ position: "absolute", left: 60, top: 200, display: "flex", alignItems: "center", gap: 14 }}>
         <Img src={staticFile("brand/logo-rgc.png")} style={{ width: 92, height: 92, filter: "drop-shadow(0 0 12px rgba(183,139,240,0.8))" }} />
         <div style={{ fontFamily: FONT.mono, fontWeight: 700, fontSize: 24, color: ink === "light" ? "rgba(255,255,255,0.85)" : "rgba(18,15,24,0.85)", letterSpacing: 1.5, textShadow: ink === "light" ? "0 2px 10px rgba(0,0,0,0.6)" : "none" }}>
           {HANDLE}

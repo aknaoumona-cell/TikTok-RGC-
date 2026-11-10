@@ -6,7 +6,8 @@
  * 435–540 : « t'es laquelle ? » + carte de fin
  */
 import React from "react";
-import { AbsoluteFill, Audio, Sequence, interpolate, staticFile, useCurrentFrame } from "remotion";
+import {AbsoluteFill, Sequence, interpolate, staticFile, useCurrentFrame } from "remotion";
+import { SfxAudio } from "../safe";
 import { COLORS } from "../config";
 import { FONT, Flash, clamp } from "../components";
 import { VoiceCard } from "../scenes";
@@ -99,7 +100,7 @@ export const TypesVideo: React.FC = () => (
       <Flash key={i} at={60 + i * TYPE_DUR + FREEZE} strength={0.5} />
     ))}
     <Flash at={435} strength={0.7} />
-    <Audio src={staticFile("audio/sfx-types.wav")} />
+    <SfxAudio src={staticFile("audio/sfx-types.wav")} />
   </Shell>
 );
 

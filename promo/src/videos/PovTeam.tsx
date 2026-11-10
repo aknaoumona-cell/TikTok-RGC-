@@ -4,7 +4,8 @@
  * 0–60 accroche · 60–360 4 moments × 75 · 360–450 carte de fin
  */
 import React from "react";
-import { AbsoluteFill, Audio, Img, Sequence, interpolate, staticFile, useCurrentFrame } from "remotion";
+import {AbsoluteFill, Img, Sequence, interpolate, staticFile, useCurrentFrame } from "remotion";
+import { SfxAudio } from "../safe";
 import { COLORS } from "../config";
 import { FONT, Flash, RiseWords, clamp, easeOut, useSpring } from "../components";
 import { EndCard, Shell } from "../memes";
@@ -96,6 +97,6 @@ export const PovTeamVideo: React.FC = () => (
       <EndCard big="trouve ta team" small="communauté gaming 100% filles" />
     </Sequence>
     <Flash at={360} strength={0.6} />
-    <Audio src={staticFile("audio/sfx-povteam.wav")} />
+    <SfxAudio src={staticFile("audio/sfx-povteam.wav")} />
   </Shell>
 );

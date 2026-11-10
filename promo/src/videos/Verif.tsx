@@ -6,7 +6,8 @@
  * 0–75 consignes · 75–150 stress · 150–225 coeur · 225–300 enregistrement + envoi · 300–375 validée · 375–465 fin
  */
 import React from "react";
-import { AbsoluteFill, Audio, Img, Sequence, interpolate, random, staticFile, useCurrentFrame } from "remotion";
+import {AbsoluteFill, Img, Sequence, interpolate, random, staticFile, useCurrentFrame } from "remotion";
+import { SfxAudio } from "../safe";
 import { COLORS } from "../config";
 import { FONT, Flash, RiseWords, clamp, easeOut, useSpring } from "../components";
 import { EndCard, Meme, Shell } from "../memes";
@@ -196,6 +197,6 @@ export const VerifVideo: React.FC = () => (
     <Flash at={225} strength={0.3} />
     <Flash at={300} strength={0.6} color="#7CF5B5" />
     <Flash at={375} strength={0.6} />
-    <Audio src={staticFile("audio/sfx-verif.wav")} />
+    <SfxAudio src={staticFile("audio/sfx-verif.wav")} />
   </Shell>
 );
