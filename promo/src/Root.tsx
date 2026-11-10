@@ -19,6 +19,7 @@ import { VERIF_TOTAL, VerifVideo } from "./videos/Verif";
 import { ASTRO_TOTAL, AstroVideo } from "./videos/Astro";
 import { QUAD_TOTAL, QuadVideGrenierVideo } from "./videos/QuadVideGrenier";
 import { CAROUSEL_SLIDES, QuadCarousel } from "./videos/QuadCarousel";
+import { AFFICHE_H, AFFICHE_W, QuadAffiche } from "./videos/QuadAffiche";
 
 const common = { fps: FPS, width: WIDTH, height: HEIGHT };
 
@@ -42,5 +43,6 @@ export const Root: React.FC = () => (
     <Composition id="RGCAstro" component={AstroVideo} durationInFrames={ASTRO_TOTAL} {...common} />
     <Composition id="QuadVideGrenier" component={QuadVideGrenierVideo} durationInFrames={QUAD_TOTAL} {...common} />
     <Composition id="QuadCarousel" component={QuadCarousel} durationInFrames={CAROUSEL_SLIDES} {...common} />
+    <Composition id="QuadAffiche" component={QuadAffiche} durationInFrames={1} fps={30} width={AFFICHE_W} height={AFFICHE_H} />
   </>
 );
