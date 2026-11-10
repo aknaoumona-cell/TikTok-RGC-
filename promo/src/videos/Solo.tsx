@@ -30,8 +30,10 @@ const SQUAD_CLIPS = [
   { src: "clips/overwatch-hd.mp4", start: 0.2 },
 ];
 
-const PIC_TOP = 520;
-const PIC_H = 760;
+const PIC_TOP = 560;
+const PIC_H = 620;
+const PIC_X = 130; // marge latérale : TikTok rogne ~100 px de chaque côté sur les téléphones récents
+const PIC_W = 1080 - PIC_X * 2;
 
 /** Wide picture (no frame, sharp edges) like a film shot. */
 const Picture: React.FC<{ src: string; start: number; rate?: number; filter?: string; cutFrame?: number }> = ({ src, start, rate = 1, filter = "none", cutFrame = 0 }) => {
@@ -44,7 +46,7 @@ const Picture: React.FC<{ src: string; start: number; rate?: number; filter?: st
     <>
     <AbsoluteFill style={{ transform: "scale(1.4)", filter: `blur(40px) brightness(0.45) saturate(1.2) ${filter === "none" ? "" : filter}` }}>{media}</AbsoluteFill>
     <AbsoluteFill style={{ background: "linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.05) 40%, rgba(0,0,0,0.35))" }} />
-    <div style={{ position: "absolute", left: 0, top: PIC_TOP, width: 1080, height: PIC_H, overflow: "hidden", background: "#000", boxShadow: "0 30px 80px rgba(0,0,0,0.6)" }}>
+    <div style={{ position: "absolute", left: PIC_X, top: PIC_TOP, width: PIC_W, height: PIC_H, overflow: "hidden", borderRadius: 28, background: "#000", boxShadow: "0 30px 80px rgba(0,0,0,0.6)" }}>
       <div style={{ position: "absolute", inset: 0, transform: `scale(${zoom})`, filter }}>
         {media}
       </div>
@@ -58,7 +60,7 @@ const Picture: React.FC<{ src: string; start: number; rate?: number; filter?: st
 const Subtitles: React.FC<{ lines: string[]; at: number; accent?: boolean }> = ({ lines, at, accent }) => {
   const f = useCurrentFrame();
   return (
-    <div style={{ position: "absolute", top: PIC_TOP + PIC_H + 70, width: "100%", textAlign: "center", padding: "0 70px" }}>
+    <div style={{ position: "absolute", top: PIC_TOP + PIC_H + 70, width: "100%", textAlign: "center", padding: "0 150px" }}>
       {lines.map((l, i) => {
         const o = interpolate(f - at - i * 14, [0, 5], [0, 1], clamp);
         return (
@@ -87,7 +89,7 @@ const RecBadge: React.FC = () => {
   const f = useCurrentFrame();
   const blink = Math.floor(f / 12) % 2 === 0;
   return (
-    <div style={{ position: "absolute", left: 40, top: PIC_TOP + 30, display: "flex", alignItems: "center", gap: 14, fontFamily: FONT.mono, fontWeight: 700, fontSize: 30, color: "#fff", textShadow: "0 2px 8px #000" }}>
+    <div style={{ position: "absolute", left: PIC_X + 30, top: PIC_TOP + 30, display: "flex", alignItems: "center", gap: 14, fontFamily: FONT.mono, fontWeight: 700, fontSize: 30, color: "#fff", textShadow: "0 2px 8px #000" }}>
       <span style={{ width: 22, height: 22, borderRadius: 99, background: COLORS.live, opacity: blink ? 1 : 0.25, boxShadow: `0 0 14px ${COLORS.live}` }} />
       REC · vocal
     </div>
@@ -98,7 +100,7 @@ const SoloPart: React.FC = () => (
   <AbsoluteFill style={{ background: "#000" }}>
     <Picture src="clips/cod-action.mp4" start={3.5} rate={0.5} filter="grayscale(1) brightness(0.8) contrast(0.9)" />
     <Subtitles lines={TXT.solo} at={8} />
-    <Meme src="memes/chat-pleure-telephone.jpg" at={50} x={830} y={PIC_TOP - 40} w={300} rotate={7} />
+    <Meme src="memes/chat-pleure-telephone.jpg" at={50} x={790} y={PIC_TOP - 30} w={260} rotate={7} />
   </AbsoluteFill>
 );
 
@@ -114,8 +116,8 @@ const SquadPart: React.FC = () => {
       <Picture key={idx} src={c.src} start={c.start} filter="saturate(1.25) contrast(1.05) sepia(0.12) hue-rotate(-8deg)" cutFrame={idx * every} />
       <RecBadge />
       <Subtitles lines={TXT.squad} at={6} accent />
-      <Meme src="memes/chat-gaming-chaise.jpg" at={40} x={250} y={PIC_TOP - 40} w={300} rotate={-8} until={100} />
-      <Meme src="memes/chaton-manette.jpg" at={100} x={830} y={PIC_TOP - 40} w={300} rotate={8} until={160} />
+      <Meme src="memes/chat-gaming-chaise.jpg" at={40} x={290} y={PIC_TOP - 30} w={260} rotate={-8} until={100} />
+      <Meme src="memes/chaton-manette.jpg" at={100} x={790} y={PIC_TOP - 30} w={260} rotate={8} until={160} />
       <Meme src="memes/chat-lunettes-soleil.jpg" at={160} x={540} y={PIC_TOP + PIC_H / 2} w={360} rotate={-4} />
     </AbsoluteFill>
   );
