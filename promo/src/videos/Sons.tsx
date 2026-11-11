@@ -78,10 +78,7 @@ const Sounds: React.FC = () => {
   return (
     <AbsoluteFill>
       <Bg />
-      <div style={{ position: "absolute", top: 300, width: "100%", textAlign: "center", fontFamily: FONT.mono, fontWeight: 700, fontSize: 34, letterSpacing: 6, color: "#B9C0FF" }}>
-        SON {i + 1} / 4
-      </div>
-      <div key={i} style={{ position: "absolute", top: 380, width: "100%", textAlign: "center", padding: "0 60px" }}>
+      <div key={i} style={{ position: "absolute", top: 340, width: "100%", textAlign: "center", padding: "0 60px" }}>
         <RiseWords text={s.title} start={i * STEP + 2} stagger={2} style={{ fontFamily: FONT.display, fontWeight: 800, fontSize: 66, color: "#fff", letterSpacing: -2 }} />
         <RiseWords text={s.title2} start={i * STEP + 6} stagger={2} style={{ fontFamily: FONT.serif, fontStyle: "italic", fontSize: 92, color: "#B9C0FF" }} />
       </div>
