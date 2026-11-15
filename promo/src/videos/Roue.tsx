@@ -4,8 +4,8 @@
  * 0–75 accroche · 75–525 3 tours × 150 (roue 60 + clip 90) · 525–615 chute · 615–705 carte de fin
  */
 import React from "react";
-import { AbsoluteFill, Easing, OffthreadVideo, Sequence, interpolate, staticFile, useCurrentFrame } from "remotion";
-import { SfxAudio } from "../safe";
+import { AbsoluteFill, Easing, Sequence, interpolate, staticFile, useCurrentFrame } from "remotion";
+import { GameVideo, SfxAudio } from "../safe";
 import { FONT, Flash, RiseWords, clamp, easeOut, useSpring } from "../components";
 import { EndCard, Meme, Shell } from "../memes";
 
@@ -110,7 +110,7 @@ const Round: React.FC<{ k: number }> = ({ k }) => {
           <AbsoluteFill style={{ background: "rgba(13,18,56,0.65)", opacity: card }} />
           <div style={{ position: "absolute", top: 640, left: 60, width: 960, height: 540, borderRadius: 30, overflow: "hidden", border: `6px solid ${GOLD}`, boxShadow: "0 0 70px rgba(255,210,122,0.5)", transform: `scale(${0.6 + 0.4 * card})`, opacity: card }}>
             <Sequence from={SPIN} layout="none">
-              <OffthreadVideo src={staticFile(r.clip)} startFrom={Math.round(r.start * 30)} playbackRate={r.rate ?? 1} muted style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+              <GameVideo src={staticFile(r.clip)} startFrom={Math.round(r.start * 30)} playbackRate={r.rate ?? 1} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
             </Sequence>
           </div>
           <div style={{ position: "absolute", top: 1230, width: "100%", textAlign: "center", opacity: card }}>

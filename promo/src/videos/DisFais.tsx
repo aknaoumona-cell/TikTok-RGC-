@@ -4,8 +4,8 @@
  * 0–90 accroche · 90–570 4 duos × 120 · 570–660 carte de fin
  */
 import React from "react";
-import { AbsoluteFill, Img, OffthreadVideo, Sequence, interpolate, staticFile, useCurrentFrame } from "remotion";
-import { SfxAudio } from "../safe";
+import { AbsoluteFill, Img, Sequence, interpolate, staticFile, useCurrentFrame } from "remotion";
+import { GameVideo, SfxAudio } from "../safe";
 import { FONT, Flash, RiseWords, clamp, easeOut, useSpring } from "../components";
 import { EndCard, Meme, Shell } from "../memes";
 
@@ -56,7 +56,7 @@ const Replay: React.FC<{ d: (typeof DUOS)[number]; at: number }> = ({ d, at }) =
   return (
     <div style={{ position: "absolute", top: 760, left: 60, width: 960, transform: `scale(${0.85 + 0.15 * s})`, opacity: s }}>
       <div style={{ position: "relative", width: 960, height: 540, borderRadius: 26, overflow: "hidden", border: `4px solid ${PINK}`, boxShadow: `0 0 50px ${PINK}66` }}>
-        <Sequence from={at} layout="none"><OffthreadVideo src={staticFile(d.clip)} startFrom={Math.round(d.start * 30)} muted style={{ width: "100%", height: "100%", objectFit: "cover" }} /></Sequence>
+        <Sequence from={at} layout="none"><GameVideo src={staticFile(d.clip)} startFrom={Math.round(d.start * 30)} style={{ width: "100%", height: "100%", objectFit: "cover" }} /></Sequence>
         <div style={{ position: "absolute", left: 22, top: 18, display: "flex", alignItems: "center", gap: 10, fontFamily: FONT.mono, fontWeight: 700, fontSize: 26, color: "#fff", background: "rgba(0,0,0,0.55)", padding: "6px 14px", borderRadius: 8 }}>
           <svg width="18" height="20" viewBox="0 0 18 20"><path d="M2 1l15 9-15 9z" fill={PINK} /></svg>
           REPLAY

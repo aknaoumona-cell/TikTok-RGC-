@@ -4,8 +4,8 @@
  * 0–90 accroche · 90–300 moment 1 (DBD) · 300–480 moment 2 (COD) · 480–570 chute · 570–660 carte de fin
  */
 import React from "react";
-import { AbsoluteFill, Freeze, OffthreadVideo, Sequence, interpolate, staticFile, useCurrentFrame } from "remotion";
-import { SfxAudio } from "../safe";
+import { AbsoluteFill, Freeze, Sequence, interpolate, staticFile, useCurrentFrame } from "remotion";
+import { GameVideo, SfxAudio } from "../safe";
 import { FONT, Flash, RiseWords, clamp, easeOut, useShake } from "../components";
 import { EndCard, Meme, Shell } from "../memes";
 
@@ -61,7 +61,7 @@ const Moment: React.FC<{ title: string; clip: string; start: number; scareAt: nu
   const shake = useShake(scareAt, 22);
   const frozen = f >= scareAt;
   const zoom = interpolate(f - scareAt, [0, 6], [1, 1.25], { ...clamp, easing: easeOut });
-  const video = <OffthreadVideo src={staticFile(clip)} startFrom={Math.round(start * 30)} muted style={{ width: "100%", height: "100%", objectFit: "cover" }} />;
+  const video = <GameVideo src={staticFile(clip)} startFrom={Math.round(start * 30)} style={{ width: "100%", height: "100%", objectFit: "cover" }} />;
   return (
     <AbsoluteFill style={{ transform: shake }}>
       <Grid />

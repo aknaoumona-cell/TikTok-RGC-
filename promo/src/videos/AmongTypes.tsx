@@ -4,8 +4,8 @@
  * 0–90 accroche · 90–510 4 types × 105 · 510–600 carte de fin
  */
 import React from "react";
-import { AbsoluteFill, OffthreadVideo, Sequence, interpolate, staticFile, useCurrentFrame } from "remotion";
-import { SfxAudio } from "../safe";
+import { AbsoluteFill, Sequence, interpolate, staticFile, useCurrentFrame } from "remotion";
+import { GameVideo, SfxAudio } from "../safe";
 import { FONT, Flash, RiseWords, clamp, easeOut, useSpring } from "../components";
 import { EndCard, Meme, Shell } from "../memes";
 
@@ -17,8 +17,8 @@ const COLS = ["#FF8FB1", "#8FD3FF", "#B8F2A0", "#C9A7FF"];
 const TYPES = [
   { t: "celle qui vote au hasard", s: "(et c'est souvent juste)", clip: "clips/among-cafet.mp4", start: 0, meme: "memes/chat-noir-chargement.jpg" },
   { t: "celle qui se défend trop fort", s: "(elle était innocente en plus)", clip: "clips/among-cafet.mp4", start: 4.6, meme: "memes/chat-sourire-innocent.jpg" },
-  { t: "celle qui fait toutes ses tâches", s: "(pendant que les autres papotent)", clip: "clips/among-cargo.mp4", start: 0, meme: "memes/chat-noir-sourire.jpg" },
-  { t: "l'imposteuse qui rigole en voc", s: "(et qui se grille toute seule)", clip: "clips/among-cargo.mp4", start: 2.2, rate: 0.8, meme: "memes/chat-noir-regard.jpg" },
+  { t: "celle qui fait toutes ses tâches", s: "(pendant que les autres papotent)", clip: "clips/among-taches.mp4", start: 0, meme: "memes/chat-noir-sourire.jpg" },
+  { t: "l'imposteuse qui rigole en voc", s: "(et qui se grille toute seule)", clip: "clips/among-cargo.mp4", start: 0, meme: "memes/chat-noir-regard.jpg" },
 ];
 
 const Bg: React.FC = () => {
@@ -75,7 +75,7 @@ const Types: React.FC = () => {
       </div>
       <div style={{ position: "absolute", top: 560, left: 140, width: 800, height: 480, borderRadius: 36, overflow: "hidden", border: `6px solid ${INK}`, boxShadow: `0 14px 0 ${COLS[i]}`, transform: `rotate(${(1 - s) * -4}deg) scale(${0.92 + 0.08 * s})` }}>
         <Sequence key={`v${i}`} from={i * STEP} durationInFrames={STEP} layout="none">
-          <OffthreadVideo src={staticFile(t.clip)} startFrom={Math.round(t.start * 30)} playbackRate={(t as { rate?: number }).rate ?? 1} muted style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+          <GameVideo src={staticFile(t.clip)} startFrom={Math.round(t.start * 30)} playbackRate={(t as { rate?: number }).rate ?? 1} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
         </Sequence>
       </div>
       <Ballot active={i} lf={lf} />

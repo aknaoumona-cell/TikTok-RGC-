@@ -4,8 +4,8 @@
  * 0–90 accroche · 90–450 3 moods × 120 · 450–540 chute · 540–630 carte de fin
  */
 import React from "react";
-import { AbsoluteFill, OffthreadVideo, Sequence, staticFile, useCurrentFrame } from "remotion";
-import { SfxAudio } from "../safe";
+import { AbsoluteFill, Sequence, staticFile, useCurrentFrame } from "remotion";
+import { GameVideo, SfxAudio } from "../safe";
 import { FONT, Flash, RiseWords, useSpring } from "../components";
 import { EndCard, Meme, Shell } from "../memes";
 
@@ -40,7 +40,7 @@ const MoodCard: React.FC<{ m: (typeof MOODS)[number]; n: number }> = ({ m, n }) 
       <div style={{ position: "absolute", top: 320, width: "100%", textAlign: "center", fontFamily: FONT.mono, fontWeight: 700, fontSize: 34, letterSpacing: 8, color: INK, opacity: 0.7 }}>{m.game}</div>
       <div style={{ position: "absolute", top: 400, left: 110, width: 860, background: "#fff", padding: "26px 26px 30px", boxShadow: "0 22px 50px rgba(46,36,51,0.25)", transform: `rotate(${rot + (1 - s) * 8}deg) translateY(${(1 - s) * 120}px)`, opacity: s }}>
         <div style={{ width: "100%", height: 484, overflow: "hidden", background: "#000" }}>
-          <OffthreadVideo src={staticFile(m.clip)} startFrom={Math.round(m.start * 30)} muted style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+          <GameVideo src={staticFile(m.clip)} startFrom={Math.round(m.start * 30)} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
         </div>
         <div style={{ fontFamily: FONT.serif, fontStyle: "italic", fontSize: 40, color: INK, marginTop: 16 }}>mood : {m.mood}</div>
       </div>

@@ -16,6 +16,8 @@ Attirer des **filles gameuses actives sur Discord** pour qu'elles rejoignent le 
 
 ## Règles de contenu
 - **Pas de musique de fond** : seulement des bruitages (transitions, impacts, pops…). Elle ajoute le son tendance elle-même dans TikTok.
+- **Garder le son des clips gameplay** (ça marche bien) : utiliser `<GameVideo>` (`promo/src/safe.tsx`) au lieu de `<OffthreadVideo>` — le son ne joue qu'une fois (copie floutée muette). Couper/normaliser les clips avec ffmpeg en gardant l'audio (`loudnorm`).
+- **Among Us : ne jamais utiliser un clip où apparaît le pseudo « Nelfy »** (vérifier image par image, y compris la liste du vocal Discord). IMG_1134 et IMG_1131 écartés pour ça.
 - **Pas d'emojis** dans les vidéos : utiliser des **memes** (chats, Among Us, réactions girly) à la place.
 - **Logo RGC obligatoire** + filigrane @rivalsgirlsclub qui bouge (anti-repost). Nouvelles vidéos : `<Shell brand="center">` → logo + nom **centrés en haut** (police Cormorant Garamond italique) et filigrane **centré dès le début** (dérive seulement de haut en bas). Garder le haut (y < 300) libre pour ce logo.
 - **Chaque TikTok doit avoir son propre look** (ne pas refaire la même DA à chaque fois).

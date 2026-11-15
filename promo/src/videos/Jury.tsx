@@ -4,8 +4,8 @@
  * 0–90 accroche · 90–630 3 clutchs × 180 (clip 90 + notes 90) · 630–720 carte de fin
  */
 import React from "react";
-import { AbsoluteFill, OffthreadVideo, Sequence, interpolate, staticFile, useCurrentFrame } from "remotion";
-import { SfxAudio } from "../safe";
+import { AbsoluteFill, Sequence, interpolate, staticFile, useCurrentFrame } from "remotion";
+import { GameVideo, SfxAudio } from "../safe";
 import { FONT, Flash, RiseWords, clamp, easeOut, useSpring } from "../components";
 import { EndCard, Meme, Shell } from "../memes";
 
@@ -17,7 +17,7 @@ const GOLD = "#F4C76B";
 const CLUTCHS = [
   { clip: "clips/cod-clutch-rose.mp4", start: 4.5, game: "COD", scores: [["aura", "10"], ["skin rose", "11"], ["humilité", "2"]], meme: "memes/chat-pouce.jpg" },
   { clip: "clips/val-parfait.mp4", start: 2.3, game: "VALORANT", scores: [["précision", "9"], ["sang-froid", "10"], ["cri en voc", "10"]], meme: "memes/chat-lunettes-pouce.jpg" },
-  { clip: "clips/ow-clutch.mp4", start: 0, rate: 0.68, game: "OVERWATCH", scores: [["style", "8"], ["stratégie", "3"], ["chance", "10"]], meme: "memes/chat-tigre-juge.jpg" },
+  { clip: "clips/lol-teamfight.mp4", start: 0, game: "LOL", scores: [["teamfight", "10"], ["survie", "2"], ["triple kill", "11"]], meme: "memes/chat-tigre-juge.jpg" },
 ];
 
 const Curtain: React.FC = () => {
@@ -59,7 +59,7 @@ const Clutch: React.FC<{ c: (typeof CLUTCHS)[number]; n: number }> = ({ c, n }) 
       </div>
       <div style={{ position: "absolute", top: 520, left: 60, width: 960, height: 540, transform: `scale(${(0.85 + 0.15 * s) * shrink})`, transformOrigin: "50% 0%" }}>
         <div style={{ width: "100%", height: "100%", borderRadius: 20, overflow: "hidden", border: `10px solid ${GOLD}`, boxShadow: "0 0 60px rgba(244,199,107,0.45)" }}>
-          <OffthreadVideo src={staticFile(c.clip)} startFrom={Math.round(c.start * 30)} playbackRate={(c as { rate?: number }).rate ?? 1} muted style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+          <GameVideo src={staticFile(c.clip)} startFrom={Math.round(c.start * 30)} playbackRate={(c as { rate?: number }).rate ?? 1} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
         </div>
       </div>
       {f >= NOTES_AT && (

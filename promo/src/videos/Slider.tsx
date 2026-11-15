@@ -5,8 +5,8 @@
  * 0–90 accroche · 90–330 duo 1 · 330–570 duo 2 · 570–660 carte de fin
  */
 import React from "react";
-import { AbsoluteFill, Easing, OffthreadVideo, Sequence, interpolate, staticFile, useCurrentFrame } from "remotion";
-import { SfxAudio } from "../safe";
+import { AbsoluteFill, Easing, Sequence, interpolate, staticFile, useCurrentFrame } from "remotion";
+import { GameVideo, SfxAudio } from "../safe";
 import { FONT, Flash, RiseWords, Sparkles, clamp } from "../components";
 import { EndCard, Meme, Shell } from "../memes";
 
@@ -48,11 +48,11 @@ const Pair: React.FC<{ p: (typeof PAIRS)[number] }> = ({ p }) => {
       <div style={{ position: "absolute", left: X0, top: TOP, width: W, height: H, borderRadius: 34, overflow: "hidden", boxShadow: "0 24px 60px rgba(43,34,56,0.25)", border: "5px solid #fff" }}>
         {/* team clip underneath, revealed from the right */}
         <Sequence from={SWEEP} layout="none">
-          <OffthreadVideo src={staticFile(p.team)} muted style={{ position: "absolute", width: "100%", height: "100%", objectFit: "cover" }} />
+          <GameVideo src={staticFile(p.team)} style={{ position: "absolute", width: "100%", height: "100%", objectFit: "cover" }} />
         </Sequence>
         {/* solo clip on top, clipped to the left of the handle */}
         <div style={{ position: "absolute", inset: 0, clipPath: `inset(0 ${W - pos}px 0 0)` }}>
-          <OffthreadVideo src={staticFile(p.solo)} muted playbackRate={0.85} style={{ width: "100%", height: "100%", objectFit: "cover", filter: "grayscale(1) brightness(0.8)" }} />
+          <GameVideo src={staticFile(p.solo)} sound={false} playbackRate={0.85} style={{ width: "100%", height: "100%", objectFit: "cover", filter: "grayscale(1) brightness(0.8)" }} />
         </div>
         <div style={{ position: "absolute", left: 22, top: 20, fontFamily: FONT.mono, fontWeight: 700, fontSize: 26, color: "#fff", background: "rgba(0,0,0,0.5)", padding: "6px 14px", borderRadius: 10, opacity: pos > 200 ? 1 : 0 }}>SEULE</div>
         <div style={{ position: "absolute", right: 22, top: 20, fontFamily: FONT.mono, fontWeight: 700, fontSize: 26, color: "#fff", background: LILAC, padding: "6px 14px", borderRadius: 10, opacity: pos < W - 200 ? 1 : 0 }}>AVEC UNE MATE</div>

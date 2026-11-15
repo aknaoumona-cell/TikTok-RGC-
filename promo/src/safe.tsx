@@ -6,7 +6,7 @@
  * de la même image (pas de noir → pas de zoom).
  */
 import React, { createContext, useContext } from "react";
-import { AbsoluteFill, Audio } from "remotion";
+import { AbsoluteFill, Audio, OffthreadVideo } from "remotion";
 
 export const SAFE_SCALE = 880 / 1080;
 
@@ -16,6 +16,15 @@ const Muted = createContext(false);
 export const SfxAudio: React.FC<{ src: string }> = ({ src }) => {
   const muted = useContext(Muted);
   return muted ? null : <Audio src={src} />;
+};
+
+/**
+ * Gameplay clip WITH its own game sound (asked by the user). The sound plays only once:
+ * the blurred background copy of withSafeZone is muted.
+ */
+export const GameVideo: React.FC<React.ComponentProps<typeof OffthreadVideo> & { sound?: boolean }> = ({ sound = true, volume = 0.75, ...rest }) => {
+  const bg = useContext(Muted);
+  return <OffthreadVideo {...rest} muted={bg || !sound} volume={volume} />;
 };
 
 export function withSafeZone<P extends object>(Inner: React.ComponentType<P>): React.FC<P> {
