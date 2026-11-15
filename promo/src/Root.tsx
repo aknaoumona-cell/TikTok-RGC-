@@ -18,6 +18,13 @@ import { MATEFLAGS_TOTAL, MateFlagsVideo } from "./videos/MateFlags";
 import { DIMANCHE_TOTAL, DimancheVideo } from "./videos/Dimanche";
 import { VERIF_TOTAL, VerifVideo } from "./videos/Verif";
 import { ASTRO_TOTAL, AstroVideo } from "./videos/Astro";
+import { DISFAIS_TOTAL, DisFaisVideo } from "./videos/DisFais";
+import { AMONG_TOTAL, AmongVideo } from "./videos/AmongTypes";
+import { ROUE_TOTAL, RoueVideo } from "./videos/Roue";
+import { COEUR_TOTAL, CoeurVideo } from "./videos/Coeur";
+import { SLIDER_TOTAL, SliderVideo } from "./videos/Slider";
+import { JURY_TOTAL, JuryVideo } from "./videos/Jury";
+import { MOOD_TOTAL, MoodVideo } from "./videos/Mood";
 
 const common = { fps: FPS, width: WIDTH, height: HEIGHT };
 
@@ -39,6 +46,13 @@ const S = {
   DimancheVideo: withSafeZone(DimancheVideo),
   VerifVideo: withSafeZone(VerifVideo),
   AstroVideo: withSafeZone(AstroVideo),
+  DisFaisVideo: withSafeZone(DisFaisVideo),
+  AmongVideo: withSafeZone(AmongVideo),
+  RoueVideo: withSafeZone(RoueVideo),
+  CoeurVideo: withSafeZone(CoeurVideo),
+  SliderVideo: withSafeZone(SliderVideo),
+  JuryVideo: withSafeZone(JuryVideo),
+  MoodVideo: withSafeZone(MoodVideo),
 };
 
 export const Root: React.FC = () => (
@@ -59,5 +73,12 @@ export const Root: React.FC = () => (
     <Composition id="RGCDimanche" component={S.DimancheVideo} durationInFrames={DIMANCHE_TOTAL} {...common} />
     <Composition id="RGCVerif" component={S.VerifVideo} durationInFrames={VERIF_TOTAL} {...common} />
     <Composition id="RGCAstro" component={S.AstroVideo} durationInFrames={ASTRO_TOTAL} {...common} />
+    <Composition id="RGCDisFais" component={S.DisFaisVideo} durationInFrames={DISFAIS_TOTAL} {...common} />
+    <Composition id="RGCAmong" component={S.AmongVideo} durationInFrames={AMONG_TOTAL} {...common} />
+    <Composition id="RGCRoue" component={S.RoueVideo} durationInFrames={ROUE_TOTAL} {...common} />
+    <Composition id="RGCCoeur" component={S.CoeurVideo} durationInFrames={COEUR_TOTAL} {...common} />
+    <Composition id="RGCSlider" component={S.SliderVideo} durationInFrames={SLIDER_TOTAL} {...common} />
+    <Composition id="RGCJury" component={S.JuryVideo} durationInFrames={JURY_TOTAL} {...common} />
+    <Composition id="RGCMood" component={S.MoodVideo} durationInFrames={MOOD_TOTAL} {...common} />
   </>
 );

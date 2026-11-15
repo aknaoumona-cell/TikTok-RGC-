@@ -17,7 +17,7 @@ Attirer des **filles gameuses actives sur Discord** pour qu'elles rejoignent le 
 ## Règles de contenu
 - **Pas de musique de fond** : seulement des bruitages (transitions, impacts, pops…). Elle ajoute le son tendance elle-même dans TikTok.
 - **Pas d'emojis** dans les vidéos : utiliser des **memes** (chats, Among Us, réactions girly) à la place.
-- **Logo RGC obligatoire** + filigrane @rivalsgirlsclub qui bouge (anti-repost).
+- **Logo RGC obligatoire** + filigrane @rivalsgirlsclub qui bouge (anti-repost). Nouvelles vidéos : `<Shell brand="center">` → logo + nom **centrés en haut** (police Cormorant Garamond italique) et filigrane **centré dès le début** (dérive seulement de haut en bas). Garder le haut (y < 300) libre pour ce logo.
 - **Chaque TikTok doit avoir son propre look** (ne pas refaire la même DA à chaque fois).
 - Persos/jeux : utiliser des **captures in-game / rendus officiels du jeu**, jamais des fan arts (pas l'autorisation des artistes).
 - **Ne JAMAIS réutiliser un visuel déjà utilisé dans une autre vidéo** (clips, images, memes). Chercher des visuels neufs (Pinterest…) plutôt que reprendre l'existant, même si ça prend plus de temps. Vérifier avant le rendu : `python3 tools/check_reuse.py src/videos/<Nouvelle>.tsx` (dans `promo/`).
@@ -37,5 +37,6 @@ Logo papillon chrome lilas (`promo/public/brand/logo-rgc.png`). Serveur au style
 ## Technique
 - Projet Remotion dans `promo/` (voir `promo/README.md`). Rendu : `npx remotion render <Composition> out/<nom>.mp4`.
 - Bruitages synthétisés : `promo/tools/sfxlib.py`, `make_sfx.py`, `make_sfx_series.py`.
+- Clips lourds du Drive : si les dossiers sont partagés « tous les utilisateurs avec le lien », télécharger via `https://drive.usercontent.google.com/download?id=<ID>&export=download&confirm=t` (hosts autorisés dans l'environnement), puis découper/compresser avec ffmpeg (720p, sans son). Dossiers AMONG US, LOL, SERVEUR : pas partagés par lien (seulement les petits fichiers via le connecteur).
 - Drive du serveur (connecteur Google Drive) : dossiers par jeu + SERVEUR. Le connecteur ne télécharge pas les fichiers > ~7 Mo (limite réelle, base64) → utiliser les plus petits, sinon trouver une alternative (images de gameplay sur Pinterest, etc.).
 - Pinterest est autorisé dans l'environnement : recherche via Playwright (`pin.js`-style, user-agent navigateur), images sur `i.pinimg.com`.

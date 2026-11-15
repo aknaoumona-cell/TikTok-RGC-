@@ -18,6 +18,7 @@ export const FONT = {
   body: "'Space Grotesk', sans-serif",
   mono: "'Space Mono', monospace",
   serif: "'DM Serif Display', serif",
+  elegant: "'Cormorant Garamond', serif",
 };
 
 /* ---------- helpers ---------- */
@@ -366,37 +367,57 @@ export const ClipFrame: React.FC<{
 };
 
 /* ---------- permanent branding: logo bug + drifting watermark ---------- */
-export const Branding: React.FC<{ ink?: "light" | "dark" }> = ({ ink = "light" }) => {
+export const Branding: React.FC<{ ink?: "light" | "dark"; layout?: "corner" | "center" }> = ({ ink = "light", layout = "corner" }) => {
   const f = useCurrentFrame();
-  const { durationInFrames } = useVideoConfig();
-  // drifting watermark: slow lissajous path across the frame (hard to crop out)
-  const x = 540 + 230 * Math.sin(f / 97);
-  const y = 960 + 620 * Math.sin(f / 151 + 1.2);
-  const endFade = interpolate(f, [durationInFrames - 1, durationInFrames], [1, 1], clamp);
+  const center = layout === "center";
+  // drifting watermark (hard to crop out). "center": stays on the vertical axis from frame 0, drifts up/down only.
+  const x = center ? 540 : 540 + 230 * Math.sin(f / 97);
+  const y = center ? 960 + 520 * Math.sin(f / 140) : 960 + 620 * Math.sin(f / 151 + 1.2);
+  const light = ink === "light";
   return (
-    <AbsoluteFill style={{ pointerEvents: "none", opacity: endFade }}>
+    <AbsoluteFill style={{ pointerEvents: "none" }}>
       <div
         style={{
           position: "absolute",
           left: x,
           top: y,
-          transform: "translate(-50%, -50%) rotate(-12deg)",
+          transform: `translate(-50%, -50%) rotate(${center ? -8 : -12}deg)`,
           fontFamily: FONT.mono,
           fontWeight: 700,
           fontSize: 30,
           letterSpacing: 3,
-          color: ink === "light" ? "rgba(255,255,255,0.13)" : "rgba(130,120,145,0.22)",
+          color: light ? "rgba(255,255,255,0.13)" : "rgba(130,120,145,0.22)",
           whiteSpace: "nowrap",
         }}
       >
         ✦ {HANDLE} ✦
       </div>
-      <div style={{ position: "absolute", left: 60, top: 200, display: "flex", alignItems: "center", gap: 14 }}>
-        <Img src={staticFile("brand/logo-rgc.png")} style={{ width: 92, height: 92, filter: "drop-shadow(0 0 12px rgba(183,139,240,0.8))" }} />
-        <div style={{ fontFamily: FONT.mono, fontWeight: 700, fontSize: 24, color: ink === "light" ? "rgba(255,255,255,0.85)" : "rgba(18,15,24,0.85)", letterSpacing: 1.5, textShadow: ink === "light" ? "0 2px 10px rgba(0,0,0,0.6)" : "none" }}>
-          {HANDLE}
+      {center ? (
+        <div style={{ position: "absolute", top: 120, width: "100%", display: "flex", flexDirection: "column", alignItems: "center", gap: 2 }}>
+          <Img src={staticFile("brand/logo-rgc.png")} style={{ width: 96, height: 96, filter: "drop-shadow(0 0 14px rgba(183,139,240,0.85))" }} />
+          <div
+            style={{
+              fontFamily: FONT.elegant,
+              fontStyle: "italic",
+              fontWeight: 700,
+              fontSize: 44,
+              letterSpacing: 1,
+              lineHeight: 1,
+              color: light ? "#F4ECFF" : "#2A2033",
+              textShadow: light ? "0 0 18px rgba(183,139,240,0.7), 0 2px 8px rgba(0,0,0,0.6)" : "0 0 12px rgba(255,255,255,0.8)",
+            }}
+          >
+            {HANDLE}
+          </div>
         </div>
-      </div>
+      ) : (
+        <div style={{ position: "absolute", left: 60, top: 200, display: "flex", alignItems: "center", gap: 14 }}>
+          <Img src={staticFile("brand/logo-rgc.png")} style={{ width: 92, height: 92, filter: "drop-shadow(0 0 12px rgba(183,139,240,0.8))" }} />
+          <div style={{ fontFamily: FONT.mono, fontWeight: 700, fontSize: 24, color: light ? "rgba(255,255,255,0.85)" : "rgba(18,15,24,0.85)", letterSpacing: 1.5, textShadow: light ? "0 2px 10px rgba(0,0,0,0.6)" : "none" }}>
+            {HANDLE}
+          </div>
+        </div>
+      )}
     </AbsoluteFill>
   );
 };

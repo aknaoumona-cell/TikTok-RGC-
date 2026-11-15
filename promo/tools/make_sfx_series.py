@@ -281,3 +281,135 @@ for i in range(12):
     T.place(shimmer(0.7, 2600 + (i % 3) * 300), s + 18, 0.35)
 end_card(T, 1260)
 T.save(os.path.join(A, "sfx-astro.wav"))
+
+# ---------- ce que je dis vs ce que je fais (660) ----------
+T = Track(22.0)
+T.place(rec_beep(), 2, 0.8)
+T.place(whoosh(0.4), 12, 0.3)
+T.place(vine_boom(), 18, 0.5)
+for i in range(4):
+    s = 90 + i * 120
+    T.place(pop(1.0 + i * 0.08), s + 2, 0.5)
+    T.place(rec_beep(), s + 6, 0.5)
+    T.place(scratch(), s + 34, 0.6)
+    T.place(impact(), s + 36, 0.45)
+    T.place(vine_boom(), s + 46, 0.55)
+    T.place(pop(1.2), s + 58, 0.45)
+end_card(T, 570)
+T.save(os.path.join(A, "sfx-disfais.wav"))
+
+# ---------- among us : t'es laquelle (600) ----------
+T = Track(20.0)
+T.place(pop(0.9), 4, 0.5)
+T.place(pop(1.1), 14, 0.5)
+T.place(shimmer(0.8), 14, 0.4)
+for i in range(4):
+    s = 90 + i * 105
+    T.place(whoosh(0.3), s - 3, 0.35)
+    T.place(ding(), s + 2, 0.4)
+    T.place(pop(1.0 + i * 0.1), s + 26, 0.5)
+    T.place(tick(), s + 40, 0.6)
+    T.place(correct(), s + 44, 0.45)
+end_card(T, 510)
+T.save(os.path.join(A, "sfx-among.wav"))
+
+# ---------- on joue à quoi ce soir (705) ----------
+T = Track(24.0)
+T.place(shimmer(1.2, 1800), 2, 0.5)
+for k in range(12):
+    T.place(tick(), 10 + k * 5, 0.3)
+for r in range(3):
+    s = 75 + r * 150
+    T.place(whoosh(0.5), s, 0.35)
+    # ticks slowing down like a wheel
+    t, gap = 0.0, 2.0
+    while t < 54:
+        T.place(tick(), s + int(t), 0.45)
+        t += gap
+        gap *= 1.12
+    T.place(ding(), s + 60, 0.6)
+    T.place(confetti(), s + 60, 0.6)
+    T.place(pop(1.1), s + 80, 0.5)
+T.place(whoosh(0.4), 525, 0.4)
+T.place(shimmer(1.0), 535, 0.4)
+end_card(T, 615)
+T.save(os.path.join(A, "sfx-roue.wav"))
+
+# ---------- le moment où ton cœur lâche (660) ----------
+T = Track(22.0)
+for k in range(4):
+    T.place(heartbeat(), 6 + k * 24, 0.6)
+# moment 1 : beats accelerate until the scare (frame 90+138)
+t = 0
+gap = 24
+while t < 132:
+    T.place(heartbeat(), 90 + t, 0.6 + 0.3 * t / 132)
+    t += gap
+    gap = max(9, gap - 2)
+T.place(vine_boom(), 90 + 138, 0.9)
+T.place(impact(), 90 + 138, 0.7)
+T.place(pop(1.2), 90 + 148, 0.4)
+t = 0
+gap = 22
+while t < 146:
+    T.place(heartbeat(), 300 + t, 0.6 + 0.3 * t / 146)
+    t += gap
+    gap = max(9, gap - 2)
+T.place(vine_boom(), 300 + 152, 0.9)
+T.place(glitch(), 300 + 152, 0.6)
+T.place(pop(1.2), 300 + 162, 0.4)
+T.place(whoosh(0.4), 480, 0.4)
+T.place(pop(1.0), 500, 0.5)
+end_card(T, 570)
+T.save(os.path.join(A, "sfx-coeur.wav"))
+
+# ---------- seule vs avec une mate (660) ----------
+T = Track(22.0)
+T.place(pop(0.9), 2, 0.5)
+T.place(sad_wah(), 8, 0.5)
+T.place(shimmer(1.0), 16, 0.5)
+for i in range(2):
+    s = 90 + i * 240
+    T.place(sad_wah(), s + 20, 0.6)
+    T.place(pop(0.8), s + 30, 0.5)
+    T.place(riser(0.6), s + 120 - 18, 0.8)
+    T.place(whoosh(0.5), s + 120, 0.6)
+    T.place(impact(), s + 133, 0.5)
+    T.place(confetti(), s + 133, 0.6)
+    T.place(join_tone(), s + 140, 0.6)
+    T.place(pop(1.2), s + 150, 0.5)
+end_card(T, 570)
+T.save(os.path.join(A, "sfx-slider.wav"))
+
+# ---------- note ce clutch (720) ----------
+T = Track(24.0)
+T.place(impact(), 2, 0.5)
+T.place(shimmer(1.2, 2000), 4, 0.5)
+T.place(pop(1.0), 22, 0.5)
+for i in range(3):
+    s = 90 + i * 180
+    T.place(whoosh(0.4), s - 3, 0.35)
+    T.place(riser(0.8), s + 66, 0.5)
+    for k in range(3):
+        T.place(whoosh(0.18), s + 90 + k * 10, 0.4)
+        T.place(ding(), s + 96 + k * 10, 0.45)
+    T.place(confetti(), s + 120, 0.5)
+    T.place(pop(1.1), s + 126, 0.5)
+end_card(T, 630)
+T.save(os.path.join(A, "sfx-jury.wav"))
+
+# ---------- 1 jeu = 1 mood (630) ----------
+T = Track(21.0)
+T.place(pop(0.9), 2, 0.5)
+T.place(pop(1.1), 8, 0.5)
+T.place(shimmer(1.0, 2400), 12, 0.5)
+for i in range(3):
+    s = 90 + i * 120
+    T.place(shutter(), s, 0.6)
+    T.place(whoosh(0.3), s + 2, 0.3)
+    T.place(shimmer(0.7, 2600), s + 10, 0.35)
+    T.place(pop(1.0 + i * 0.1), s + 30, 0.5)
+T.place(whoosh(0.4), 450, 0.4)
+T.place(ping(), 470, 0.5)
+end_card(T, 540)
+T.save(os.path.join(A, "sfx-mood.wav"))

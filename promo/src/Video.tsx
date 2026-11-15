@@ -8,6 +8,7 @@ import "@fontsource/space-grotesk/600.css";
 import "@fontsource/space-grotesk/700.css";
 import "@fontsource/space-mono/700.css";
 import "@fontsource/dm-serif-display/400-italic.css";
+import "@fontsource/cormorant-garamond/700-italic.css";
 import { CLIPS, SFX, T, TEXT } from "./config";
 import { Branding, ButterflyZoom, Flash, Grain, clamp } from "./components";
 import { DropScene, ClipLineScene, CtaScene, HookScene, OutroScene, TalkScene, ValuesScene } from "./scenes";

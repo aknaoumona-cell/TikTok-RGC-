@@ -21,9 +21,16 @@ Vidéo verticale 1080×1920, 30 i/s, 21,5 s, faite avec [Remotion](https://www.r
 | `out/rgc-dimanche.mp4` | un dimanche sur RGC | lo-fi cosy chaud |
 | `out/rgc-verif-vocale.mp4` | pov : tu passes la vérif vocale (message vocal guidé) | appli de messages vocaux |
 | `out/rgc-astro.mp4` | ton jeu préféré selon ton signe astro (45 s) | astro mystique, nuit étoilée + or |
+| `out/rgc-dis-vs-fais.mp4` | ce que je dis en voc vs ce que je fais en game (22 s) | replay néon, clips COD |
+| `out/rgc-among-us-laquelle.mp4` | among us entre filles : t'es laquelle ? (20 s) | écran de vote pastel |
+| `out/rgc-on-joue-a-quoi.mp4` | on joue à quoi ce soir ? (23,5 s) | jeu télé, roue nacrée |
+| `out/rgc-coeur-lache.mp4` | le moment exact où ton cœur lâche en game (22 s) | moniteur cardiaque ECG |
+| `out/rgc-seule-vs-mate.mp4` | pov : seule vs avec une mate du serveur (22 s) | curseur avant / après |
+| `out/rgc-note-ce-clutch.mp4` | note ce clutch de 0 à 10 (24 s) | jury télé, rideau de velours |
+| `out/rgc-1-jeu-1-mood.mp4` | 1 jeu = 1 mood (21 s) | moodboard polaroid |
 
 Les sources : `src/Video.tsx` (promo) et `src/videos/*.tsx` (les 4 autres, textes en haut de chaque fichier).
-Rendu : `npx remotion render <RGCPromo|RGCSolo|RGCTypes|RGCJeux|RGCFlags|RGCMains|RGCJamais|RGCTier|RGCPovTeam|RGCPhrases|RGCRealite|RGCSons|RGCMateFlags|RGCDimanche|RGCVerif|RGCAstro> out/<nom>.mp4`.
+Rendu : `npx remotion render <RGCPromo|RGCSolo|RGCTypes|RGCJeux|RGCFlags|RGCMains|RGCJamais|RGCTier|RGCPovTeam|RGCPhrases|RGCRealite|RGCSons|RGCMateFlags|RGCDimanche|RGCVerif|RGCAstro|RGCDisFais|RGCAmong|RGCRoue|RGCCoeur|RGCSlider|RGCJury|RGCMood> out/<nom>.mp4`.
 Bruitages : `python3 tools/make_sfx.py` (promo) et `python3 tools/make_sfx_series.py` (les 4 autres).
 Memes : `public/memes/`, persos (captures in-game officielles) : `public/heroes/`, captures de jeu : `public/ingame/`, ambiances : `public/cozy/` et images de gameplay : `public/gameplay/` (trouvés sur Pinterest).
 
