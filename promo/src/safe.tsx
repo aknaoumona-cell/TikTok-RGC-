@@ -22,7 +22,7 @@ export const SfxAudio: React.FC<{ src: string }> = ({ src }) => {
  * Gameplay clip WITH its own game sound (asked by the user). The sound plays only once:
  * the blurred background copy of withSafeZone is muted.
  */
-export const GameVideo: React.FC<React.ComponentProps<typeof OffthreadVideo> & { sound?: boolean }> = ({ sound = true, volume = 0.75, ...rest }) => {
+export const GameVideo: React.FC<React.ComponentProps<typeof OffthreadVideo> & { sound?: boolean }> = ({ sound = true, volume = 0.6, ...rest }) => {
   const bg = useContext(Muted);
   return <OffthreadVideo {...rest} muted={bg || !sound} volume={volume} />;
 };

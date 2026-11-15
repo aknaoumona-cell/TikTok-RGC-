@@ -79,7 +79,7 @@ const Types: React.FC = () => {
         </Sequence>
       </div>
       <Ballot active={i} lf={lf} />
-      <Meme key={`m${i}`} src={t.meme} at={i * STEP + 26} until={(i + 1) * STEP} x={i % 2 ? 170 : 910} y={560} w={230} rotate={i % 2 ? -10 : 10} />
+      <Meme key={`m${i}`} src={t.meme} at={i * STEP + 26} until={(i + 1) * STEP} x={i % 2 ? 170 : 910} y={1010} w={220} rotate={i % 2 ? -10 : 10} />
     </AbsoluteFill>
   );
 };

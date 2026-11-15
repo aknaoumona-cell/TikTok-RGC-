@@ -62,8 +62,8 @@ const Replay: React.FC<{ d: (typeof DUOS)[number]; at: number }> = ({ d, at }) =
           REPLAY
         </div>
       </div>
-      <div style={{ position: "absolute", left: "50%", top: 470, transform: `translateX(-50%) rotate(-4deg) scale(${stamp})`, opacity: f - at > 8 ? 1 : 0, whiteSpace: "nowrap" }}>
-        <span style={{ fontFamily: FONT.display, fontWeight: 800, fontSize: 46, color: "#111015", background: PINK, padding: "14px 30px", borderRadius: 16, boxShadow: "0 12px 30px rgba(0,0,0,0.5)" }}>EN VRAI : {d.real}</span>
+      <div style={{ position: "absolute", left: "50%", top: 470, transform: `translateX(-50%) rotate(-4deg) scale(${stamp})`, opacity: f - at > 8 ? 1 : 0, width: 820, textAlign: "center" }}>
+        <span style={{ display: "inline-block", lineHeight: 1.15, fontFamily: FONT.display, fontWeight: 800, fontSize: 40, color: "#111015", background: PINK, padding: "14px 30px", borderRadius: 16, boxShadow: "0 12px 30px rgba(0,0,0,0.5)" }}>EN VRAI : {d.real}</span>
       </div>
     </div>
   );
