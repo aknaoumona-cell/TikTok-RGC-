@@ -1,6 +1,6 @@
 /**
  * TikTok #23 — « 1 jeu = 1 mood »
- * LOOK : MOODBOARD POLAROID — papier crème, ruban adhésif, polaroid du clip, gros mot « mood » écrit en italique.
+ * LOOK : MOODBOARD — papier crème, clip en plein format 16:9 (façon lecteur vidéo), gros mot « mood » écrit en italique.
  * 0–90 accroche · 90–450 3 moods × 120 · 450–540 chute · 540–630 carte de fin
  */
 import React from "react";
@@ -33,19 +33,20 @@ const Tape: React.FC<{ x: number; y: number; r: number }> = ({ x, y, r }) => (
 const MoodCard: React.FC<{ m: (typeof MOODS)[number]; n: number }> = ({ m, n }) => {
   const f = useCurrentFrame();
   const s = useSpring(0, 11);
-  const rot = n % 2 ? 3 : -3;
   return (
     <AbsoluteFill>
       <Paper tint={m.tint} />
       <div style={{ position: "absolute", top: 320, width: "100%", textAlign: "center", fontFamily: FONT.mono, fontWeight: 700, fontSize: 34, letterSpacing: 8, color: INK, opacity: 0.7 }}>{m.game}</div>
-      <div style={{ position: "absolute", top: 400, left: 110, width: 860, background: "#fff", padding: "26px 26px 30px", boxShadow: "0 22px 50px rgba(46,36,51,0.25)", transform: `rotate(${rot + (1 - s) * 8}deg) translateY(${(1 - s) * 120}px)`, opacity: s }}>
-        <div style={{ width: "100%", height: 484, overflow: "hidden", background: "#000" }}>
-          <GameVideo src={staticFile(m.clip)} startFrom={Math.round(m.start * 30)} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+      {/* clip shown full width in 16:9, like a YouTube player (whole frame, no crop) */}
+      <div style={{ position: "absolute", top: 420, left: 0, width: 1080, transform: `translateY(${(1 - s) * 80}px)`, opacity: s }}>
+        <div style={{ width: 1080, height: 608, background: "#000", boxShadow: "0 22px 50px rgba(46,36,51,0.3)" }}>
+          <GameVideo src={staticFile(m.clip)} startFrom={Math.round(m.start * 30)} style={{ width: "100%", height: "100%", objectFit: "contain" }} />
         </div>
-        <div style={{ fontFamily: FONT.serif, fontStyle: "italic", fontSize: 40, color: INK, marginTop: 16 }}>mood : {m.mood}</div>
+        <div style={{ height: 8, background: "rgba(46,36,51,0.15)" }}>
+          <div style={{ width: `${Math.min(100, (f / STEP) * 100)}%`, height: "100%", background: "#9B6BE0" }} />
+        </div>
       </div>
-      <Tape x={420} y={372} r={-4 + rot} />
-      <div style={{ position: "absolute", top: 1150, width: "100%", textAlign: "center", padding: "0 90px" }}>
+      <div style={{ position: "absolute", top: 1110, width: "100%", textAlign: "center", padding: "0 90px" }}>
         <RiseWords text={m.mood} start={8} stagger={2} style={{ fontFamily: FONT.serif, fontStyle: "italic", fontSize: 110, color: INK, lineHeight: 1.02 }} />
         <RiseWords text={m.sub} start={16} stagger={2} style={{ fontFamily: FONT.body, fontWeight: 700, fontSize: 44, color: "#6B5873", lineHeight: 1.25, marginTop: 14 }} />
       </div>
@@ -69,8 +70,8 @@ const Chute: React.FC = () => (
   <AbsoluteFill>
     <Paper tint="#EADFFF" />
     <div style={{ position: "absolute", top: 600, width: "100%", textAlign: "center", padding: "0 80px" }}>
-      <RiseWords text="et toi, c'est quoi ton mood ce soir ?" start={2} stagger={2} style={{ fontFamily: FONT.display, fontWeight: 800, fontSize: 70, color: INK, letterSpacing: -2, lineHeight: 1.1 }} />
-      <RiseWords text="viens le partager en voc" start={14} stagger={2} style={{ fontFamily: FONT.serif, fontStyle: "italic", fontSize: 86, color: "#9B6BE0", lineHeight: 1.1, marginTop: 18 }} />
+      <RiseWords text="et toi," start={2} stagger={2} style={{ fontFamily: FONT.serif, fontStyle: "italic", fontSize: 110, color: "#9B6BE0", lineHeight: 1.05 }} />
+      <RiseWords text="c'est quoi ton mood ce soir ?" start={8} stagger={2} style={{ fontFamily: FONT.display, fontWeight: 800, fontSize: 80, color: INK, letterSpacing: -2, lineHeight: 1.1, marginTop: 10 }} />
     </div>
   </AbsoluteFill>
 );
@@ -89,7 +90,7 @@ export const MoodVideo: React.FC = () => (
       <Chute />
     </Sequence>
     <Sequence from={540} durationInFrames={90}>
-      <EndCard big="partage ton mood" small="communauté gaming 100% filles" />
+      <EndCard big="rejoins-nous" small="communauté gaming 100% filles" />
     </Sequence>
     {MOODS.map((_, i) => (
       <Flash key={i} at={90 + i * STEP} strength={0.3} color="#fff" />
