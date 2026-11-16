@@ -27,7 +27,13 @@ export const GameVideo: React.FC<React.ComponentProps<typeof OffthreadVideo> & {
   return <OffthreadVideo {...rest} muted={bg || !sound} volume={volume} />;
 };
 
-export function withSafeZone<P extends object>(Inner: React.ComponentType<P>): React.FC<P> {
+export function withSafeZone<P extends object>(Inner: React.ComponentType<P>, opts: { full?: boolean } = {}): React.FC<P> {
+  // full: no shrink (asked by the user from nov. 2026 on) — the frame stays 1080x1920,
+  // the video itself keeps text smaller and away from the edges instead.
+  if (opts.full) {
+    const Full: React.FC<P> = (props) => <Inner {...props} />;
+    return Full;
+  }
   const Wrapped: React.FC<P> = (props) => (
     <AbsoluteFill style={{ background: "#0E0B14" }}>
       <Muted.Provider value>

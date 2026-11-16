@@ -21,11 +21,12 @@ Attirer des **filles gameuses actives sur Discord** pour qu'elles rejoignent le 
 - **Pas d'emojis** dans les vidéos : utiliser des **memes** (chats, Among Us, réactions girly) à la place.
 - **Logo RGC obligatoire** + filigrane @rivalsgirlsclub qui bouge (anti-repost). Nouvelles vidéos : `<Shell brand="center">` → logo + nom **centrés en haut** (police Cormorant Garamond italique) et filigrane **centré dès le début** (dérive seulement de haut en bas). Garder le haut (y < 300) libre pour ce logo.
 - **Chaque TikTok doit avoir son propre look** (ne pas refaire la même DA à chaque fois).
+- Mélanger **clips + motion design** marche bien (animations par-dessus le gameplay).
 - Persos/jeux : utiliser des **captures in-game / rendus officiels du jeu**, jamais des fan arts (pas l'autorisation des artistes).
 - **Ne JAMAIS réutiliser un visuel déjà utilisé dans une autre vidéo** (clips, images, memes). Chercher des visuels neufs (Pinterest…) plutôt que reprendre l'existant, même si ça prend plus de temps. Vérifier avant le rendu : `python3 tools/check_reuse.py src/videos/<Nouvelle>.tsx` (dans `promo/`).
 - **Laisser le temps de lire** : ~3 s minimum par écran de texte.
 - **Pas de grandes bandes noires** (haut/bas) : TikTok les recadre et ça zoome. Toujours remplir les 1080×1920 (fond flouté, couleur…).
-- **Zone sûre** : sur les téléphones récents TikTok rogne ~100 px de chaque côté. C'est géré **globalement** par `withSafeZone` (`promo/src/safe.tsx`) : chaque nouvelle composition doit être enveloppée avec `withSafeZone(...)` dans `Root.tsx`, et utiliser `<SfxAudio>` au lieu de `<Audio>`. Vérifier en simulant : `ffmpeg -i out/x.mp4 -vf crop=880:1920:100:0 …`.
+- **Zone sûre / format** (mis à jour) : l'utilisatrice préfère **ne plus réduire le cadre**. Nouvelles compositions : `withSafeZone(X, { full: true })` dans `Root.tsx` (plein cadre, pas de bord flouté) + **police plus petite** (titres ~48–70 px au lieu de 60–90) et textes/éléments importants entre x≈120 et x≈960. Même si TikTok zoome un peu, ce n'est pas grave. Toujours utiliser `<SfxAudio>` au lieu de `<Audio>`. Vérifier en simulant : `ffmpeg -i out/x.mp4 -vf crop=880:1920:100:0 …`.
 - Le lien du serveur est **en commentaire** (pas « lien en bio », pas « dis-le en com »).
 - Ne jamais inventer : pas de faux chiffres, faux témoignages ou fausses captures du serveur.
 - Infos à ne PAS dire : nombre de membres, « events chaque semaine » (dire « chaque mois »), « embrouilles », « on cherche des bavardes », « tu dis bonjour en arrivant ».
@@ -39,6 +40,6 @@ Logo papillon chrome lilas (`promo/public/brand/logo-rgc.png`). Serveur au style
 ## Technique
 - Projet Remotion dans `promo/` (voir `promo/README.md`). Rendu : `npx remotion render <Composition> out/<nom>.mp4`.
 - Bruitages synthétisés : `promo/tools/sfxlib.py`, `make_sfx.py`, `make_sfx_series.py`.
-- Clips lourds du Drive : si les dossiers sont partagés « tous les utilisateurs avec le lien », télécharger via `https://drive.usercontent.google.com/download?id=<ID>&export=download&confirm=t` (hosts autorisés dans l'environnement), puis découper/compresser avec ffmpeg (720p, sans son). Dossiers AMONG US, LOL, SERVEUR : pas partagés par lien (seulement les petits fichiers via le connecteur).
+- Clips lourds du Drive : si les dossiers sont partagés « tous les utilisateurs avec le lien », télécharger via `https://drive.usercontent.google.com/download?id=<ID>&export=download&confirm=t` (hosts autorisés dans l'environnement), puis découper/compresser avec ffmpeg (720p, en gardant le son).
 - Drive du serveur (connecteur Google Drive) : dossiers par jeu + SERVEUR. Le connecteur ne télécharge pas les fichiers > ~7 Mo (limite réelle, base64) → utiliser les plus petits, sinon trouver une alternative (images de gameplay sur Pinterest, etc.).
 - Pinterest est autorisé dans l'environnement : recherche via Playwright (`pin.js`-style, user-agent navigateur), images sur `i.pinimg.com`.

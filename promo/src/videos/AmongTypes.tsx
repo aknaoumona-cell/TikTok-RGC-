@@ -1,12 +1,12 @@
 /**
  * TikTok #18 — « Among Us entre filles : t'es laquelle ? »
- * LOOK : ÉCRAN DE VOTE PASTEL — fond lilas clair, tablette arrondie avec une scène en motion design (pas de gameplay,
- * pas de point de vue de joueuse), carte de vote qui se coche.
+ * LOOK : ÉCRAN DE VOTE PASTEL — fond lilas clair, tablette arrondie : mélange clips + motion design
+ * (curseur, bulles, barre de tâches par-dessus le gameplay ; scènes 2 et 4 100% motion), carte de vote qui se coche.
  * 0–90 accroche · 90–510 4 types × 105 · 510–600 carte de fin
  */
 import React from "react";
 import { AbsoluteFill, Sequence, interpolate, staticFile, useCurrentFrame } from "remotion";
-import { SfxAudio } from "../safe";
+import { GameVideo, SfxAudio } from "../safe";
 import { FONT, Flash, RiseWords, clamp, easeOut, useSpring } from "../components";
 import { EndCard, Meme, Shell } from "../memes";
 
@@ -67,26 +67,22 @@ const Bubble: React.FC<{ text: string; at: number; x: number; y: number; r?: num
   );
 };
 
-/** 1 — random vote: a pointer hops between beans, then lands at random */
+/** 1 — random vote: real gameplay + a cursor hopping at random over it */
 const SceneVote: React.FC = () => {
   const f = useCurrentFrame();
-  const spots = [[160, 170], [400, 170], [640, 170], [160, 340], [400, 340], [640, 340]];
-  const hop = Math.min(spots.length - 1, Math.floor(f / 6) % spots.length);
+  const spots = [[150, 150], [420, 120], [640, 200], [200, 330], [470, 300], [650, 360]];
   const settled = f > 52;
-  const [px, py] = settled ? spots[4] : spots[(hop * 5 + 2) % spots.length];
+  const [px, py] = settled ? spots[4] : spots[(Math.floor(f / 6) * 5 + 2) % spots.length];
   return (
-    <Space>
-      {spots.map(([x, y], k) => (
-        <div key={k} style={{ position: "absolute", left: x - 90, top: y - 60, width: 180, height: 120, borderRadius: 20, background: settled && k === 4 ? "#FFE3EC" : "rgba(255,255,255,0.9)", border: `4px solid ${INK}`, display: "flex", alignItems: "center", justifyContent: "center" }}>
-          <Bean c={[...COLS, "#FFD27A", "#FF9F7A"][k]} size={70} />
-        </div>
-      ))}
-      <svg width="70" height="80" viewBox="0 0 24 28" style={{ position: "absolute", left: px + 30, top: py + 10, filter: "drop-shadow(0 4px 0 rgba(0,0,0,0.4))" }}>
+    <AbsoluteFill>
+      <GameVideo src={staticFile("clips/among-cafet.mp4")} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+      <AbsoluteFill style={{ background: "rgba(12,10,34,0.25)" }} />
+      <svg width="70" height="80" viewBox="0 0 24 28" style={{ position: "absolute", left: px, top: py, filter: "drop-shadow(0 4px 0 rgba(0,0,0,0.5))" }}>
         <path d="M3 2l17 11-8 1.5 4.5 9-3 1.5-4.5-9L3 21z" fill="#fff" stroke={INK} strokeWidth="2" strokeLinejoin="round" />
       </svg>
-      <Bubble text="am stram gram…" at={4} x={400} y={438} />
-      {settled && <Bubble text="VOTÉ" at={53} x={400} y={255} r={-6} big />}
-    </Space>
+      <Bubble text="am stram gram…" at={4} x={400} y={430} />
+      {settled && <Bubble text="VOTÉ" at={53} x={px + 20} y={py - 30} r={-6} big />}
+    </AbsoluteFill>
   );
 };
 
@@ -108,34 +104,32 @@ const SceneDefend: React.FC = () => {
   );
 };
 
-/** 3 — task queen: progress bar fills, tasks tick while chat bubbles fly */
+/** 3 — task queen: real gameplay (wires task) + progress bar and checklist overlay */
 const SceneTasks: React.FC = () => {
   const f = useCurrentFrame();
   const fill = interpolate(f, [4, 80], [0.08, 1], clamp);
-  const tasks = ["réparer les câbles", "vider les poubelles", "scanner la carte", "télécharger les données"];
+  const tasks = ["câbles", "poubelles", "carte", "données"];
   return (
-    <Space tint="#13304A">
-      <div style={{ position: "absolute", left: 50, top: 40, width: 700, height: 44, borderRadius: 12, background: "rgba(255,255,255,0.15)", border: "4px solid #fff", overflow: "hidden" }}>
+    <AbsoluteFill>
+      <GameVideo src={staticFile("clips/among-taches.mp4")} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+      <div style={{ position: "absolute", left: 40, top: 30, width: 720, height: 40, borderRadius: 12, background: "rgba(12,10,34,0.7)", border: "4px solid #fff", overflow: "hidden" }}>
         <div style={{ width: `${fill * 100}%`, height: "100%", background: "#7CE0A0" }} />
       </div>
-      <div style={{ position: "absolute", left: 60, top: 110, display: "flex", flexDirection: "column", gap: 14 }}>
+      <div style={{ position: "absolute", right: 30, top: 96, padding: "14px 18px", borderRadius: 18, background: "rgba(12,10,34,0.78)", display: "flex", flexDirection: "column", gap: 10 }}>
         {tasks.map((t, k) => {
           const done = f > 14 + k * 18;
           return (
-            <div key={t} style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: FONT.body, fontWeight: 700, fontSize: 30, color: done ? "#7CE0A0" : "#fff" }}>
-              <div style={{ width: 34, height: 34, borderRadius: 9, border: "3px solid #fff", background: done ? "#7CE0A0" : "transparent" }} />
+            <div key={t} style={{ display: "flex", alignItems: "center", gap: 10, fontFamily: FONT.body, fontWeight: 700, fontSize: 26, color: done ? "#7CE0A0" : "#fff" }}>
+              <div style={{ width: 26, height: 26, borderRadius: 7, border: "3px solid #fff", background: done ? "#7CE0A0" : "transparent" }} />
               <span style={{ textDecoration: done ? "line-through" : "none" }}>{t}</span>
             </div>
           );
         })}
       </div>
-      <div style={{ position: "absolute", left: 590, top: 250 }}>
-        <Bean c={COLS[2]} size={130} />
-      </div>
-      <Bubble text="mdrrr" at={20} x={600} y={150} r={6} />
-      <Bubble text="attends quoi ?" at={44} x={560} y={420} r={-4} />
-      <Bubble text="t'as vu son skin" at={64} x={300} y={440} r={3} />
-    </Space>
+      <Bubble text="mdrrr" at={20} x={150} y={150} r={-6} />
+      <Bubble text="attends quoi ?" at={44} x={220} y={420} r={-4} />
+      <Bubble text="t'as vu son skin" at={64} x={560} y={430} r={3} />
+    </AbsoluteFill>
   );
 };
 
@@ -165,7 +159,7 @@ const SceneImpostor: React.FC = () => {
 const SCENES = [SceneVote, SceneDefend, SceneTasks, SceneImpostor];
 
 const Ballot: React.FC<{ active: number; lf: number }> = ({ active, lf }) => (
-  <div style={{ position: "absolute", top: 1130, left: 90, right: 90, background: "#fff", borderRadius: 30, padding: "18px 22px", border: `4px solid ${INK}`, boxShadow: "0 16px 0 rgba(42,33,64,0.18)" }}>
+  <div style={{ position: "absolute", top: 1130, left: 130, right: 130, background: "#fff", borderRadius: 30, padding: "18px 22px", border: `4px solid ${INK}`, boxShadow: "0 16px 0 rgba(42,33,64,0.18)" }}>
     {TYPES.map((t, i) => {
       const on = i === active;
       const done = i < active;
@@ -173,7 +167,7 @@ const Ballot: React.FC<{ active: number; lf: number }> = ({ active, lf }) => (
       return (
         <div key={i} style={{ display: "flex", alignItems: "center", gap: 18, padding: "10px 12px", borderRadius: 18, background: on ? `${COLS[i]}55` : "transparent", opacity: on || done ? 1 : 0.45 }}>
           <Bean c={COLS[i]} size={46} />
-          <div style={{ flex: 1, fontFamily: FONT.body, fontWeight: 700, fontSize: 34, color: INK }}>{t.t}</div>
+          <div style={{ flex: 1, fontFamily: FONT.body, fontWeight: 700, fontSize: 30, color: INK }}>{t.t}</div>
           <div style={{ width: 52, height: 52, borderRadius: 14, border: `3px solid ${INK}`, display: "flex", alignItems: "center", justifyContent: "center", background: check ? "#7CE0A0" : "#fff" }}>
             <svg width="30" height="30" viewBox="0 0 24 24" style={{ transform: `scale(${check})` }}>
               <path d="M5 12.5l4.5 4.5L19 7.5" stroke={INK} strokeWidth="3.2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
@@ -194,9 +188,9 @@ const Types: React.FC = () => {
   return (
     <AbsoluteFill>
       <Bg />
-      <div key={`h${i}`} style={{ position: "absolute", top: 320, width: "100%", textAlign: "center", padding: "0 80px" }}>
-        <RiseWords text={t.t} start={i * STEP + 2} stagger={2} style={{ fontFamily: FONT.display, fontWeight: 800, fontSize: 58, color: INK, letterSpacing: -1.5, lineHeight: 1.08 }} />
-        <RiseWords text={t.s} start={i * STEP + 10} stagger={2} style={{ fontFamily: FONT.serif, fontStyle: "italic", fontSize: 50, color: "#8A5CC9", marginTop: 6 }} />
+      <div key={`h${i}`} style={{ position: "absolute", top: 320, width: "100%", textAlign: "center", padding: "0 130px" }}>
+        <RiseWords text={t.t} start={i * STEP + 2} stagger={2} style={{ fontFamily: FONT.display, fontWeight: 800, fontSize: 48, color: INK, letterSpacing: -1.2, lineHeight: 1.08 }} />
+        <RiseWords text={t.s} start={i * STEP + 10} stagger={2} style={{ fontFamily: FONT.serif, fontStyle: "italic", fontSize: 42, color: "#8A5CC9", marginTop: 6 }} />
       </div>
       <div style={{ position: "absolute", top: 560, left: 140, width: 800, height: 480, borderRadius: 36, overflow: "hidden", border: `6px solid ${INK}`, boxShadow: `0 14px 0 ${COLS[i]}`, transform: `rotate(${(1 - s) * -4}deg) scale(${0.92 + 0.08 * s})` }}>
         {SCENES.map((Scene, k) => (
@@ -206,7 +200,7 @@ const Types: React.FC = () => {
         ))}
       </div>
       <Ballot active={i} lf={lf} />
-      <Meme key={`m${i}`} src={t.meme} at={i * STEP + 26} until={(i + 1) * STEP} x={i % 2 ? 250 : 830} y={1640} w={260} rotate={i % 2 ? -10 : 10} />
+      <Meme key={`m${i}`} src={t.meme} at={i * STEP + 26} until={(i + 1) * STEP} x={i % 2 ? 300 : 780} y={1640} w={240} rotate={i % 2 ? -10 : 10} />
     </AbsoluteFill>
   );
 };
@@ -215,8 +209,8 @@ const Hook: React.FC = () => (
   <AbsoluteFill>
     <Bg />
     <div style={{ position: "absolute", top: 520, width: "100%", textAlign: "center", padding: "0 80px" }}>
-      <RiseWords text="among us entre filles" start={2} stagger={2} style={{ fontFamily: FONT.display, fontWeight: 800, fontSize: 82, color: INK, letterSpacing: -3, lineHeight: 1.05 }} />
-      <RiseWords text="t'es laquelle ?" start={12} stagger={2} style={{ fontFamily: FONT.serif, fontStyle: "italic", fontSize: 140, color: "#8A5CC9", lineHeight: 1.1, marginTop: 10 }} />
+      <RiseWords text="among us entre filles" start={2} stagger={2} style={{ fontFamily: FONT.display, fontWeight: 800, fontSize: 68, color: INK, letterSpacing: -2.5, lineHeight: 1.05 }} />
+      <RiseWords text="t'es laquelle ?" start={12} stagger={2} style={{ fontFamily: FONT.serif, fontStyle: "italic", fontSize: 116, color: "#8A5CC9", lineHeight: 1.1, marginTop: 10 }} />
     </div>
     <div style={{ position: "absolute", top: 1060, width: "100%", display: "flex", justifyContent: "center", gap: 30 }}>
       {COLS.map((c, i) => (

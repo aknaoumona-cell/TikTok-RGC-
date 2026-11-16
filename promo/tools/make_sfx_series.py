@@ -413,3 +413,17 @@ T.place(whoosh(0.4), 450, 0.4)
 T.place(ping(), 470, 0.5)
 end_card(T, 540)
 T.save(os.path.join(A, "sfx-mood.wav"))
+
+# ---------- trend my moon my man (420) — light, the trend sound is added in TikTok ----------
+T = Track(14.0)
+T.place(shimmer(1.4, 2000), 2, 0.35)
+T.place(whoosh(0.5), 105, 0.4)
+T.place(riser(0.5), 105, 0.5)
+T.place(impact(), 120, 0.4)
+T.place(shimmer(1.6, 1800), 120, 0.5)
+T.place(confetti(), 138, 0.35)
+for i in range(5):
+    T.place(pop(1.0 + i * 0.08), 120 + 48 + i * 22, 0.35)
+T.place(rec_beep(), 120 + 48 + 5 * 22 + 2, 0.4)
+end_card(T, 330)
+T.save(os.path.join(A, "sfx-mymoon.wav"))

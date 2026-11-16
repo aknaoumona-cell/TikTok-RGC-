@@ -25,6 +25,7 @@ import { COEUR_TOTAL, CoeurVideo } from "./videos/Coeur";
 import { SLIDER_TOTAL, SliderVideo } from "./videos/Slider";
 import { JURY_TOTAL, JuryVideo } from "./videos/Jury";
 import { MOOD_TOTAL, MoodVideo } from "./videos/Mood";
+import { MYMOON_TOTAL, MyMoonVideo } from "./videos/MyMoon";
 
 const common = { fps: FPS, width: WIDTH, height: HEIGHT };
 
@@ -47,12 +48,13 @@ const S = {
   VerifVideo: withSafeZone(VerifVideo),
   AstroVideo: withSafeZone(AstroVideo),
   DisFaisVideo: withSafeZone(DisFaisVideo),
-  AmongVideo: withSafeZone(AmongVideo),
+  AmongVideo: withSafeZone(AmongVideo, { full: true }),
   RoueVideo: withSafeZone(RoueVideo),
   CoeurVideo: withSafeZone(CoeurVideo),
   SliderVideo: withSafeZone(SliderVideo),
   JuryVideo: withSafeZone(JuryVideo),
   MoodVideo: withSafeZone(MoodVideo),
+  MyMoonVideo: withSafeZone(MyMoonVideo, { full: true }),
 };
 
 export const Root: React.FC = () => (
@@ -80,5 +82,6 @@ export const Root: React.FC = () => (
     <Composition id="RGCSlider" component={S.SliderVideo} durationInFrames={SLIDER_TOTAL} {...common} />
     <Composition id="RGCJury" component={S.JuryVideo} durationInFrames={JURY_TOTAL} {...common} />
     <Composition id="RGCMood" component={S.MoodVideo} durationInFrames={MOOD_TOTAL} {...common} />
+    <Composition id="RGCMyMoon" component={S.MyMoonVideo} durationInFrames={MYMOON_TOTAL} {...common} />
   </>
 );
