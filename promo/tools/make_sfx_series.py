@@ -415,7 +415,7 @@ end_card(T, 540)
 T.save(os.path.join(A, "sfx-mood.wav"))
 
 # ---------- trend my moon my man (490) — light, the trend sound is added in TikTok ----------
-T = Track(16.5)
+T = Track(17.5)
 for fr in (40, 80):
     T.place(shutter(), fr, 0.25)
 T.place(whoosh(0.6, up=False), 118, 0.5)  # page turn right -> left
@@ -424,13 +424,13 @@ M = 142
 T.place(shimmer(1.4, 1800), M, 0.35)
 for k in range(10):
     T.place(tick(), M + 14 + k * 3, 0.18)
-for t in (64, 128, 186):
-    T.place(mute_click(), M + t - 14, 0.5)
-    T.place(whoosh(0.22), M + t, 0.25)
-for i in range(12):
-    T.place(pop(1.0 + (i % 4) * 0.08), M + 64 + 6 + int(i * 2.5), 0.18)
-T.place(ding(), M + 128 + 30, 0.3)
-T.place(join_tone(), M + 186 + 8, 0.4)
-T.place(rec_beep(), M + 186 + 14, 0.3)
-end_card(T, 400)
+for t in (64, 150, 212):
+    T.place(mute_click(), M + t - 14 - 16, 0.5)
+    T.place(whoosh(0.22), M + t - 16, 0.25)
+for i in range(18):
+    T.place(pop(1.0 + (i % 4) * 0.08), M + 64 - 16 + 6 + int(i * 1.8), 0.15)
+T.place(ding(), M + 150 - 16 + 30, 0.3)
+T.place(join_tone(), M + 212 - 16 + 8, 0.4)
+T.place(rec_beep(), M + 212 - 16 + 14, 0.3)
+end_card(T, 432)
 T.save(os.path.join(A, "sfx-mymoon.wav"))

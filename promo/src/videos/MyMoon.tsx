@@ -6,7 +6,7 @@
  *    un curseur clique sur #rôles (rôles jeux), #événements (soirée Overwatch), puis Vocal (REC).
  *    Noms de salons/rôles/event repris des vraies captures du serveur ; aucun pseudo, aucun chiffre.
  * Plein cadre, textes petits, éléments entre x≈120 et x≈960.
- * 0–120 slides · 120–142 page tournée · 142–400 serveur animé · 400–490 carte de fin
+ * 0–120 slides · 120–142 page tournée · 142–432 serveur animé · 432–522 carte de fin
  */
 import React from "react";
 import { AbsoluteFill, Easing, Freeze, Img, Sequence, interpolate, staticFile, useCurrentFrame } from "remotion";
@@ -14,7 +14,7 @@ import { GameVideo, SfxAudio } from "../safe";
 import { FONT, Flash, clamp, easeOut, useSpring } from "../components";
 import { EndCard, Meme, Shell } from "../memes";
 
-export const MYMOON_TOTAL = 490;
+export const MYMOON_TOTAL = 522;
 const PEARL = "#F4ECFF";
 const LILAC = "#B79BFF";
 const UI_BG = "#17141F";
@@ -63,11 +63,12 @@ const Slideshow: React.FC = () => (
 
 /* ---------------- 3) le serveur animé ---------------- */
 const CATS: { cat: string; items: { name: string; voice?: boolean }[] }[] = [
-  { cat: "BIENVENUE", items: [{ name: "règlement" }, { name: "rôles" }, { name: "actualités" }] },
-  { cat: "COMMUNAUTÉ", items: [{ name: "événements" }, { name: "level" }, { name: "no-mic" }] },
-  { cat: "VOCAUX", items: [{ name: "Vocal", voice: true }] },
+  { cat: "BIENVENUE", items: [{ name: "règlement" }, { name: "rôles" }, { name: "actualités" }, { name: "événements" }] },
+  { cat: "COMMUNAUTÉ", items: [{ name: "level" }, { name: "no-mic" }] },
+  { cat: "STARK SOUND & CINEMA", items: [{ name: "Cinéverse – MCU+", voice: true }] },
+  { cat: "VOCAUX", items: [{ name: "Vocal", voice: true }, { name: "PRIVATE ROOM", voice: true }] },
 ];
-const ROLES = ["Call of Duty", "Dead by Daylight", "Fortnite", "Marvel Rivals", "Overwatch", "Roblox", "Valorant", "Among us", "Minecraft", "League of Legends", "Aniimo", "Disney Dreamlight Valley"];
+const ROLES = ["Call of Duty", "Dead by Daylight", "Fortnite", "Marvel Rivals", "Overwatch", "Roblox", "Valorant", "Among us", "Minecraft", "League of Legends", "Aniimo", "Disney Dreamlight Valley", "GTA 6", "Lethal Company", "Phasmophobia", "Les Sims 4", "Stardew Valley", "Rocket League"];
 const ROLE_COLS = ["#F9C9D6", "#DCCBFF", "#C8F0DF", "#FBE7A9", "#FFD3BA", "#C9E4FF"];
 
 // local timeline of the UI (frames inside ManPart). The server part starts UI_OFFSET frames in,
@@ -75,8 +76,8 @@ const ROLE_COLS = ["#F9C9D6", "#DCCBFF", "#C8F0DF", "#FBE7A9", "#FFD3BA", "#C9E4
 const UI_OFFSET = 16;
 const T_LIST = 14; // channels cascade
 const T_ROLES = 64; // click #rôles
-const T_EVENT = 128; // click #événements
-const T_VOICE = 186; // click Vocal
+const T_EVENT = 150; // click #événements
+const T_VOICE = 212; // click Vocal
 
 const Hash: React.FC = () => <span style={{ fontFamily: FONT.body, fontWeight: 700, fontSize: 30, color: MUTED, width: 26, display: "inline-block" }}>#</span>;
 const Speaker: React.FC = () => (
@@ -109,9 +110,9 @@ const LIST_TOP = 230; // inside panel
 const Cursor: React.FC<{ f: number }> = ({ f }) => {
   const pts: [number, number, number][] = [
     [0, 700, 1100],
-    [T_ROLES - 14, 420, LIST_TOP + rowY("rôles") + 30],
-    [T_EVENT - 14, 440, LIST_TOP + rowY("événements") + 30],
-    [T_VOICE - 14, 400, LIST_TOP + rowY("Vocal") + 30],
+    [T_ROLES - 14, 420, LIST_TOP + rowY("rôles") - 30],
+    [T_EVENT - 14, 440, LIST_TOP + rowY("événements") - 30],
+    [T_VOICE - 14, 400, LIST_TOP + rowY("Vocal") - 30],
   ];
   let x = pts[0][1];
   let y = pts[0][2];
@@ -188,7 +189,7 @@ const ServerUI: React.FC = () => {
             <div key={r.idx} style={{ position: "absolute", top: r.y, left: 10, width: 560, height: 54, borderRadius: 14, display: "flex", alignItems: "center", gap: 8, paddingLeft: 14, background: on ? "rgba(183,155,255,0.18)" : "transparent", fontFamily: FONT.body, fontWeight: 600, fontSize: 32, color: on ? PEARL : "rgba(244,236,255,0.8)", opacity: p, transform: `translateX(${(1 - p) * 30}px)` }}>
               {r.voice ? <Speaker /> : <Hash />}
               {r.name}
-              {r.voice && <span style={{ marginLeft: 10, fontFamily: FONT.mono, fontWeight: 700, fontSize: 18, color: "#fff", background: "#ED4245", padding: "3px 10px", borderRadius: 6, opacity: Math.floor(f / 12) % 2 ? 0.55 : 1 }}>REC</span>}
+              {r.name === "Vocal" && <span style={{ marginLeft: 10, fontFamily: FONT.mono, fontWeight: 700, fontSize: 18, color: "#fff", background: "#ED4245", padding: "3px 10px", borderRadius: 6, opacity: Math.floor(f / 12) % 2 ? 0.55 : 1 }}>REC</span>}
             </div>
           );
         })}
@@ -198,9 +199,9 @@ const ServerUI: React.FC = () => {
       <Card at={T_ROLES} until={T_EVENT - 4} title="jeux : rôles" icon={<Hash />}>
         <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
           {ROLES.map((r, i) => {
-            const p = interpolate(f - T_ROLES - 6 - i * 2.5, [0, 7], [0, 1], { ...clamp, easing: Easing.out(Easing.back(1.6)) });
+            const p = interpolate(f - T_ROLES - 6 - i * 1.8, [0, 7], [0, 1], { ...clamp, easing: Easing.out(Easing.back(1.6)) });
             return (
-              <span key={r} style={{ fontFamily: FONT.body, fontWeight: 700, fontSize: 26, color: "#1A1424", background: ROLE_COLS[i % ROLE_COLS.length], padding: "10px 18px", borderRadius: 999, transform: `scale(${p})`, opacity: p }}>
+              <span key={r} style={{ fontFamily: FONT.body, fontWeight: 700, fontSize: 24, color: "#1A1424", background: ROLE_COLS[i % ROLE_COLS.length], padding: "9px 16px", borderRadius: 999, transform: `scale(${p})`, opacity: p }}>
                 @{r}
               </span>
             );
@@ -226,7 +227,7 @@ const ServerUI: React.FC = () => {
       </Card>
 
       {/* Vocal */}
-      <Card at={T_VOICE} until={400} title="Vocal" icon={<Speaker />}>
+      <Card at={T_VOICE} until={600} title="Vocal" icon={<Speaker />}>
         <div style={{ display: "flex", flexWrap: "wrap", gap: 18, justifyContent: "center", marginTop: 10 }}>
           {ROLE_COLS.map((c, i) => {
             const p = interpolate(f - T_VOICE - 8 - i * 6, [0, 8], [0, 1], { ...clamp, easing: Easing.out(Easing.back(1.8)) });
@@ -298,24 +299,24 @@ const PageTurn: React.FC = () => {
 };
 
 export const MyMoonVideo: React.FC = () => (
-  <Shell hideBugFrom={400} brand="center">
+  <Shell hideBugFrom={432} brand="center">
     <Sequence durationInFrames={120}>
       <Slideshow />
     </Sequence>
     <Sequence from={120} durationInFrames={22}>
       <PageTurn />
     </Sequence>
-    <Sequence from={142} durationInFrames={258}>
+    <Sequence from={142} durationInFrames={290}>
       <Sequence from={-UI_OFFSET} layout="none">
         <ManPart />
       </Sequence>
     </Sequence>
-    <Sequence from={400} durationInFrames={90}>
+    <Sequence from={432} durationInFrames={90}>
       <EndCard big="ton maaan aussi ?" small="serveur discord 100% filles" />
     </Sequence>
     <Flash at={40} strength={0.15} />
     <Flash at={80} strength={0.15} />
-    <Flash at={400} strength={0.6} />
+    <Flash at={432} strength={0.6} />
     <SfxAudio src={staticFile("audio/sfx-mymoon.wav")} />
   </Shell>
 );
