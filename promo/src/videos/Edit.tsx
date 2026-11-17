@@ -36,9 +36,9 @@ const COD: ECfg = {
     { src: "g/e11", dur: 49, rate: 0.6, start: 1 },
   ],
 };
-const VALO: ECfg = { dir: "m", game: "VALORANT", end: "une team valo t'attend", shots: rhythm("m", ["v06", "v02", "v12", "v05", "v08", "v03", "v07", "v09", "v13", "v04", "v10", "v01", "v11"]) };
-const OW: ECfg = { dir: "m", game: "OVERWATCH", end: "une team overwatch t'attend", shots: rhythm("m", ["o09", "o01", "o05", "o11", "o02", "o04", "o10", "o03", "o06", "o13", "o07", "o12", "o08"]) };
-const MR: ECfg = { dir: "m", game: "MARVEL RIVALS", end: "une team rivals t'attend", shots: rhythm("m", ["y03", "y01", "x05", "y04", "y11", "x07", "y02", "x06", "y05", "y08", "x08", "y07", "y06"]) };
+const VALO: ECfg = { dir: "m", game: "VALORANT", end: "une team valo t'attend", shots: rhythm("m", ["v06", "v02", "v12", "v05", "v08", "v03", "v09", "v13", "v04", "v10", "v01", "v11"]) };
+const OW: ECfg = { dir: "m", game: "OVERWATCH", end: "une team overwatch t'attend", shots: rhythm("m", ["o09", "o01", "o05", "o02", "o04", "o12", "o03", "o06", "o07"]) };
+const MR: ECfg = { dir: "m", game: "MARVEL RIVALS", end: "une team rivals t'attend", shots: rhythm("m", ["y10", "y01", "x05", "y15", "y12", "y02", "x06", "y05", "y16", "y06", "y19"]) };
 
 const sum = (c: ECfg) => c.shots.reduce((a, s) => a + s.dur, 0);
 const cuts = (c: ECfg) => c.shots.reduce<number[]>((acc, s, i) => [...acc, i ? acc[i - 1] + c.shots[i - 1].dur : 0], []);
@@ -101,8 +101,8 @@ const makeEdit = (c: ECfg, sfx: string): React.FC => {
 export const EDIT_TOTAL = sum(COD) + 90;
 export const EditVideo = makeEdit(COD, "audio/sfx-edit.wav");
 export const EDIT_VALO_TOTAL = sum(VALO) + 90;
-export const EditValo = makeEdit(VALO, "audio/sfx-edit.wav");
+export const EditValo = makeEdit(VALO, "audio/sfx-edit-12.wav");
 export const EDIT_OW_TOTAL = sum(OW) + 90;
-export const EditOw = makeEdit(OW, "audio/sfx-edit.wav");
+export const EditOw = makeEdit(OW, "audio/sfx-edit-9.wav");
 export const EDIT_MR_TOTAL = sum(MR) + 90;
-export const EditMr = makeEdit(MR, "audio/sfx-edit.wav");
+export const EditMr = makeEdit(MR, "audio/sfx-edit-11.wav");

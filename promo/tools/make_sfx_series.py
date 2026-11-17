@@ -473,3 +473,16 @@ T.place(ping(), 430, 0.4)
 end_card(T, 510)
 T.save(os.path.join(A, "sfx-camp.wav"))
 
+
+# ---------- edits Valorant / Overwatch / Marvel Rivals (same rhythm, fewer shots) ----------
+for n in (9, 11, 12):
+    durs = [40, 30, 24, 36, 24, 30, 36, 22, 28, 34, 22, 30, 49][:n]
+    T = Track(sum(durs) / 30 + 3.2)
+    c = 0
+    for i, d in enumerate(durs):
+        if i:
+            T.place(whoosh(0.18, up=False), c - 3, 0.35)
+            T.place(impact(), c, 0.25 if i % 3 != 2 else 0.5)
+        c += d
+    end_card(T, c)
+    T.save(os.path.join(A, f"sfx-edit-{n}.wav"))
