@@ -475,7 +475,7 @@ T.save(os.path.join(A, "sfx-camp.wav"))
 
 
 # ---------- edits Valorant / Overwatch / Marvel Rivals (same rhythm, fewer shots) ----------
-for n in (9, 11, 12):
+for n in (7, 8, 9, 11, 12):
     durs = [40, 30, 24, 36, 24, 30, 36, 22, 28, 34, 22, 30, 49][:n]
     T = Track(sum(durs) / 30 + 3.2)
     c = 0

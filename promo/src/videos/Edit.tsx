@@ -37,8 +37,8 @@ const COD: ECfg = {
   ],
 };
 const VALO: ECfg = { dir: "m", game: "VALORANT", end: "une team valo t'attend", shots: rhythm("m", ["v06", "v02", "v12", "v05", "v08", "v03", "v09", "v13", "v04", "v10", "v01", "v11"]) };
-const OW: ECfg = { dir: "m", game: "OVERWATCH", end: "une team overwatch t'attend", shots: rhythm("m", ["o09", "o01", "o05", "o02", "o04", "o12", "o03", "o06", "o07"]) };
-const MR: ECfg = { dir: "m", game: "MARVEL RIVALS", end: "une team rivals t'attend", shots: rhythm("m", ["y10", "y01", "x05", "y15", "y12", "y02", "x06", "y05", "y16", "y06", "y19"]) };
+const OW: ECfg = { dir: "m", game: "OVERWATCH", end: "une team overwatch t'attend", shots: rhythm("m", ["o09", "o01", "o12", "o03", "w11", "w17", "w12"]) };
+const MR: ECfg = { dir: "m", game: "MARVEL RIVALS", end: "une team rivals t'attend", shots: rhythm("m", ["r05", "r09", "r12", "r04", "r16", "r10", "r06", "r14", "r11", "r17", "r13", "r03", "r18"]) };
 
 const sum = (c: ECfg) => c.shots.reduce((a, s) => a + s.dur, 0);
 const cuts = (c: ECfg) => c.shots.reduce<number[]>((acc, s, i) => [...acc, i ? acc[i - 1] + c.shots[i - 1].dur : 0], []);
@@ -103,6 +103,6 @@ export const EditVideo = makeEdit(COD, "audio/sfx-edit.wav");
 export const EDIT_VALO_TOTAL = sum(VALO) + 90;
 export const EditValo = makeEdit(VALO, "audio/sfx-edit-12.wav");
 export const EDIT_OW_TOTAL = sum(OW) + 90;
-export const EditOw = makeEdit(OW, "audio/sfx-edit-9.wav");
+export const EditOw = makeEdit(OW, "audio/sfx-edit-7.wav");
 export const EDIT_MR_TOTAL = sum(MR) + 90;
-export const EditMr = makeEdit(MR, "audio/sfx-edit-11.wav");
+export const EditMr = makeEdit(MR, "audio/sfx-edit.wav");
