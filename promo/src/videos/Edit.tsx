@@ -1,5 +1,5 @@
 /**
- * TikTok #26 — edit gameplay cinématique (Call of Duty). Presque pas de texte : coupes rythmées, zooms « punch »,
+ * TikTok #26 — edits gameplay cinématiques (COD validé ; même rythme pour Valorant, Overwatch, Marvel Rivals). Presque pas de texte : coupes rythmées, zooms « punch »,
  * accélérations / ralentis, flashs. Le son tendance est ajouté dans TikTok (ici : son du jeu bas + bruitages).
  * Plein écran (1080×1920). 0–405 shots · 405–495 carte de fin
  */
@@ -9,26 +9,41 @@ import { GameVideo, SfxAudio } from "../safe";
 import { FONT, Flash, clamp } from "../components";
 import { EndCard, Shell } from "../memes";
 
-const SHOTS: { src: string; dur: number; rate?: number; start?: number }[] = [
-  { src: "e01", dur: 40, rate: 1 },
-  { src: "e02", dur: 30, rate: 1.4 },
-  { src: "e03", dur: 24, rate: 1.2 },
-  { src: "e04", dur: 36, rate: 0.7 },
-  { src: "e06", dur: 24, rate: 1.3 },
-  { src: "e08", dur: 30, rate: 1 },
-  { src: "e05", dur: 36, rate: 0.6 },
-  { src: "e10", dur: 22, rate: 1.4 },
-  { src: "e07", dur: 28, rate: 1 },
-  { src: "e09", dur: 34, rate: 0.75, start: 1.5 },
-  { src: "e12", dur: 22, rate: 1.5 },
-  { src: "e13", dur: 30, rate: 1 },
-  { src: "e11", dur: 49, rate: 0.6, start: 1 },
-];
-export const EDIT_SHOTS_END = SHOTS.reduce((a, s) => a + s.dur, 0);
-export const EDIT_TOTAL = EDIT_SHOTS_END + 90;
-export const EDIT_CUTS = SHOTS.reduce<number[]>((acc, s, i) => [...acc, i ? acc[i - 1] + SHOTS[i - 1].dur : 0], []);
+type EShot = { src: string; dur: number; rate?: number; start?: number };
+type ECfg = { dir: string; game: string; end: string; shots: EShot[] };
+const RATES = [1, 1.4, 1.2, 0.7, 1.3, 1, 0.6, 1.4, 1, 0.75, 1.5, 1, 0.6];
+const DURS = [40, 30, 24, 36, 24, 30, 36, 22, 28, 34, 22, 30, 49];
+/** same rhythm as the validated COD edit */
+const rhythm = (dir: string, srcs: string[]): EShot[] => srcs.map((src, i) => ({ src: `${dir}/${src}`, dur: DURS[i % DURS.length], rate: RATES[i % RATES.length] }));
 
-const Shot: React.FC<{ s: (typeof SHOTS)[number]; i: number }> = ({ s, i }) => {
+const COD: ECfg = {
+  dir: "g",
+  game: "CALL OF DUTY",
+  end: "une team cod t'attend",
+  shots: [
+    { src: "g/e01", dur: 40, rate: 1 },
+    { src: "g/e02", dur: 30, rate: 1.4 },
+    { src: "g/e03", dur: 24, rate: 1.2 },
+    { src: "g/e04", dur: 36, rate: 0.7 },
+    { src: "g/e06", dur: 24, rate: 1.3 },
+    { src: "g/e08", dur: 30, rate: 1 },
+    { src: "g/e05", dur: 36, rate: 0.6 },
+    { src: "g/e10", dur: 22, rate: 1.4 },
+    { src: "g/e07", dur: 28, rate: 1 },
+    { src: "g/e09", dur: 34, rate: 0.75, start: 1.5 },
+    { src: "g/e12", dur: 22, rate: 1.5 },
+    { src: "g/e13", dur: 30, rate: 1 },
+    { src: "g/e11", dur: 49, rate: 0.6, start: 1 },
+  ],
+};
+const VALO: ECfg = { dir: "m", game: "VALORANT", end: "une team valo t'attend", shots: rhythm("m", ["v06", "v02", "v12", "v05", "v08", "v03", "v07", "v09", "v13", "v04", "v10", "v01", "v11"]) };
+const OW: ECfg = { dir: "m", game: "OVERWATCH", end: "une team overwatch t'attend", shots: rhythm("m", ["o09", "o01", "o05", "o11", "o02", "o04", "o10", "o03", "o06", "o13", "o07", "o12", "o08"]) };
+const MR: ECfg = { dir: "m", game: "MARVEL RIVALS", end: "une team rivals t'attend", shots: rhythm("m", ["y03", "y01", "x05", "y04", "y11", "x07", "y02", "x06", "y05", "y08", "x08", "y07", "y06"]) };
+
+const sum = (c: ECfg) => c.shots.reduce((a, s) => a + s.dur, 0);
+const cuts = (c: ECfg) => c.shots.reduce<number[]>((acc, s, i) => [...acc, i ? acc[i - 1] + c.shots[i - 1].dur : 0], []);
+
+const Shot: React.FC<{ s: EShot; i: number }> = ({ s, i }) => {
   const f = useCurrentFrame();
   const punch = interpolate(f, [0, 8], [1.22, 1.06], { ...clamp, easing: Easing.out(Easing.cubic) });
   const drift = 1 + f * 0.0012;
@@ -37,7 +52,7 @@ const Shot: React.FC<{ s: (typeof SHOTS)[number]; i: number }> = ({ s, i }) => {
   return (
     <AbsoluteFill style={{ background: "#000" }}>
       <AbsoluteFill style={{ transform: `translateX(${shakeX}px) scale(${punch * drift}) rotate(${i % 2 ? 0.6 : -0.6}deg)`, filter: slow ? "contrast(1.12) saturate(1.15)" : "contrast(1.05)" }}>
-        <GameVideo src={staticFile(`clips/g/${s.src}.mp4`)} startFrom={Math.round((s.start ?? 0) * 30)} playbackRate={s.rate ?? 1} volume={0.45} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+        <GameVideo src={staticFile(`clips/${s.src}.mp4`)} startFrom={Math.round((s.start ?? 0) * 30)} playbackRate={s.rate ?? 1} volume={0.45} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
       </AbsoluteFill>
       {/* cinematic vignette + light leak on slow-mo shots */}
       <AbsoluteFill style={{ background: "radial-gradient(75% 60% at 50% 50%, transparent 55%, rgba(0,0,0,0.55))" }} />
@@ -46,34 +61,48 @@ const Shot: React.FC<{ s: (typeof SHOTS)[number]; i: number }> = ({ s, i }) => {
   );
 };
 
-const Intro: React.FC = () => {
+const Intro: React.FC<{ game: string }> = ({ game }) => {
   const f = useCurrentFrame();
   const k = interpolate(f, [4, 14, 32, 40], [0, 1, 1, 0], clamp);
   return (
     <div style={{ position: "absolute", top: 860, width: "100%", textAlign: "center", opacity: k, letterSpacing: interpolate(f, [0, 40], [18, 30]) }}>
-      <div style={{ fontFamily: FONT.mono, fontWeight: 700, fontSize: 34, color: "#fff", textShadow: "0 2px 16px rgba(0,0,0,0.9)" }}>CALL OF DUTY</div>
+      <div style={{ fontFamily: FONT.mono, fontWeight: 700, fontSize: 34, color: "#fff", textShadow: "0 2px 16px rgba(0,0,0,0.9)" }}>{game}</div>
       <div style={{ fontFamily: FONT.elegant, fontStyle: "italic", fontWeight: 700, fontSize: 40, color: "#E7D6FF", letterSpacing: 2 }}>by rivals girls club</div>
     </div>
   );
 };
 
-export const EditVideo: React.FC = () => (
-  <Shell hideBugFrom={EDIT_SHOTS_END} brand="center">
-    {SHOTS.map((s, i) => (
-      <Sequence key={s.src} from={EDIT_CUTS[i]} durationInFrames={s.dur}>
-        <Shot s={s} i={i} />
+const makeEdit = (c: ECfg, sfx: string): React.FC => {
+  const end = sum(c);
+  const cs = cuts(c);
+  const V: React.FC = () => (
+    <Shell hideBugFrom={end} brand="center">
+      {c.shots.map((s, i) => (
+        <Sequence key={s.src} from={cs[i]} durationInFrames={s.dur}>
+          <Shot s={s} i={i} />
+        </Sequence>
+      ))}
+      <Sequence durationInFrames={40}>
+        <Intro game={c.game} />
       </Sequence>
-    ))}
-    <Sequence durationInFrames={40}>
-      <Intro />
-    </Sequence>
-    <Sequence from={EDIT_SHOTS_END} durationInFrames={90}>
-      <EndCard big="viens jouer" small="une team cod t'attend" />
-    </Sequence>
-    {EDIT_CUTS.slice(1).map((c, i) => (
-      <Flash key={c} at={c} strength={i % 3 === 2 ? 0.55 : 0.22} />
-    ))}
-    <Flash at={EDIT_SHOTS_END} strength={0.6} />
-    <SfxAudio src={staticFile("audio/sfx-edit.wav")} />
-  </Shell>
-);
+      <Sequence from={end} durationInFrames={90}>
+        <EndCard big="viens jouer" small={c.end} />
+      </Sequence>
+      {cs.slice(1).map((x, i) => (
+        <Flash key={x} at={x} strength={i % 3 === 2 ? 0.55 : 0.22} />
+      ))}
+      <Flash at={end} strength={0.6} />
+      <SfxAudio src={staticFile(sfx)} />
+    </Shell>
+  );
+  return V;
+};
+
+export const EDIT_TOTAL = sum(COD) + 90;
+export const EditVideo = makeEdit(COD, "audio/sfx-edit.wav");
+export const EDIT_VALO_TOTAL = sum(VALO) + 90;
+export const EditValo = makeEdit(VALO, "audio/sfx-edit.wav");
+export const EDIT_OW_TOTAL = sum(OW) + 90;
+export const EditOw = makeEdit(OW, "audio/sfx-edit.wav");
+export const EDIT_MR_TOTAL = sum(MR) + 90;
+export const EditMr = makeEdit(MR, "audio/sfx-edit.wav");

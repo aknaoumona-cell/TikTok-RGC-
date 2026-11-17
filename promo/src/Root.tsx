@@ -27,9 +27,8 @@ import { JURY_TOTAL, JuryVideo } from "./videos/Jury";
 import { MOOD_TOTAL, MoodVideo } from "./videos/Mood";
 import { MYMOON_TOTAL, MyMoonVideo } from "./videos/MyMoon";
 import { HISTOIRE_TOTAL, HistoireVideo } from "./videos/Histoire";
-import { EDIT_TOTAL, EditVideo } from "./videos/Edit";
+import { EDIT_MR_TOTAL, EDIT_OW_TOTAL, EDIT_TOTAL, EDIT_VALO_TOTAL, EditMr, EditOw, EditValo, EditVideo } from "./videos/Edit";
 import { CAMP_TOTAL, CampVideo } from "./videos/Camp";
-import { MONTAGE_MULTI_TOTAL, MONTAGE_OW_TOTAL, MONTAGE_VALO_TOTAL, MontageMulti, MontageOw, MontageValo } from "./videos/Montage";
 
 const common = { fps: FPS, width: WIDTH, height: HEIGHT };
 
@@ -62,9 +61,9 @@ const S = {
   HistoireVideo: withSafeZone(HistoireVideo, { full: true }),
   EditVideo: withSafeZone(EditVideo, { full: true }),
   CampVideo: withSafeZone(CampVideo, { full: true }),
-  MontageMulti: withSafeZone(MontageMulti, { full: true }),
-  MontageValo: withSafeZone(MontageValo, { full: true }),
-  MontageOw: withSafeZone(MontageOw, { full: true }),
+  EditValo: withSafeZone(EditValo, { full: true }),
+  EditOw: withSafeZone(EditOw, { full: true }),
+  EditMr: withSafeZone(EditMr, { full: true }),
 };
 
 export const Root: React.FC = () => (
@@ -96,8 +95,8 @@ export const Root: React.FC = () => (
     <Composition id="RGCHistoire" component={S.HistoireVideo} durationInFrames={HISTOIRE_TOTAL} {...common} />
     <Composition id="RGCEdit" component={S.EditVideo} durationInFrames={EDIT_TOTAL} {...common} />
     <Composition id="RGCCamp" component={S.CampVideo} durationInFrames={CAMP_TOTAL} {...common} />
-    <Composition id="RGCMontageMulti" component={S.MontageMulti} durationInFrames={MONTAGE_MULTI_TOTAL} {...common} />
-    <Composition id="RGCMontageValo" component={S.MontageValo} durationInFrames={MONTAGE_VALO_TOTAL} {...common} />
-    <Composition id="RGCMontageOw" component={S.MontageOw} durationInFrames={MONTAGE_OW_TOTAL} {...common} />
+    <Composition id="RGCEditValo" component={S.EditValo} durationInFrames={EDIT_VALO_TOTAL} {...common} />
+    <Composition id="RGCEditOw" component={S.EditOw} durationInFrames={EDIT_OW_TOTAL} {...common} />
+    <Composition id="RGCEditMr" component={S.EditMr} durationInFrames={EDIT_MR_TOTAL} {...common} />
   </>
 );
