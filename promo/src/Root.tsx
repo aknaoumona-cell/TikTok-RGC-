@@ -26,6 +26,11 @@ import { SLIDER_TOTAL, SliderVideo } from "./videos/Slider";
 import { JURY_TOTAL, JuryVideo } from "./videos/Jury";
 import { MOOD_TOTAL, MoodVideo } from "./videos/Mood";
 import { MYMOON_TOTAL, MyMoonVideo } from "./videos/MyMoon";
+import { HISTOIRE_TOTAL, HistoireVideo } from "./videos/Histoire";
+import { EDIT_TOTAL, EditVideo } from "./videos/Edit";
+import { REPLAY_TOTAL, ReplayVideo } from "./videos/Replay";
+import { CAMP_TOTAL, CampVideo } from "./videos/Camp";
+import { KILLS_TOTAL, KillsVideo } from "./videos/Kills";
 
 const common = { fps: FPS, width: WIDTH, height: HEIGHT };
 
@@ -55,6 +60,11 @@ const S = {
   JuryVideo: withSafeZone(JuryVideo),
   MoodVideo: withSafeZone(MoodVideo),
   MyMoonVideo: withSafeZone(MyMoonVideo, { full: true }),
+  HistoireVideo: withSafeZone(HistoireVideo, { full: true }),
+  EditVideo: withSafeZone(EditVideo, { full: true }),
+  ReplayVideo: withSafeZone(ReplayVideo, { full: true }),
+  CampVideo: withSafeZone(CampVideo, { full: true }),
+  KillsVideo: withSafeZone(KillsVideo, { full: true }),
 };
 
 export const Root: React.FC = () => (
@@ -83,5 +93,10 @@ export const Root: React.FC = () => (
     <Composition id="RGCJury" component={S.JuryVideo} durationInFrames={JURY_TOTAL} {...common} />
     <Composition id="RGCMood" component={S.MoodVideo} durationInFrames={MOOD_TOTAL} {...common} />
     <Composition id="RGCMyMoon" component={S.MyMoonVideo} durationInFrames={MYMOON_TOTAL} {...common} />
+    <Composition id="RGCHistoire" component={S.HistoireVideo} durationInFrames={HISTOIRE_TOTAL} {...common} />
+    <Composition id="RGCEdit" component={S.EditVideo} durationInFrames={EDIT_TOTAL} {...common} />
+    <Composition id="RGCReplay" component={S.ReplayVideo} durationInFrames={REPLAY_TOTAL} {...common} />
+    <Composition id="RGCCamp" component={S.CampVideo} durationInFrames={CAMP_TOTAL} {...common} />
+    <Composition id="RGCKills" component={S.KillsVideo} durationInFrames={KILLS_TOTAL} {...common} />
   </>
 );

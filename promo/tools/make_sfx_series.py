@@ -434,3 +434,64 @@ T.place(join_tone(), M + 212 - 16 + 8, 0.4)
 T.place(rec_beep(), M + 212 - 16 + 14, 0.3)
 end_card(T, 432)
 T.save(os.path.join(A, "sfx-mymoon.wav"))
+
+# ---------- avant, on était un serveur Marvel Rivals (600) ----------
+T = Track(20.0)
+T.place(whoosh(0.4), 2, 0.3)
+for fr in (95, 180):
+    T.place(whoosh(0.3), fr - 3, 0.35)
+T.place(riser(0.6), 222, 0.5)
+T.place(impact(), 240, 0.45)
+for i in range(6):
+    T.place(pop(1.0 + i * 0.08), 240 + i * 14, 0.4)
+T.place(shimmer(1.2), 250, 0.4)
+end_card(T, 510)
+T.save(os.path.join(A, "sfx-histoire.wav"))
+
+# ---------- edit COD (cuts) ----------
+durs = [40, 30, 24, 36, 24, 30, 36, 22, 28, 34, 22, 30, 49]
+T = Track(17.0)
+c = 0
+for i, d in enumerate(durs):
+    if i:
+        T.place(whoosh(0.18, up=False), c - 3, 0.35)
+        T.place(impact(), c, 0.25 if i % 3 != 2 else 0.5)
+    c += d
+end_card(T, c)
+T.save(os.path.join(A, "sfx-edit.wav"))
+
+# ---------- replay décortiqué (618) ----------
+T = Track(21.0)
+T.place(shutter(), 2, 0.4)
+for fr in (125, 219, 298, 380):
+    T.place(scratch(), fr, 0.35)
+    T.place(vine_boom(), fr + 1, 0.35)
+    T.place(pop(1.2), fr + 10, 0.4)
+    T.place(whoosh(0.25), fr + 38, 0.3)
+T.place(shimmer(1.4), 450, 0.45)
+T.place(confetti(), 452, 0.4)
+end_card(T, 528)
+T.save(os.path.join(A, "sfx-replay.wav"))
+
+# ---------- choisis ton camp (600) ----------
+T = Track(20.0)
+for i in range(3):
+    T.place(whoosh(0.4), i * 130, 0.4)
+    T.place(ding(), i * 130 + 4, 0.35)
+T.place(impact(), 390, 0.4)
+for i in range(3):
+    T.place(pop(1.0 + i * 0.1), 390 + i * 8, 0.45)
+T.place(ping(), 430, 0.4)
+end_card(T, 510)
+T.save(os.path.join(A, "sfx-camp.wav"))
+
+# ---------- 10 kills en 10 secondes (510) ----------
+T = Track(17.0)
+T.place(riser(0.6), 20, 0.5)
+for k, fr in enumerate([72, 102, 132, 165, 198, 231, 264, 294, 327, 360]):
+    T.place(ding(), fr, 0.3)
+    T.place(pop(1.0 + k * 0.05), fr, 0.35)
+T.place(impact(), 363, 0.5)
+T.place(confetti(), 365, 0.5)
+end_card(T, 420)
+T.save(os.path.join(A, "sfx-kills.wav"))
