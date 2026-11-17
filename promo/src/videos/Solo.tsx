@@ -91,8 +91,7 @@ const RecBadge: React.FC = () => {
   const blink = Math.floor(f / 12) % 2 === 0;
   return (
     <div style={{ position: "absolute", left: PIC_X + 30, top: PIC_TOP + 30, display: "flex", alignItems: "center", gap: 14, fontFamily: FONT.mono, fontWeight: 700, fontSize: 30, color: "#fff", textShadow: "0 2px 8px #000" }}>
-      <span style={{ width: 22, height: 22, borderRadius: 99, background: COLORS.live, opacity: blink ? 1 : 0.25, boxShadow: `0 0 14px ${COLORS.live}` }} />
-      REC · vocal
+      Vocal
     </div>
   );
 };

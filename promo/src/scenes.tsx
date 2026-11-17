@@ -71,7 +71,7 @@ export const VoiceCard: React.FC<{ top?: number }> = ({ top = 540 }) => {
               boxShadow: `0 0 ${10 + 14 * beatPulse(f)}px ${COLORS.live}`,
             }}
           />
-          REC
+          Vocal
         </div>
       </div>
       <div style={{ display: "flex", justifyContent: "space-between", marginTop: 36 }}>

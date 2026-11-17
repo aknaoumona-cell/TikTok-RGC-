@@ -29,7 +29,6 @@ const Round: React.FC<{ c: (typeof CAMPS)[number]; n: number }> = ({ c, n }) => 
       </BigClip>
       <AbsoluteFill style={{ background: `linear-gradient(180deg, ${c.color}55, transparent 22%, transparent 80%, ${c.color}55)` }} />
       <div style={{ position: "absolute", top: 300, width: "100%", textAlign: "center", opacity: k, transform: `translateY(${(1 - k) * 20}px)` }}>
-        <div style={{ fontFamily: FONT.mono, fontWeight: 700, fontSize: 24, letterSpacing: 6, color: "#fff" }}>MANCHE {n} / 3</div>
         <div style={{ fontFamily: FONT.display, fontWeight: 800, fontSize: 64, color: c.color, letterSpacing: -1, textShadow: "0 3px 18px rgba(0,0,0,0.8)" }}>TEAM {c.short}</div>
       </div>
     </AbsoluteFill>

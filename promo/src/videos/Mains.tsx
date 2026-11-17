@@ -100,7 +100,6 @@ const Card: React.FC<{ m: (typeof MAINS)[number]; n: number }> = ({ m, n }) => {
       <HoloBg />
       <Sparkles count={12} seed={`mc${n}`} />
       <div style={{ position: "absolute", top: 300, width: "100%", textAlign: "center", fontFamily: FONT.mono, fontWeight: 700, fontSize: 34, letterSpacing: 8, color: "rgba(255,255,255,0.75)" }}>
-        CARTE {n} / 4
       </div>
       <div style={{ position: "absolute", left: 160, top: 380, width: 760, height: 1150, perspective: 1800 }}>
         <div

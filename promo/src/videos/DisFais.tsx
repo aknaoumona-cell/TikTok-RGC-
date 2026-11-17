@@ -38,8 +38,7 @@ const VoiceBubble: React.FC<{ text: string; at: number }> = ({ text, at }) => {
   return (
     <div style={{ position: "absolute", top: 330, left: 90, right: 90, transform: `translateY(${(1 - s) * 40}px)`, opacity: s }}>
       <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 14 }}>
-        <span style={{ fontFamily: FONT.mono, fontWeight: 700, fontSize: 26, color: "#fff", background: "#ED4245", padding: "6px 14px", borderRadius: 8, opacity: Math.floor(f / 14) % 2 ? 0.55 : 1 }}>REC</span>
-        <span style={{ fontFamily: FONT.body, fontWeight: 700, fontSize: 32, color: "rgba(255,255,255,0.75)" }}>Vocal · ce que je dis</span>
+                <span style={{ fontFamily: FONT.body, fontWeight: 700, fontSize: 32, color: "rgba(255,255,255,0.75)" }}>Vocal · ce que je dis</span>
       </div>
       <div style={{ background: "#2B2D31", borderRadius: 28, padding: "30px 36px", border: "2px solid rgba(255,255,255,0.08)" }}>
         <div style={{ fontFamily: FONT.display, fontWeight: 800, fontSize: 52, lineHeight: 1.15, color: "#fff", letterSpacing: -1 }}>« {text} »</div>

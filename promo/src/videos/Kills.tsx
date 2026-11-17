@@ -4,9 +4,9 @@
  * 0–45 accroche · 45–363 enchaînement · 363–420 « 10/10 » · 420–510 carte de fin
  */
 import React from "react";
-import { AbsoluteFill, Freeze, Sequence, interpolate, staticFile, useCurrentFrame } from "remotion";
+import { AbsoluteFill, Freeze, Sequence, staticFile, useCurrentFrame } from "remotion";
 import { GameVideo, SfxAudio } from "../safe";
-import { FONT, Flash, clamp, easeOut } from "../components";
+import { FONT, Flash } from "../components";
 import { EndCard, Shell } from "../memes";
 
 const PINK = "#FF5FA2";
@@ -27,23 +27,6 @@ const starts = SHOTS.reduce<number[]>((acc, s, i) => [...acc, i ? acc[i - 1] + S
 export const KILL_FRAMES = SHOTS.flatMap((s, i) => s.kills.map((k) => starts[i] + k));
 const BODY_END = starts[starts.length - 1] + SHOTS[SHOTS.length - 1].dur;
 export const KILLS_TOTAL = BODY_END + 57 + 90;
-
-const Counter: React.FC = () => {
-  const f = useCurrentFrame();
-  const n = KILL_FRAMES.filter((k) => f >= k).length;
-  const last = Math.max(...KILL_FRAMES.filter((k) => f >= k), -100);
-  const pop = interpolate(f - last, [0, 8], [1.35, 1], { ...clamp, easing: easeOut });
-  const secs = Math.max(0, (f - START) / 30);
-  return (
-    <AbsoluteFill>
-      <div style={{ position: "absolute", top: 1440, width: "100%", textAlign: "center" }}>
-        <span style={{ display: "inline-block", fontFamily: FONT.display, fontWeight: 800, fontSize: 120, color: "#fff", transform: `scale(${pop})`, textShadow: `0 0 30px ${PINK}` }}>{n}</span>
-        <span style={{ fontFamily: FONT.display, fontWeight: 800, fontSize: 56, color: "rgba(255,255,255,0.6)" }}>/10</span>
-        <div style={{ fontFamily: FONT.mono, fontWeight: 700, fontSize: 26, letterSpacing: 4, color: PINK }}>KILLS · {secs.toFixed(1).replace(".", ",")} s</div>
-      </div>
-    </AbsoluteFill>
-  );
-};
 
 const Shot: React.FC<{ s: (typeof SHOTS)[number] }> = ({ s }) => {
   const f = useCurrentFrame();
@@ -97,9 +80,6 @@ export const KillsVideo: React.FC = () => (
         </Freeze>
       </AbsoluteFill>
       <div style={{ position: "absolute", top: 780, width: "100%", textAlign: "center", fontFamily: FONT.elegant, fontStyle: "italic", fontWeight: 700, fontSize: 80, color: "#fff" }}>c'est carré.</div>
-    </Sequence>
-    <Sequence durationInFrames={BODY_END + 57}>
-      <Counter />
     </Sequence>
     <Sequence from={BODY_END + 57} durationInFrames={90}>
       <EndCard big="viens jouer" small="ta team t'attend en voc" />

@@ -77,7 +77,7 @@ const Moments: React.FC = () => {
       <Dust />
       {m.rec && (
         <div style={{ position: "absolute", top: 320, left: 70, display: "flex", alignItems: "center", gap: 14, padding: "12px 24px", borderRadius: 999, background: "rgba(28,18,12,0.6)", border: "1.5px solid rgba(255,196,138,0.5)", fontFamily: FONT.mono, fontWeight: 700, fontSize: 28, color: "#FFF4E8" }}>
-          <span style={{ width: 16, height: 16, borderRadius: 99, background: COLORS.live, opacity: Math.floor(f / 12) % 2 ? 0.3 : 1 }} /> REC · Vocal
+          Vocal
         </div>
       )}
       {m.card && (

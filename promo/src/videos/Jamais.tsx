@@ -78,7 +78,6 @@ const Item: React.FC<{ m: (typeof MESSAGES)[number]; n: number }> = ({ m, n }) =
     <Phone>
       <AbsoluteFill style={{ transform: shake }}>
         <div style={{ position: "absolute", top: 470, width: "100%", textAlign: "center", fontFamily: FONT.mono, fontWeight: 700, fontSize: 32, letterSpacing: 6, color: "#8D859A" }}>
-          {n} / 3
         </div>
         <div style={{ position: "absolute", left: 60, top: 600 }}>
           {f < 14 ? (

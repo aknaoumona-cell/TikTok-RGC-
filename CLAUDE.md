@@ -30,7 +30,8 @@ Attirer des **filles gameuses actives sur Discord** pour qu'elles rejoignent le 
 - Le lien du serveur est **en commentaire** (pas « lien en bio », pas « dis-le en com »).
 - Ne jamais inventer : pas de faux chiffres, faux témoignages ou fausses captures du serveur.
 - Infos à ne PAS dire : nombre de membres, « events chaque semaine » (dire « chaque mois »), « embrouilles », « on cherche des bavardes », « tu dis bonjour en arrivant ».
-- Le vocal s'appelle juste « Vocal » avec un badge REC (pas de nom de salon).
+- Le vocal s'appelle juste « Vocal » (pas de nom de salon), **sans badge REC**.
+- **Pas de compteurs / indicateurs de suivi** à l'écran : pas de « 1/6 », « carte 2/4 », « manche 1/3 », « kill 1 », « kills : 3 », barres de progression… Le contenu parle de lui-même.
 - La vérif vocale = **un message vocal** à envoyer (pas un appel) ; tout est expliqué, on guide, c'est rapide.
 - Images d'ambiance : **vraies photos**, pas d'images générées par IA.
 

@@ -189,7 +189,7 @@ const ServerUI: React.FC = () => {
             <div key={r.idx} style={{ position: "absolute", top: r.y, left: 10, width: 560, height: 54, borderRadius: 14, display: "flex", alignItems: "center", gap: 8, paddingLeft: 14, background: on ? "rgba(183,155,255,0.18)" : "transparent", fontFamily: FONT.body, fontWeight: 600, fontSize: 32, color: on ? PEARL : "rgba(244,236,255,0.8)", opacity: p, transform: `translateX(${(1 - p) * 30}px)` }}>
               {r.voice ? <Speaker /> : <Hash />}
               {r.name}
-              {r.name === "Vocal" && <span style={{ marginLeft: 10, fontFamily: FONT.mono, fontWeight: 700, fontSize: 18, color: "#fff", background: "#ED4245", padding: "3px 10px", borderRadius: 6, opacity: Math.floor(f / 12) % 2 ? 0.55 : 1 }}>REC</span>}
+              
             </div>
           );
         })}
