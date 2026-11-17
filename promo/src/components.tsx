@@ -367,9 +367,9 @@ export const ClipFrame: React.FC<{
 };
 
 /* ---------- permanent branding: logo bug + drifting watermark ---------- */
-export const Branding: React.FC<{ ink?: "light" | "dark"; layout?: "corner" | "center" }> = ({ ink = "light", layout = "corner" }) => {
+export const Branding: React.FC<{ ink?: "light" | "dark"; layout?: "corner" | "center" | "watermark" }> = ({ ink = "light", layout = "corner" }) => {
   const f = useCurrentFrame();
-  const center = layout === "center";
+  const center = layout === "center" || layout === "watermark";
   // drifting watermark (hard to crop out). "center": stays on the vertical axis from frame 0, drifts up/down only.
   const x = center ? 540 : 540 + 230 * Math.sin(f / 97);
   const y = center ? 960 + 520 * Math.sin(f / 140) : 960 + 620 * Math.sin(f / 151 + 1.2);
@@ -392,7 +392,7 @@ export const Branding: React.FC<{ ink?: "light" | "dark"; layout?: "corner" | "c
       >
         ✦ {HANDLE} ✦
       </div>
-      {center ? (
+      {layout === "watermark" ? null : center ? (
         <div style={{ position: "absolute", top: 120, width: "100%", display: "flex", flexDirection: "column", alignItems: "center", gap: 2 }}>
           <Img src={staticFile("brand/logo-rgc.png")} style={{ width: 96, height: 96, filter: "drop-shadow(0 0 14px rgba(183,139,240,0.85))" }} />
           <div

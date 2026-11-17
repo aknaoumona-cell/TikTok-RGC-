@@ -460,18 +460,6 @@ for i, d in enumerate(durs):
 end_card(T, c)
 T.save(os.path.join(A, "sfx-edit.wav"))
 
-# ---------- replay décortiqué (618) ----------
-T = Track(21.0)
-T.place(shutter(), 2, 0.4)
-for fr in (125, 219, 298, 380):
-    T.place(scratch(), fr, 0.35)
-    T.place(vine_boom(), fr + 1, 0.35)
-    T.place(pop(1.2), fr + 10, 0.4)
-    T.place(whoosh(0.25), fr + 38, 0.3)
-T.place(shimmer(1.4), 450, 0.45)
-T.place(confetti(), 452, 0.4)
-end_card(T, 528)
-T.save(os.path.join(A, "sfx-replay.wav"))
 
 # ---------- choisis ton camp (600) ----------
 T = Track(20.0)
@@ -485,13 +473,3 @@ T.place(ping(), 430, 0.4)
 end_card(T, 510)
 T.save(os.path.join(A, "sfx-camp.wav"))
 
-# ---------- 10 kills en 10 secondes (510) ----------
-T = Track(17.0)
-T.place(riser(0.6), 20, 0.5)
-for k, fr in enumerate([72, 102, 132, 165, 198, 231, 264, 294, 327, 360]):
-    T.place(ding(), fr, 0.3)
-    T.place(pop(1.0 + k * 0.05), fr, 0.35)
-T.place(impact(), 363, 0.5)
-T.place(confetti(), 365, 0.5)
-end_card(T, 420)
-T.save(os.path.join(A, "sfx-kills.wav"))

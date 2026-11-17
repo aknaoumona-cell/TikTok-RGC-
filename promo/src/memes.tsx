@@ -18,7 +18,7 @@ import {
 } from "./components";
 
 /** Wraps a video with the permanent logo bug, drifting watermark and grain. */
-export const Shell: React.FC<{ children: React.ReactNode; hideBugFrom?: number; ink?: "light" | "dark"; brand?: "corner" | "center" }> = ({ children, hideBugFrom, ink = "light", brand = "corner" }) => {
+export const Shell: React.FC<{ children: React.ReactNode; hideBugFrom?: number; ink?: "light" | "dark"; brand?: "corner" | "center" | "watermark" }> = ({ children, hideBugFrom, ink = "light", brand = "corner" }) => {
   const f = useCurrentFrame();
   const bug = hideBugFrom === undefined ? 1 : interpolate(f, [hideBugFrom - 4, hideBugFrom], [1, 0], clamp);
   return (
