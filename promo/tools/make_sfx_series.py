@@ -486,3 +486,9 @@ for n in (7, 8, 9, 11, 12):
         c += d
     end_card(T, c)
     T.save(os.path.join(A, f"sfx-edit-{n}.wav"))
+
+# ---------- Marvel Rivals : un seul clip (340 f) ----------
+T = Track(14.5)
+T.place(whoosh(0.4), 0, 0.3)
+end_card(T, 340)
+T.save(os.path.join(A, "sfx-edit-1.wav"))

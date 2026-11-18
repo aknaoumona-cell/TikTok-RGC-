@@ -38,7 +38,8 @@ const COD: ECfg = {
 };
 const VALO: ECfg = { dir: "m", game: "VALORANT", end: "une team valo t'attend", shots: rhythm("m", ["v06", "v02", "v12", "v05", "v08", "v03", "v09", "v13", "v04", "v10", "v01", "v11"]) };
 const OW: ECfg = { dir: "m", game: "OVERWATCH", end: "une team overwatch t'attend", shots: rhythm("m", ["o09", "o01", "o12", "o03", "w11", "w17", "w12"]) };
-const MR: ECfg = { dir: "m", game: "MARVEL RIVALS", end: "une team rivals t'attend", wide: true, shots: rhythm("m", ["r05", "r09", "r12", "r04", "r16", "r10", "r06", "r14", "r11", "r17", "r13", "r03", "r18"]) };
+/** Marvel Rivals : un seul clip continu (demandé), pas de coupes */
+const MR: ECfg = { dir: "m", game: "MARVEL RIVALS", end: "une team rivals t'attend", wide: true, shots: [{ src: "m/mr-one", dur: 340, rate: 1 }] };
 
 const sum = (c: ECfg) => c.shots.reduce((a, s) => a + s.dur, 0);
 const cuts = (c: ECfg) => c.shots.reduce<number[]>((acc, s, i) => [...acc, i ? acc[i - 1] + c.shots[i - 1].dur : 0], []);
@@ -117,4 +118,4 @@ export const EditValo = makeEdit(VALO, "audio/sfx-edit-12.wav");
 export const EDIT_OW_TOTAL = sum(OW) + 90;
 export const EditOw = makeEdit(OW, "audio/sfx-edit-7.wav");
 export const EDIT_MR_TOTAL = sum(MR) + 90;
-export const EditMr = makeEdit(MR, "audio/sfx-edit.wav");
+export const EditMr = makeEdit(MR, "audio/sfx-edit-1.wav");
