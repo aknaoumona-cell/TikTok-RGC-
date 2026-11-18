@@ -1,0 +1,53 @@
+/**
+ * TikTok #30 — sortie de GTA VI : « qui va jouer à GTA ce soir et demain ? »
+ * Une seule image : l'affiche officielle de GTA VI (Rockstar) en fond plein écran (déjà en 9:16), léger zoom lent.
+ * Le texte apparaît par-dessus dans les couleurs du logo VI (rose → orange → violet). Logo RGC centré en haut.
+ */
+import React from "react";
+import { AbsoluteFill, Easing, Img, interpolate, staticFile, useCurrentFrame } from "remotion";
+import { SfxAudio } from "../safe";
+import { FONT, clamp } from "../components";
+import { Shell } from "../memes";
+
+export const GTA_TOTAL = 420;
+const VI_GRAD = "linear-gradient(100deg, #FFB86B 0%, #FF6FA8 45%, #B76BFF 100%)";
+
+const appear = (f: number, at: number) => {
+  const k = interpolate(f - at, [0, 12], [0, 1], { ...clamp, easing: Easing.out(Easing.cubic) });
+  return { opacity: k, transform: `translateY(${(1 - k) * 24}px)` } as React.CSSProperties;
+};
+
+export const GtaVideo: React.FC = () => {
+  const f = useCurrentFrame();
+  const zoom = 1.02 + f * 0.00018;
+  return (
+    <Shell brand="center">
+      <AbsoluteFill style={{ background: "#1A0F2E" }}>
+        <AbsoluteFill style={{ transform: `scale(${zoom})` }}>
+          <Img src={staticFile("gta/gta6-affiche.jpg")} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+        </AbsoluteFill>
+        {/* top + bottom shading so the RGC logo and the text stay readable; the GTA logo in the middle stays visible */}
+        <AbsoluteFill style={{ background: "linear-gradient(180deg, rgba(26,15,46,0.75) 0%, rgba(26,15,46,0) 18%, rgba(26,15,46,0) 58%, rgba(26,15,46,0.82) 72%, rgba(26,15,46,0.94) 100%)" }} />
+        <div style={{ position: "absolute", top: 1370, left: 120, right: 120, textAlign: "center" }}>
+          <div style={{ ...appear(f, 10), fontFamily: FONT.display, fontWeight: 800, fontSize: 60, lineHeight: 1.08, letterSpacing: -1, backgroundImage: VI_GRAD, WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent", WebkitTextFillColor: "transparent", filter: "drop-shadow(0 3px 10px rgba(0,0,0,0.6))" }}>
+            qui va jouer à GTA
+          </div>
+          <div style={{ ...appear(f, 22), fontFamily: FONT.elegant, fontStyle: "italic", fontWeight: 700, fontSize: 72, color: "#fff", lineHeight: 1.05, textShadow: "0 0 20px rgba(255,111,168,0.8), 0 3px 10px rgba(0,0,0,0.7)" }}>
+            ce soir et demain ?
+          </div>
+          <div style={{ ...appear(f, 110), fontFamily: FONT.body, fontWeight: 700, fontSize: 38, color: "#fff", marginTop: 26, lineHeight: 1.3, textShadow: "0 2px 10px rgba(0,0,0,0.8)" }}>
+            viens en parler avec nous sur le serveur
+          </div>
+          <div style={{ ...appear(f, 200), marginTop: 22, display: "inline-block", padding: "14px 26px", borderRadius: 22, background: "rgba(26,15,46,0.7)", border: "2px solid rgba(255,111,168,0.7)", boxShadow: "0 0 26px rgba(255,111,168,0.45)" }}>
+            <span style={{ fontFamily: FONT.body, fontWeight: 700, fontSize: 34, color: "#fff" }}>et mets ton pseudo </span>
+            <span style={{ fontFamily: FONT.display, fontWeight: 800, fontSize: 34, backgroundImage: VI_GRAD, WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent", WebkitTextFillColor: "transparent" }}>avec la police GTA</span>
+          </div>
+          <div style={{ ...appear(f, 290), marginTop: 30 }}>
+            <span style={{ fontFamily: FONT.display, fontWeight: 700, fontSize: 32, color: "#1A0F2E", padding: "14px 32px", borderRadius: 999, background: VI_GRAD, boxShadow: "0 0 30px rgba(255,111,168,0.6)" }}>lien en commentaire</span>
+          </div>
+        </div>
+      </AbsoluteFill>
+      <SfxAudio src={staticFile("audio/sfx-gta.wav")} />
+    </Shell>
+  );
+};

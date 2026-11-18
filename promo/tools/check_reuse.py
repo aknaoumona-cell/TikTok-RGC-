@@ -7,7 +7,7 @@ import sys
 import glob
 import collections
 
-ASSET = re.compile(r'"((?:clips|memes|ingame|heroes|gameplay|cozy|astro|server)/[^"]+)"')
+ASSET = re.compile(r'"((?:clips|memes|ingame|heroes|gameplay|cozy|astro|server|gta)/[^"]+)"')
 files = sorted(glob.glob("src/videos/*.tsx")) + ["src/config.ts"]
 uses = collections.defaultdict(set)
 for f in files:

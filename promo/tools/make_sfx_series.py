@@ -506,3 +506,14 @@ for n in (13, 16):
         c += d
     end_card(T, c)
     T.save(os.path.join(A, f"sfx-edit-{n}.wav"))
+
+# ---------- GTA VI (420) ----------
+T = Track(14.0)
+T.place(whoosh(0.5), 6, 0.35)
+T.place(impact(), 10, 0.35)
+T.place(shimmer(1.2, 2000), 22, 0.4)
+T.place(pop(1.0), 110, 0.4)
+T.place(pop(1.15), 200, 0.4)
+T.place(ding(), 290, 0.4)
+T.place(shimmer(1.0), 292, 0.3)
+T.save(os.path.join(A, "sfx-gta.wav"))
