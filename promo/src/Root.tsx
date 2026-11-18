@@ -1,3 +1,4 @@
+import "./Video";
 import React from "react";
 import { Composition } from "remotion";
 import { FPS, HEIGHT, TOTAL, WIDTH } from "./config";
@@ -30,6 +31,7 @@ import { HISTOIRE_TOTAL, HistoireVideo } from "./videos/Histoire";
 import { EDIT_MR_TOTAL, EDIT_OW_TOTAL, EDIT_TOTAL, EDIT_VALO_TOTAL, EditMr, EditOw, EditValo, EditVideo } from "./videos/Edit";
 import { CAMP_TOTAL, CampVideo } from "./videos/Camp";
 import { GTA_TOTAL, GtaVideo } from "./videos/Gta";
+import { GtaSlide1, GtaSlide2, GtaSlide3 } from "./videos/GtaSlides";
 
 const common = { fps: FPS, width: WIDTH, height: HEIGHT };
 
@@ -98,6 +100,9 @@ export const Root: React.FC = () => (
     <Composition id="RGCEdit" component={S.EditVideo} durationInFrames={EDIT_TOTAL} {...common} />
     <Composition id="RGCCamp" component={S.CampVideo} durationInFrames={CAMP_TOTAL} {...common} />
     <Composition id="RGCGta" component={S.GtaVideo} durationInFrames={GTA_TOTAL} {...common} />
+    <Composition id="RGCGtaSlide1" component={GtaSlide1} durationInFrames={1} {...common} />
+    <Composition id="RGCGtaSlide2" component={GtaSlide2} durationInFrames={1} {...common} />
+    <Composition id="RGCGtaSlide3" component={GtaSlide3} durationInFrames={1} {...common} />
     <Composition id="RGCEditValo" component={S.EditValo} durationInFrames={EDIT_VALO_TOTAL} {...common} />
     <Composition id="RGCEditOw" component={S.EditOw} durationInFrames={EDIT_OW_TOTAL} {...common} />
     <Composition id="RGCEditMr" component={S.EditMr} durationInFrames={EDIT_MR_TOTAL} {...common} />
