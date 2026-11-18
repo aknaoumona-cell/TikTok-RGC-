@@ -36,10 +36,10 @@ const COD: ECfg = {
     { src: "g/e11", dur: 49, rate: 0.6, start: 1 },
   ],
 };
-const VALO: ECfg = { dir: "m", game: "VALORANT", end: "une team valo t'attend", shots: rhythm("m", ["v06", "v02", "v12", "v05", "v08", "v03", "v09", "v13", "v04", "v10", "v01", "v11"]) };
-const OW: ECfg = { dir: "m", game: "OVERWATCH", end: "une team overwatch t'attend", shots: rhythm("m", ["o09", "o01", "o12", "o03", "w11", "w17", "w12"]) };
-/** Marvel Rivals : un seul clip continu (demandé), pas de coupes */
-const MR: ECfg = { dir: "m", game: "MARVEL RIVALS", end: "une team rivals t'attend", wide: true, shots: [{ src: "m/mr-one", dur: 340, rate: 1 }] };
+const VALO: ECfg = { dir: "e2", game: "VALORANT", end: "une team valo t'attend", shots: rhythm("e2", ["va-12", "va-02", "va-08", "va-05", "va-10", "va-01", "va-13", "va-09", "va-06", "va-11", "va-03", "va-07", "va-04"]) };
+const OW: ECfg = { dir: "e2", game: "OVERWATCH", end: "une team overwatch t'attend", shots: rhythm("e2", ["ow-03", "ow-09", "ow-01", "ow-07", "ow-13", "ow-02", "ow-10", "ow-14", "ow-05", "ow-15", "ow-06", "ow-12", "ow-04", "ow-16", "ow-08", "ow-11"]) };
+/** un passage de chaque clip du dossier Drive du jeu (consigne) */
+const MR: ECfg = { dir: "e2", game: "MARVEL RIVALS", end: "une team rivals t'attend", wide: true, shots: rhythm("e2", ["mr-09", "mr-02", "mr-13", "mr-04", "mr-16", "mr-07", "mr-01", "mr-10", "mr-15", "mr-05", "mr-11", "mr-03", "mr-14", "mr-06", "mr-12", "mr-08"]) };
 
 const sum = (c: ECfg) => c.shots.reduce((a, s) => a + s.dur, 0);
 const cuts = (c: ECfg) => c.shots.reduce<number[]>((acc, s, i) => [...acc, i ? acc[i - 1] + c.shots[i - 1].dur : 0], []);
@@ -114,8 +114,8 @@ const makeEdit = (c: ECfg, sfx: string): React.FC => {
 export const EDIT_TOTAL = sum(COD) + 90;
 export const EditVideo = makeEdit(COD, "audio/sfx-edit.wav");
 export const EDIT_VALO_TOTAL = sum(VALO) + 90;
-export const EditValo = makeEdit(VALO, "audio/sfx-edit-12.wav");
+export const EditValo = makeEdit(VALO, "audio/sfx-edit-13.wav");
 export const EDIT_OW_TOTAL = sum(OW) + 90;
-export const EditOw = makeEdit(OW, "audio/sfx-edit-7.wav");
+export const EditOw = makeEdit(OW, "audio/sfx-edit-16.wav");
 export const EDIT_MR_TOTAL = sum(MR) + 90;
-export const EditMr = makeEdit(MR, "audio/sfx-edit-1.wav");
+export const EditMr = makeEdit(MR, "audio/sfx-edit-16.wav");
