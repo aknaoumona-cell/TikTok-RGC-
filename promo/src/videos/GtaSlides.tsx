@@ -63,15 +63,15 @@ export const GtaSlide2: React.FC = () => (
 export const GtaSlide3: React.FC = () => (
   <AbsoluteFill style={{ background: "linear-gradient(170deg, #5B3FA0 0%, #C2639B 55%, #F2A46B 100%)" }}>
     <AbsoluteFill style={{ backgroundImage: "radial-gradient(rgba(255,255,255,0.12) 2px, transparent 2.5px)", backgroundSize: "40px 40px" }} />
-    <Brand top={220} size={100} />
-    <div style={{ position: "absolute", top: 440, left: 120, right: 120, textAlign: "center" }}>
+    <Brand top={110} size={100} />
+    <div style={{ position: "absolute", top: 330, left: 120, right: 120, textAlign: "center" }}>
       <div style={big}>viens en discuter</div>
       <div style={serif}>avec nous</div>
     </div>
-    <div style={{ position: "absolute", top: 750, width: "100%", textAlign: "center" }}>
+    <div style={{ position: "absolute", top: 560, width: "100%", textAlign: "center" }}>
       <span style={{ fontFamily: FONT.display, fontWeight: 700, fontSize: 34, color: INK, padding: "16px 36px", borderRadius: 999, background: "#fff", boxShadow: "0 0 30px rgba(255,255,255,0.6)" }}>lien du serveur en commentaire</span>
     </div>
-    <div style={{ position: "absolute", left: 150, top: 910, width: 780, height: 656, borderRadius: 36, overflow: "hidden", border: "4px solid rgba(255,255,255,0.85)", boxShadow: "0 30px 70px rgba(46,27,82,0.55)" }}>
+    <div style={{ position: "absolute", left: 150, top: 690, width: 780, height: 920, borderRadius: 36, overflow: "hidden", border: "4px solid rgba(255,255,255,0.85)", boxShadow: "0 30px 70px rgba(46,27,82,0.55)" }}>
       <Img src={staticFile("gta/salons-gta.jpg")} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "50% 50%" }} />
     </div>
     <Watermark />
